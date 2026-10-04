@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">OrbitMorph</title>
+  <desc id="desc">A folded document at the center of a translucent segmented orbit with a warm orange active segment.</desc>
+  <defs>
+    <linearGradient id="ground" x1="12" y1="8" x2="118" y2="124" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#26374A"/><stop offset="1" stop-color="#111B29"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="42" y1="34" x2="83" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".97"/><stop offset="1" stop-color="#DCE7EF" stop-opacity=".9"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#ground)"/>
+  <g fill="none" stroke-linecap="round" stroke-width="5.5">
+    <path d="M64 14a50 50 0 0 1 32 11" stroke="#DDE7EF" stroke-opacity=".54"/>
+    <path d="M105 39a50 50 0 0 1 5 32" stroke="#DDE7EF" stroke-opacity=".4"/>
+    <path d="M105 88a50 50 0 0 1-24 22" stroke="#DDE7EF" stroke-opacity=".48"/>
+    <path d="M65 114a50 50 0 0 1-32-11" stroke="#DDE7EF" stroke-opacity=".34"/>
+    <path d="M23 89a50 50 0 0 1-5-32" stroke="#DDE7EF" stroke-opacity=".48"/>
+    <path d="M23 40a50 50 0 0 1 24-22" stroke="#DDE7EF" stroke-opacity=".4"/>
+    <path d="M14 60a50 50 0 0 1 12-29" stroke="#FF8A58" stroke-opacity=".98" stroke-width="7"/>
+  </g>
+  <path d="M43 34h42a6 6 0 0 1 6 6v42L74 99H43a6 6 0 0 1-6-6V40a6 6 0 0 1 6-6Z" fill="url(#paper)"/>
+  <path d="M74 99V87a5 5 0 0 1 5-5h12L74 99Z" fill="#B8C9D7" fill-opacity=".9"/>
+  <path d="M48 64h25M48 74h30M48 84h20" stroke="#64798B" stroke-width="3.5" stroke-linecap="round" stroke-opacity=".78"/>
+</svg>

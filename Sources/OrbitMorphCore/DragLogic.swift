@@ -2,9 +2,22 @@ import Foundation
 
 public enum GlobalDragEvent: Equatable, Sendable {
     case dragged(shift: Bool, option: Bool, sourceIsFinder: Bool)
+    case modifiedDrag(mode: DragMode?, sourceHasFiles: Bool)
+    case cancelled
     case filesResolved(count: Int)
     case mouseUp
     case dropCompleted
+}
+
+public struct FileDragPasteboardGate: Sendable {
+    private var initialChangeCount: Int?
+    public init() {}
+    public mutating func begin(changeCount: Int) { initialChangeCount = changeCount }
+    public mutating func end() { initialChangeCount = nil }
+    public func accepts(changeCount: Int, validatedFileCount: Int) -> Bool {
+        guard let initialChangeCount, validatedFileCount > 0 else { return false }
+        return changeCount != initialChangeCount
+    }
 }
 
 public enum GlobalDragPhase: Equatable, Sendable {
@@ -28,19 +41,33 @@ public struct GlobalDragStateMachine: Sendable {
     public mutating func handle(_ event: GlobalDragEvent) -> GlobalDragEffect {
         switch event {
         case let .dragged(shift, option, sourceIsFinder):
-            guard case .idle = phase, sourceIsFinder, let mode = ModifierMatcher.mode(shift: shift, option: option) else { return .none }
-            phase = .armed(mode)
+            return handle(.modifiedDrag(mode: ModifierMatcher.mode(shift: shift, option: option), sourceHasFiles: sourceIsFinder))
+        case let .modifiedDrag(mode, sourceHasFiles):
+            guard let mode else {
+                guard phase != .idle else { return .none }
+                phase = .idle
+                return .cancel
+            }
+            switch phase {
+            case .idle:
+                guard sourceHasFiles else { return .none }
+                phase = .armed(mode)
+            case .armed(let previous):
+                guard previous != mode else { return .none }
+                phase = .armed(mode)
+            case .ready(let previous):
+                guard previous != mode else { return .none }
+                phase = .ready(mode)
+            }
             return .show(mode)
         case let .filesResolved(count):
             guard count > 0, case let .armed(mode) = phase else { return .none }
             phase = .ready(mode)
             return .filesReady
-        case .mouseUp:
-            if case .armed = phase {
-                phase = .idle
-                return .cancel
-            }
-            return .none
+        case .mouseUp, .cancelled:
+            guard phase != .idle else { return .none }
+            phase = .idle
+            return .cancel
         case .dropCompleted:
             guard case .ready = phase else { return .none }
             phase = .idle
@@ -79,15 +106,18 @@ public enum ToolRegistry {
     public static func actions(for format: FormatID) -> Set<ToolActionID> {
         switch format.kind {
         case .image:
+            if format == .svg { return [.archive] }
             return [.compress, .resizeImage, .rotate, .stripMetadata, .archive]
         case .video:
             return [.compress, .stripMetadata, .extractAudio, .makeGIF, .archive]
         case .audio:
             return [.compress, .stripMetadata, .archive]
         case .document:
-            var values: Set<ToolActionID> = [.compress, .stripMetadata, .archive]
+            var values: Set<ToolActionID> = [.archive]
             if format == .pdf { values.insert(.pdfMerge) }
             return values
+        case .subtitle:
+            return [.archive]
         case .archive:
             return [.unarchive]
         case .unknown:
@@ -95,9 +125,30 @@ public enum ToolRegistry {
         }
     }
 
-    public static func commonActions(for formats: [FormatID]) -> Set<ToolActionID> {
+    public static func commonActions(for formats: [FormatID], dependencies: DependencyResolver = .init()) -> Set<ToolActionID> {
         guard let first = formats.first else { return [] }
-        return formats.dropFirst().reduce(actions(for: first)) { $0.intersection(actions(for: $1)) }
+        var result = formats.dropFirst().reduce(actions(for: first)) { $0.intersection(actions(for: $1)) }
+        if formats.count < 2 { result.remove(.pdfMerge) }
+        if !dependencies.has("ditto") { result.remove(.archive) }
+        if !dependencies.has("7zz") {
+            let canExtract = formats.allSatisfy { format in
+                (format == .zip && dependencies.has("ditto")) ||
+                ([.tar, .tgz].contains(format) && dependencies.has("tar"))
+            }
+            if !canExtract { result.remove(.unarchive) }
+        }
+        if formats.contains(where: { $0.kind == .image }), !dependencies.has("magick") {
+            result.subtract([.resizeImage, .rotate, .stripMetadata, .compress])
+        }
+        if formats.contains(where: { $0.kind == .audio || $0.kind == .video }), !dependencies.has("ffmpeg") {
+            result.subtract([.stripMetadata, .compress, .extractAudio, .makeGIF])
+        }
+        if let path = dependencies.path(for: "ffmpeg"),
+           formats.contains(where: { ($0 == .wmv && !FFmpegAdapter.canEncodeWMV(ffmpegPath: path)) ||
+               ($0 == .wma && !FFmpegAdapter.canEncodeWMA(ffmpegPath: path)) }) {
+            result.remove(.compress)
+        }
+        return result
     }
 }
 

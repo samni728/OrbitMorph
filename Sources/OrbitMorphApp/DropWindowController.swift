@@ -3,27 +3,30 @@ import SwiftUI
 import OrbitMorphCore
 
 struct DropZoneView: View {
-    @State private var hovering = false
+    @ObservedObject var state: AppState
     var body: some View {
         VStack(spacing: 16) {
-            Image(systemName: "arrow.down.doc.fill")
-                .font(.system(size: 34, weight: .light)).foregroundStyle(Color(red: 1.0, green: 0.31, blue: 0.12))
+            Image(systemName: "arrow.down.doc.fill").font(.system(size: 34, weight: .light)).foregroundStyle(Color(red: 1, green: 0.31, blue: 0.12))
             Text("Drop. Spin. Convert.").font(.system(size: 20, weight: .semibold, design: .rounded))
-            Text("Drop files here or hold Shift while dragging in Finder").font(.system(size: 12)).foregroundStyle(.secondary)
-        }
-        .frame(width: 390, height: 220)
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(.white.opacity(0.35), lineWidth: 1))
-        .padding(22)
+            Text("Drop files here or hold \(state.settings.conversionModifier.capitalized) while dragging in Finder")
+                .font(.system(size: 12)).foregroundStyle(.secondary)
+            if state.isBusy { ProgressView().controlSize(.small) }
+            Text(state.message).font(.caption).foregroundStyle(.secondary).lineLimit(2).multilineTextAlignment(.center)
+            if !state.lastOutputs.isEmpty {
+                Button("Reveal output files") { NSWorkspace.shared.activateFileViewerSelecting(state.lastOutputs) }.controlSize(.small)
+            }
+        }.padding(18).frame(width: 390, height: 240)
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(.white.opacity(0.35), lineWidth: 1)).padding(22)
     }
 }
 
 @MainActor
 final class DropZoneReceivingView: NSView {
-    private let host = NSHostingView(rootView: DropZoneView())
+    private let host: NSHostingView<DropZoneView>
     var onFiles: (([URL]) -> Void)?
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
+    init(state: AppState, frame: NSRect) {
+        host = NSHostingView(rootView: DropZoneView(state: state)); super.init(frame: frame)
         host.frame = bounds; host.autoresizingMask = [.width, .height]; addSubview(host)
         registerForDraggedTypes([.fileURL])
     }
@@ -33,8 +36,7 @@ final class DropZoneReceivingView: NSView {
         let files = read(sender); guard !files.isEmpty else { return false }; onFiles?(files); return true
     }
     private func read(_ info: NSDraggingInfo) -> [URL] {
-        let options: [NSPasteboard.ReadingOptionKey: Any] = [.urlReadingFileURLsOnly: true]
-        let urls = info.draggingPasteboard.readObjects(forClasses: [NSURL.self], options: options) as? [URL] ?? []
+        let urls = info.draggingPasteboard.readObjects(forClasses: [NSURL.self], options: [.urlReadingFileURLsOnly: true]) as? [URL] ?? []
         return ValidatedFileURLs.resolve(urls)
     }
 }
@@ -43,10 +45,12 @@ final class DropZoneReceivingView: NSView {
 final class DropWindowController {
     let window: NSWindow
     private let receiver: DropZoneReceivingView
-    init(onFiles: @escaping ([URL]) -> Void) {
-        window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 434, height: 264), styleMask: [.borderless, .titled, .closable], backing: .buffered, defer: false)
-        window.titlebarAppearsTransparent = true; window.titleVisibility = .hidden; window.isOpaque = false; window.backgroundColor = .clear; window.hasShadow = true
-        receiver = DropZoneReceivingView(frame: NSRect(x: 0, y: 0, width: 434, height: 264)); receiver.onFiles = onFiles; window.contentView = receiver; window.center()
+    init(state: AppState, onFiles: @escaping ([URL]) -> Void) {
+        window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 434, height: 320), styleMask: [.titled, .closable], backing: .buffered, defer: false)
+        window.titlebarAppearsTransparent = true; window.titleVisibility = .hidden
+        window.isOpaque = false; window.backgroundColor = .clear; window.hasShadow = true; window.isReleasedWhenClosed = false
+        receiver = DropZoneReceivingView(state: state, frame: NSRect(x: 0, y: 0, width: 434, height: 320))
+        receiver.onFiles = onFiles; window.contentView = receiver; window.center()
     }
     func show() { window.makeKeyAndOrderFront(nil); NSApp.activate(ignoringOtherApps: true) }
 }

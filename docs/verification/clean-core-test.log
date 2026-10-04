@@ -1,0 +1,219 @@
+Building for debugging...
+[0/13] /tmp/orbitmorph-final-clean-20261003/arm64-apple-macosx/debug/OrbitMorphPackageTests.derived/runner.swift
+[0/13] Write sources
+[6/13] Write OrbitMorph-entitlement.plist
+[7/13] Write swift-version--58304C5D6DBC2206.txt
+[9/30] Emitting module OrbitMorphCore
+[10/32] Compiling OrbitMorphCore WheelGeometry.swift
+[11/32] Compiling OrbitMorphCore WheelPresentation.swift
+[12/32] Compiling OrbitMorphCore AppSettings.swift
+[13/32] Compiling OrbitMorphCore ConversionEngine.swift
+[14/32] Compiling OrbitMorphCore OutputNamer.swift
+[15/32] Compiling OrbitMorphCore ProcessRunner.swift
+[16/32] Compiling OrbitMorphCore ConversionRegistry.swift
+[17/32] Compiling OrbitMorphCore DependencyResolver.swift
+[18/32] Compiling OrbitMorphCore SettingsSupport.swift
+[19/32] Compiling OrbitMorphCore ToolExecutor.swift
+[20/32] Compiling OrbitMorphCore DragLogic.swift
+[21/32] Compiling OrbitMorphCore Formats.swift
+[22/32] Compiling OrbitMorphCore ImageMagickAdapter.swift
+[23/32] Compiling OrbitMorphCore PDFRenderAdapter.swift
+[24/32] Compiling OrbitMorphCore PandocAdapter.swift
+[25/32] Compiling OrbitMorphCore ArchiveAdapter.swift
+[26/32] Compiling OrbitMorphCore FFmpegAdapter.swift
+[27/32] Compiling OrbitMorphCore ImageIOAdapter.swift
+[28/53] Compiling OrbitMorphApp GlobalDragMonitor.swift
+[29/53] Compiling OrbitMorphApp JobCoordinator.swift
+[30/54] Compiling OrbitMorphApp main.swift
+[31/54] Compiling OrbitMorphApp OverlayPanelController.swift
+[32/54] Compiling OrbitMorphCoreTests BackendRegressionTests.swift
+[33/54] Compiling OrbitMorphCoreTests ConversionIntegrationTests.swift
+[34/54] Emitting module OrbitMorphApp
+[35/54] Compiling OrbitMorphApp RadialWheelView.swift
+[36/54] Compiling OrbitMorphApp SettingsWindowController.swift
+[37/54] Compiling OrbitMorphCoreTests ConversionMatrixTests.swift
+[38/54] Compiling OrbitMorphCoreTests CoreRegistryTests.swift
+[39/54] Compiling OrbitMorphApp SettingsView.swift
+[39/54] Write Objects.LinkFileList
+[40/54] Linking OrbitMorph
+[41/54] Applying OrbitMorph
+[43/56] Compiling OrbitMorphCoreTests ToolExecutorTests.swift
+[44/56] Compiling OrbitMorphCoreTests WheelPresentationTests.swift
+[47/57] Compiling OrbitMorphCoreTests SettingsSupportTests.swift
+[48/57] Emitting module OrbitMorphAppTests
+[49/57] Compiling OrbitMorphAppTests DragDestinationTests.swift
+[50/57] Compiling OrbitMorphCoreTests DragLogicTests.swift
+[51/57] Emitting module OrbitMorphCoreTests
+[52/57] Compiling OrbitMorphCoreTests SettingsWorkflowTests.swift
+[55/57] Compiling OrbitMorphCoreTests WheelSettingsTests.swift
+[56/59] Compiling OrbitMorphPackageTests runner.swift
+[57/59] Emitting module OrbitMorphPackageTests
+[57/59] Write Objects.LinkFileList
+[58/59] Linking OrbitMorphPackageTests
+Build complete! (19.96s)
+Test Suite 'Selected tests' started at 2026-10-03 14:49:26.872.
+Test Suite 'OrbitMorphPackageTests.xctest' started at 2026-10-03 14:49:26.875.
+Test Suite 'BackendRegressionTests' started at 2026-10-03 14:49:26.875.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testAnimatedGIFToPNGWritesOneFirstFrameWithoutTemporarySiblings]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testAnimatedGIFToPNGWritesOneFirstFrameWithoutTemporarySiblings]' passed (0.208 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testArchiveExtractionRejectsParentTraversalBeforeWritingFiles]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testArchiveExtractionRejectsParentTraversalBeforeWritingFiles]' passed (0.315 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testArchiveExtractionRejectsSymlinkAndHardlinkMembers]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testArchiveExtractionRejectsSymlinkAndHardlinkMembers]' passed (0.518 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testConfiguredAudioBitrateIsAppliedToEveryAudioEncodingTarget]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testConfiguredAudioBitrateIsAppliedToEveryAudioEncodingTarget]' passed (0.002 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testExternalOutputCreatedDuringConversionIsNeverOverwritten]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testExternalOutputCreatedDuringConversionIsNeverOverwritten]' passed (0.457 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testFailedConversionRemovesTemporaryOutputAndEarlierBatchResults]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testFailedConversionRemovesTemporaryOutputAndEarlierBatchResults]' passed (0.267 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testFailedExtractionRemovesNewDestinationDirectory]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testFailedExtractionRemovesNewDestinationDirectory]' passed (0.576 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testJobOptionsReachImageAndMediaAdapters]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testJobOptionsReachImageAndMediaAdapters]' passed (0.001 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeArchiveFallbackKeepsPayloadAtRoot]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeArchiveFallbackKeepsPayloadAtRoot]' passed (0.476 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeImageIOFallbackConvertsWithoutImageMagick]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeImageIOFallbackConvertsWithoutImageMagick]' passed (0.138 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeTarToZipPreservesPayloadRoot]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeTarToZipPreservesPayloadRoot]' passed (0.455 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testOGGConversionUsesAvailableVorbisEncoder]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testOGGConversionUsesAvailableVorbisEncoder]' passed (0.479 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testPDFRendersEveryPageAsSeparatePNG]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testPDFRendersEveryPageAsSeparatePNG]' passed (0.116 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testPerInputOutputDirectoriesAndCrossDirectoryRollback]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testPerInputOutputDirectoriesAndCrossDirectoryRollback]' passed (0.438 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testProcessRunnerTerminatesHungConverter]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testProcessRunnerTerminatesHungConverter]' passed (0.174 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testRegistryOnlyOffersReadableDocumentRoutesAndAvailableArchives]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testRegistryOnlyOffersReadableDocumentRoutesAndAvailableArchives]' passed (0.001 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSevenZipSymlinkMemberIsRejected]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSevenZipSymlinkMemberIsRejected]' passed (0.169 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSevenZipToTGZPreservesPayloadRoot]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSevenZipToTGZPreservesPayloadRoot]' passed (0.410 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSilentVideoConvertsToVideoButRejectsAudioExtractionCleanly]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSilentVideoConvertsToVideoButRejectsAudioExtractionCleanly]' passed (0.316 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testTarGzAliasExtractsPayloadRatherThanNestedTar]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testTarGzAliasExtractsPayloadRatherThanNestedTar]' passed (0.663 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testTextutilConvertsDOCAndRTFInBothDirections]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testTextutilConvertsDOCAndRTFInBothDirections]' passed (0.530 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testVideoConversionHonorsAudioBitrateOption]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testVideoConversionHonorsAudioBitrateOption]' passed (0.326 seconds).
+Test Suite 'BackendRegressionTests' passed at 2026-10-03 14:49:33.913.
+	 Executed 22 tests, with 0 failures (0 unexpected) in 7.034 (7.038) seconds
+Test Suite 'ConversionIntegrationTests' started at 2026-10-03 14:49:33.913.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testDocumentTxtToDocx]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testDocumentTxtToDocx]' passed (0.144 seconds).
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testImageConversionHandlesUnicodeAndSpaces]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testImageConversionHandlesUnicodeAndSpaces]' passed (0.224 seconds).
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testProcessInvocationKeepsUserPathsAsSingleArguments]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testProcessInvocationKeepsUserPathsAsSingleArguments]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testVideoMovToMp4AndExtractMp3]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testVideoMovToMp4AndExtractMp3]' passed (0.424 seconds).
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testZipToSevenZip]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testZipToSevenZip]' passed (0.423 seconds).
+Test Suite 'ConversionIntegrationTests' passed at 2026-10-03 14:49:35.129.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 1.216 (1.216) seconds
+Test Suite 'ConversionMatrixTests' started at 2026-10-03 14:49:35.129.
+Test Case '-[OrbitMorphCoreTests.ConversionMatrixTests testEveryAdvertisedRouteWithGeneratedFixture]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionMatrixTests testEveryAdvertisedRouteWithGeneratedFixture]' passed (64.338 seconds).
+Test Suite 'ConversionMatrixTests' passed at 2026-10-03 14:50:39.467.
+	 Executed 1 test, with 0 failures (0 unexpected) in 64.338 (64.338) seconds
+Test Suite 'CoreRegistryTests' started at 2026-10-03 14:50:39.467.
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testFormatNormalizationAndClassification]' started.
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testFormatNormalizationAndClassification]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testMultiFileTargetsAreIntersection]' started.
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testMultiFileTargetsAreIntersection]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testOutputNamerNeverOverwritesExistingFile]' started.
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testOutputNamerNeverOverwritesExistingFile]' passed (0.001 seconds).
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testRegistryFiltersRoutesWhenDependencyMissing]' started.
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testRegistryFiltersRoutesWhenDependencyMissing]' passed (0.000 seconds).
+Test Suite 'CoreRegistryTests' passed at 2026-10-03 14:50:39.470.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'DragLogicTests' started at 2026-10-03 14:50:39.470.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testMouseUpCancelsArmedSessionWithoutFiles]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testMouseUpCancelsArmedSessionWithoutFiles]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testResolvedFilesKeepSessionActiveUntilDrop]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testResolvedFilesKeepSessionActiveUntilDrop]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testShiftArmsConversionAndOptionShiftPrefersTools]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testShiftArmsConversionAndOptionShiftPrefersTools]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testToolRegistryFiltersByInputKind]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testToolRegistryFiltersByInputKind]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testUnrelatedMouseDragIsIgnored]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testUnrelatedMouseDragIsIgnored]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testValidatedFileURLsRejectMissingAndNonFileURLs]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testValidatedFileURLsRejectMissingAndNonFileURLs]' passed (0.001 seconds).
+Test Suite 'DragLogicTests' passed at 2026-10-03 14:50:39.472.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'SettingsSupportTests' started at 2026-10-03 14:50:39.472.
+Test Case '-[OrbitMorphCoreTests.SettingsSupportTests testCompatibilityPolicyCannotEnableUnsupportedRoute]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsSupportTests testCompatibilityPolicyCannotEnableUnsupportedRoute]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.SettingsSupportTests testDependencyDiagnosticsIncludesUnavailableCommands]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsSupportTests testDependencyDiagnosticsIncludesUnavailableCommands]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.SettingsSupportTests testDisabledSupportedRouteBecomesDisabled]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsSupportTests testDisabledSupportedRouteBecomesDisabled]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.SettingsSupportTests testFolderRecordRoundTrips]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsSupportTests testFolderRecordRoundTrips]' passed (0.001 seconds).
+Test Suite 'SettingsSupportTests' passed at 2026-10-03 14:50:39.474.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'SettingsWorkflowTests' started at 2026-10-03 14:50:39.474.
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testAbandonedReadyDragDoesNotPreventNextDrag]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testAbandonedReadyDragDoesNotPreventNextDrag]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testArchiveToolUsesNativeExtractorWithoutSevenZip]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testArchiveToolUsesNativeExtractorWithoutSevenZip]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testConfiguredModifierMatchesExactly]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testConfiguredModifierMatchesExactly]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testDisabledRouteAndUnknownFileAffectWheelTargets]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testDisabledRouteAndUnknownFileAffectWheelTargets]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testDocumentWheelDoesNotOfferUnimplementedImageTools]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testDocumentWheelDoesNotOfferUnimplementedImageTools]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testFileDragGateRejectsFinderSelectionAndStalePasteboard]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testFileDragGateRejectsFinderSelectionAndStalePasteboard]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testModifierChangeSwitchesExistingDragWheel]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testModifierChangeSwitchesExistingDragWheel]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testOlderPartialSettingsKeepDefaultsForNewFields]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testOlderPartialSettingsKeepDefaultsForNewFields]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testOutputFolderBookmarksPersistWithOtherSettings]' started.
+Test Case '-[OrbitMorphCoreTests.SettingsWorkflowTests testOutputFolderBookmarksPersistWithOtherSettings]' passed (0.000 seconds).
+Test Suite 'SettingsWorkflowTests' passed at 2026-10-03 14:50:39.476.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'ToolExecutorTests' started at 2026-10-03 14:50:39.476.
+Test Case '-[OrbitMorphCoreTests.ToolExecutorTests testBadPDFDoesNotProducePartialMerge]' started.
+CoreGraphics PDF has logged an error. Set environment variable "CG_PDF_VERBOSE" to learn more.
+Test Case '-[OrbitMorphCoreTests.ToolExecutorTests testBadPDFDoesNotProducePartialMerge]' passed (0.002 seconds).
+Test Case '-[OrbitMorphCoreTests.ToolExecutorTests testMergeCreatesNewOutputAndPreservesExistingPDF]' started.
+Test Case '-[OrbitMorphCoreTests.ToolExecutorTests testMergeCreatesNewOutputAndPreservesExistingPDF]' passed (0.006 seconds).
+Test Case '-[OrbitMorphCoreTests.ToolExecutorTests testUnsupportedDocumentToolFailsBeforeWriting]' started.
+Test Case '-[OrbitMorphCoreTests.ToolExecutorTests testUnsupportedDocumentToolFailsBeforeWriting]' passed (0.000 seconds).
+Test Suite 'ToolExecutorTests' passed at 2026-10-03 14:50:39.484.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.008 (0.008) seconds
+Test Suite 'WheelPresentationTests' started at 2026-10-03 14:50:39.484.
+Test Case '-[OrbitMorphCoreTests.WheelPresentationTests testPresentationLimitsVisibleSegmentsAndKeepsOrder]' started.
+Test Case '-[OrbitMorphCoreTests.WheelPresentationTests testPresentationLimitsVisibleSegmentsAndKeepsOrder]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.WheelPresentationTests testReduceMotionRemovesRotation]' started.
+Test Case '-[OrbitMorphCoreTests.WheelPresentationTests testReduceMotionRemovesRotation]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.WheelPresentationTests testSelectionAndCancelState]' started.
+Test Case '-[OrbitMorphCoreTests.WheelPresentationTests testSelectionAndCancelState]' passed (0.000 seconds).
+Test Suite 'WheelPresentationTests' passed at 2026-10-03 14:50:39.485.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'WheelSettingsTests' started at 2026-10-03 14:50:39.485.
+Test Case '-[OrbitMorphCoreTests.WheelSettingsTests testEightSegmentGeometryMapsTopClockwise]' started.
+Test Case '-[OrbitMorphCoreTests.WheelSettingsTests testEightSegmentGeometryMapsTopClockwise]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.WheelSettingsTests testGeometryRejectsDeadZoneAndOutsideRadius]' started.
+Test Case '-[OrbitMorphCoreTests.WheelSettingsTests testGeometryRejectsDeadZoneAndOutsideRadius]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.WheelSettingsTests testModifierRoutingPrefersToolsForOptionShift]' started.
+Test Case '-[OrbitMorphCoreTests.WheelSettingsTests testModifierRoutingPrefersToolsForOptionShift]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.WheelSettingsTests testSettingsRoundTripPreservesOverrides]' started.
+Test Case '-[OrbitMorphCoreTests.WheelSettingsTests testSettingsRoundTripPreservesOverrides]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.WheelSettingsTests testSettingsStorePersistsAndLoads]' started.
+Test Case '-[OrbitMorphCoreTests.WheelSettingsTests testSettingsStorePersistsAndLoads]' passed (0.002 seconds).
+Test Suite 'WheelSettingsTests' passed at 2026-10-03 14:50:39.488.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'OrbitMorphPackageTests.xctest' passed at 2026-10-03 14:50:39.489.
+	 Executed 62 tests, with 0 failures (0 unexpected) in 72.606 (72.614) seconds
+Test Suite 'Selected tests' passed at 2026-10-03 14:50:39.489.
+	 Executed 62 tests, with 0 failures (0 unexpected) in 72.606 (72.617) seconds
+Conversion matrix report: /var/folders/3m/qr8bbl7x1l3b1c_jm3ssyhmc0000gn/T/orbitmorph-matrix-report.json
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

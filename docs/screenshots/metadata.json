@@ -1,0 +1,38 @@
+{
+  "capturedAtUTC": "2026-10-04T09:56:44.625729+00:00",
+  "version": "1.1.0",
+  "binarySHA256": "051cc6fdb59bbb47a2cc458054bc74bd85672ebc4a1dd170a68ae2fa0569ba74",
+  "method": "Application view self-render; not desktop capture or gesture animation recording",
+  "screenshots": {
+    "wheel.png": {
+      "width": 310,
+      "height": 310,
+      "sha256": "63c8bcc19357dccbf43637ff225fffc250a66233cc5bc4aabda440b230ff2cce"
+    },
+    "general.png": {
+      "width": 850,
+      "height": 580,
+      "sha256": "3c00fbcb4df32ab281691c2f229dd1cad8a8aa0c97c6b307df7fe4665e8ba7b8"
+    },
+    "formats.png": {
+      "width": 850,
+      "height": 580,
+      "sha256": "f71861ceaaaffba6dd1d8a3494f562672282ffa60de0c331ec64b036eb69e513"
+    },
+    "compatibility.png": {
+      "width": 850,
+      "height": 580,
+      "sha256": "15541a3c74afcb492b6c67ee1c513fb382a9e88f6c776723a9914925f68ba716"
+    },
+    "folders.png": {
+      "width": 850,
+      "height": 580,
+      "sha256": "51ddc14cd7dacbdabd42793e1703f041e5124a22358d30af7cf6623b08a9396c"
+    },
+    "about.png": {
+      "width": 850,
+      "height": 580,
+      "sha256": "30d5502392af4362bae6b679155851cc344ac8b7dba35e13aa257d03faaab3d5"
+    }
+  }
+}

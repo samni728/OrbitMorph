@@ -34,6 +34,19 @@ public enum DragMode: String, Codable, Sendable {
 }
 
 public enum ModifierMatcher {
+    public static let choices = ["shift", "option", "control", "command", "option+shift", "control+shift", "command+shift"]
+
+    public static func mode(shift: Bool, option: Bool, control: Bool, command: Bool, settings: AppSettings) -> DragMode? {
+        let active = Set([(shift, "shift"), (option, "option"), (control, "control"), (command, "command")].filter(\.0).map(\.1))
+        func matches(_ value: String) -> Bool {
+            let required = Set(value.split(separator: "+").map(String.init))
+            return !required.isEmpty && active == required
+        }
+        if matches(settings.toolsModifier) { return .tools }
+        if matches(settings.conversionModifier) { return .conversion }
+        return nil
+    }
+
     public static func mode(shift: Bool, option: Bool) -> DragMode? {
         guard shift else { return nil }
         return option ? .tools : .conversion

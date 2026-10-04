@@ -1,7 +1,7 @@
 import Foundation
 
 public enum ConversionBackend: String, Codable, Sendable {
-    case imageMagick, ffmpeg, pandoc, textutil, nativePDF, archive
+    case imageMagick, nativeImageIO, ffmpeg, pandoc, textutil, nativePDF, nativeSubtitle, archive
 }
 
 public struct ConversionRoute: Hashable, Sendable {
@@ -41,36 +41,70 @@ public struct ConversionRegistry: Sendable {
     public func routes(for source: FormatID) -> [ConversionRoute] {
         var result: [ConversionRoute] = []
 
-        if source.kind == .image, dependencies.has("magick") {
-            let imageTargets: [FormatID] = [.jpg, .png, .webp, .heic, .tiff, .avif, .bmp, .gif, .pdf]
-            result += imageTargets.filter { $0 != source }.map { ConversionRoute(source: source, target: $0, backend: .imageMagick) }
+        if source.kind == .image, let magickPath = dependencies.path(for: "magick"),
+           source != .svg || ImageMagickAdapter.canReadSVG(magickPath: magickPath) {
+            let targets: [FormatID] = source == .svg
+                ? [.png, .jpg, .webp, .pdf]
+                : [.jpg, .png, .webp, .heic, .tiff, .avif, .bmp, .gif, .pdf]
+            result += targets.filter { $0 != source }.map { .init(source: source, target: $0, backend: .imageMagick) }
+        }
+
+        if source.kind == .image, source != .svg, !dependencies.has("magick"), ImageIOAdapter.canRead(source) {
+            let targets: [FormatID] = [.jpg, .png, .webp, .heic, .tiff, .avif, .bmp, .gif, .pdf]
+            result += targets.filter { $0 != source && ImageIOAdapter.canWrite($0) }
+                .map { .init(source: source, target: $0, backend: .nativeImageIO) }
         }
 
         if source.kind == .video || source.kind == .audio, dependencies.has("ffmpeg") {
-            let mediaTargets: [FormatID]
-            if source.kind == .video {
-                mediaTargets = [.mp4, .mov, .mkv, .webm, .avi, .m4v, .gif, .mp3, .m4a, .wav, .flac, .ogg, .opus]
-            } else {
-                mediaTargets = [.mp3, .m4a, .aac, .wav, .flac, .ogg, .opus, .aiff]
-            }
-            result += mediaTargets.filter { $0 != source }.map { ConversionRoute(source: source, target: $0, backend: .ffmpeg) }
+            var targets: [FormatID] = source.kind == .video
+                ? [.mp4, .mov, .mkv, .webm, .avi, .m4v, .gif, .mp3, .m4a, .wav, .flac, .ogg, .opus]
+                : [.mp3, .m4a, .aac, .wav, .flac, .ogg, .opus, .aiff]
+            let ffmpegPath = dependencies.path(for: "ffmpeg")!
+            let supportsVorbis = FFmpegAdapter.vorbisEncoder(ffmpegPath: ffmpegPath) != nil
+            if source.kind == .video, FFmpegAdapter.canEncodeWMV(ffmpegPath: ffmpegPath) { targets.append(.wmv) }
+            if source.kind == .audio, FFmpegAdapter.canEncodeWMA(ffmpegPath: ffmpegPath) { targets.append(.wma) }
+            result += targets.filter { $0 != source && ($0 != .ogg || supportsVorbis) }
+                .map { .init(source: source, target: $0, backend: .ffmpeg) }
         }
 
-        if source.kind == .document {
-            if dependencies.has("pandoc") {
-                let docTargets: [FormatID] = [.docx, .txt, .md, .rtf, .html, .odt]
-                result += docTargets.filter { $0 != source }.map { ConversionRoute(source: source, target: $0, backend: .pandoc) }
+        if source.kind == .subtitle {
+            let target: FormatID = source == .srt ? .vtt : .srt
+            result.append(.init(source: source, target: target, backend: .nativeSubtitle))
+        }
+
+        if source == .pdf {
+            result += [FormatID.jpg, .png].map { .init(source: source, target: $0, backend: .nativePDF) }
+        } else if source.kind == .document {
+            let pandocReaders: Set<FormatID> = [.md, .html, .docx, .odt, .rtf]
+            let pandocWriters: [FormatID] = [.docx, .txt, .md, .rtf, .html, .odt]
+            if dependencies.has("pandoc"), pandocReaders.contains(source) {
+                result += pandocWriters.filter { $0 != source }.map { .init(source: source, target: $0, backend: .pandoc) }
             }
-            if source == .pdf {
-                result += [.jpg, .png].map { ConversionRoute(source: source, target: $0, backend: .nativePDF) }
+            let textutilReaders: Set<FormatID> = [.txt, .rtf, .html, .doc, .docx, .odt]
+            let textutilWriters: [FormatID] = [.txt, .rtf, .html, .doc, .docx, .odt]
+            if dependencies.has("textutil"), textutilReaders.contains(source) {
+                let existing = Set(result.map(\.target))
+                result += textutilWriters.filter { $0 != source && !existing.contains($0) }
+                    .map { .init(source: source, target: $0, backend: .textutil) }
             }
         }
 
         if source.kind == .archive {
-            let archiveTargets: [FormatID] = [.zip, .sevenZ, .tar, .tgz]
-            result += archiveTargets.filter { $0 != source }.map { ConversionRoute(source: source, target: $0, backend: .archive) }
+            let sevenZip = dependencies.has("7zz")
+            let canExtract: Bool
+            switch source {
+            case .zip: canExtract = sevenZip || dependencies.has("ditto")
+            case .tar, .tgz: canExtract = sevenZip || dependencies.has("tar")
+            default: canExtract = sevenZip
+            }
+            if canExtract {
+                var targets: [FormatID] = []
+                if sevenZip || dependencies.has("ditto") { targets.append(.zip) }
+                if sevenZip { targets.append(.sevenZ) }
+                if sevenZip || dependencies.has("tar") { targets += [.tar, .tgz] }
+                result += targets.filter { $0 != source }.map { .init(source: source, target: $0, backend: .archive) }
+            }
         }
-
         return result
     }
 }

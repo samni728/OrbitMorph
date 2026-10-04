@@ -1,0 +1,58 @@
+Building for debugging...
+[0/5] Write sources
+[1/5] Write swift-version--58304C5D6DBC2206.txt
+[3/7] Emitting module OrbitMorphApp
+[4/7] Compiling OrbitMorphApp AppState.swift
+[5/15] Compiling OrbitMorphApp OverlayPanelController.swift
+[6/15] Compiling OrbitMorphApp SettingsWindowController.swift
+[7/15] Compiling OrbitMorphApp main.swift
+[8/15] Compiling OrbitMorphApp GlobalDragMonitor.swift
+[9/15] Compiling OrbitMorphApp JobCoordinator.swift
+[10/15] Compiling OrbitMorphApp DropWindowController.swift
+[11/15] Compiling OrbitMorphApp AppDelegate.swift
+[12/15] Compiling OrbitMorphApp SettingsView.swift
+[12/17] Write Objects.LinkFileList
+[13/17] Linking OrbitMorph
+[14/17] Applying OrbitMorph
+[16/20] Compiling OrbitMorphAppTests SettingsFormatTests.swift
+[17/20] Compiling OrbitMorphAppTests DragDestinationTests.swift
+[18/20] Emitting module OrbitMorphAppTests
+[18/20] Write Objects.LinkFileList
+[19/20] Linking OrbitMorphPackageTests
+Build complete! (4.08s)
+Test Suite 'Selected tests' started at 2026-10-04 02:55:53.106.
+Test Suite 'OrbitMorphPackageTests.xctest' started at 2026-10-04 02:55:53.110.
+Test Suite 'DragDestinationTests' started at 2026-10-04 02:55:53.110.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropDestinationResolvesFilesSelectsSegmentAndConverts]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropDestinationResolvesFilesSelectsSegmentAndConverts]' passed (0.214 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropInCenterDoesNotExecuteConversion]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropInCenterDoesNotExecuteConversion]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testGlassWheelBlursBehindWindowEvenWhenInactive]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testGlassWheelBlursBehindWindowEvenWhenInactive]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testSolidWheelDoesNotInstallBackdropBlur]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testSolidWheelDoesNotInstallBackdropBlur]' passed (0.000 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testWheelPagingKeepsAdditionalTargetsSelectable]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testWheelPagingKeepsAdditionalTargetsSelectable]' passed (0.000 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testWindowControllersCanCloseAndReopen]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testWindowControllersCanCloseAndReopen]' passed (0.610 seconds).
+Test Suite 'DragDestinationTests' passed at 2026-10-04 02:55:53.936.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.826 (0.827) seconds
+Test Suite 'SettingsFormatTests' started at 2026-10-04 02:55:53.937.
+Test Case '-[OrbitMorphAppTests.SettingsFormatTests testCapabilityProbesFinishBeforeSettingsViewQueries]' started.
+Test Case '-[OrbitMorphAppTests.SettingsFormatTests testCapabilityProbesFinishBeforeSettingsViewQueries]' passed (1.307 seconds).
+Test Case '-[OrbitMorphAppTests.SettingsFormatTests testOutputSettingsDoNotOfferInputOnlyArchives]' started.
+Test Case '-[OrbitMorphAppTests.SettingsFormatTests testOutputSettingsDoNotOfferInputOnlyArchives]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.SettingsFormatTests testSubtitleOutputFolderTakesPriorityOverDefaultFolder]' started.
+Test Case '-[OrbitMorphAppTests.SettingsFormatTests testSubtitleOutputFolderTakesPriorityOverDefaultFolder]' passed (0.006 seconds).
+Test Case '-[OrbitMorphAppTests.SettingsFormatTests testSubtitleSettingsOfferNativeTargetsAndExcludeSVGOutput]' started.
+Test Case '-[OrbitMorphAppTests.SettingsFormatTests testSubtitleSettingsOfferNativeTargetsAndExcludeSVGOutput]' passed (0.001 seconds).
+Test Suite 'SettingsFormatTests' passed at 2026-10-04 02:55:55.252.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 1.315 (1.315) seconds
+Test Suite 'OrbitMorphPackageTests.xctest' passed at 2026-10-04 02:55:55.252.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 2.141 (2.142) seconds
+Test Suite 'Selected tests' passed at 2026-10-04 02:55:55.252.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 2.141 (2.145) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

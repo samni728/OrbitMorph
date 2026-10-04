@@ -11,6 +11,7 @@ let package = Package(
     targets: [
         .target(name: "OrbitMorphCore"),
         .executableTarget(name: "OrbitMorphApp", dependencies: ["OrbitMorphCore"]),
-        .testTarget(name: "OrbitMorphCoreTests", dependencies: ["OrbitMorphCore"])
+        .testTarget(name: "OrbitMorphCoreTests", dependencies: ["OrbitMorphCore"]),
+        .testTarget(name: "OrbitMorphAppTests", dependencies: ["OrbitMorphApp", "OrbitMorphCore"])
     ]
 )

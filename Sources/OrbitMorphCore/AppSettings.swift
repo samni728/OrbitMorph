@@ -41,6 +41,20 @@ public struct AppSettings: Codable, Equatable, Sendable {
     public var formatDefaults: [FormatID: FormatDefaults]
     public var disabledRoutes: Set<DisabledRoute>
     public var saveBesideSource: Bool
+    public var outputFolders: [FolderRecord] = []
+
+    public func defaults(for format: FormatID) -> FormatDefaults {
+        var value = formatDefaults[format] ?? .init()
+        if value.quality == nil {
+            switch format {
+            case .jpg: value.quality = 0.92
+            case .webp: value.quality = 0.88
+            case .heic, .avif: value.quality = 0.85
+            default: break
+            }
+        }
+        return value
+    }
 
     public static let `default` = AppSettings(
         appearance: .glass,
@@ -52,6 +66,27 @@ public struct AppSettings: Codable, Equatable, Sendable {
         disabledRoutes: [],
         saveBesideSource: true
     )
+}
+
+extension AppSettings {
+    private enum CodingKeys: String, CodingKey {
+        case appearance, launchAtLogin, soundAndHaptics, conversionModifier, toolsModifier
+        case formatDefaults, disabledRoutes, saveBesideSource, outputFolders
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        self = .default
+        appearance = try c.decodeIfPresent(AppAppearance.self, forKey: .appearance) ?? appearance
+        launchAtLogin = try c.decodeIfPresent(Bool.self, forKey: .launchAtLogin) ?? launchAtLogin
+        soundAndHaptics = try c.decodeIfPresent(Bool.self, forKey: .soundAndHaptics) ?? soundAndHaptics
+        conversionModifier = try c.decodeIfPresent(String.self, forKey: .conversionModifier) ?? conversionModifier
+        toolsModifier = try c.decodeIfPresent(String.self, forKey: .toolsModifier) ?? toolsModifier
+        formatDefaults = try c.decodeIfPresent([FormatID: FormatDefaults].self, forKey: .formatDefaults) ?? formatDefaults
+        disabledRoutes = try c.decodeIfPresent(Set<DisabledRoute>.self, forKey: .disabledRoutes) ?? disabledRoutes
+        saveBesideSource = try c.decodeIfPresent(Bool.self, forKey: .saveBesideSource) ?? saveBesideSource
+        outputFolders = try c.decodeIfPresent([FolderRecord].self, forKey: .outputFolders) ?? []
+    }
 }
 
 public final class SettingsStore: @unchecked Sendable {

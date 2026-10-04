@@ -1,14 +1,15 @@
 import Foundation
 
 public enum FileKind: String, Codable, CaseIterable, Sendable {
-    case image, document, audio, video, archive, unknown
+    case image, document, audio, video, subtitle, archive, unknown
 }
 
 public enum FormatID: String, Codable, CaseIterable, Hashable, Sendable {
-    case jpg, png, webp, heic, tiff, avif, bmp, gif, pdf
+    case jpg, png, webp, heic, tiff, avif, bmp, gif, pdf, svg
     case doc, docx, txt, md, rtf, html, odt
-    case mp3, m4a, aac, wav, flac, ogg, opus, aiff
-    case mp4, mov, mkv, webm, avi, m4v
+    case mp3, m4a, aac, wav, flac, ogg, opus, aiff, wma
+    case mp4, mov, mkv, webm, avi, m4v, wmv
+    case srt, vtt
     case zip, sevenZ = "7z", tar, tgz, gz, rar
 
     public init?(extension rawExtension: String) {
@@ -25,6 +26,7 @@ public enum FormatID: String, Codable, CaseIterable, Hashable, Sendable {
         case "bmp": self = .bmp
         case "gif": self = .gif
         case "pdf": self = .pdf
+        case "svg": self = .svg
         case "doc": self = .doc
         case "docx": self = .docx
         case "txt", "text": self = .txt
@@ -40,12 +42,16 @@ public enum FormatID: String, Codable, CaseIterable, Hashable, Sendable {
         case "ogg", "oga": self = .ogg
         case "opus": self = .opus
         case "aiff", "aif": self = .aiff
+        case "wma": self = .wma
         case "mp4": self = .mp4
         case "mov", "qt": self = .mov
         case "mkv": self = .mkv
         case "webm": self = .webm
         case "avi": self = .avi
         case "m4v": self = .m4v
+        case "wmv": self = .wmv
+        case "srt": self = .srt
+        case "vtt": self = .vtt
         case "zip": self = .zip
         case "7z": self = .sevenZ
         case "tar": self = .tar
@@ -53,6 +59,14 @@ public enum FormatID: String, Codable, CaseIterable, Hashable, Sendable {
         case "gz", "gzip": self = .gz
         case "rar": self = .rar
         default: return nil
+        }
+    }
+
+    public init?(fileURL: URL) {
+        if fileURL.lastPathComponent.lowercased().hasSuffix(".tar.gz") {
+            self = .tgz
+        } else {
+            self.init(extension: fileURL.pathExtension)
         }
     }
 
@@ -65,14 +79,16 @@ public enum FormatID: String, Codable, CaseIterable, Hashable, Sendable {
 
     public var kind: FileKind {
         switch self {
-        case .jpg, .png, .webp, .heic, .tiff, .avif, .bmp, .gif:
+        case .jpg, .png, .webp, .heic, .tiff, .avif, .bmp, .gif, .svg:
             return .image
         case .pdf, .doc, .docx, .txt, .md, .rtf, .html, .odt:
             return .document
-        case .mp3, .m4a, .aac, .wav, .flac, .ogg, .opus, .aiff:
+        case .mp3, .m4a, .aac, .wav, .flac, .ogg, .opus, .aiff, .wma:
             return .audio
-        case .mp4, .mov, .mkv, .webm, .avi, .m4v:
+        case .mp4, .mov, .mkv, .webm, .avi, .m4v, .wmv:
             return .video
+        case .srt, .vtt:
+            return .subtitle
         case .zip, .sevenZ, .tar, .tgz, .gz, .rar:
             return .archive
         }
