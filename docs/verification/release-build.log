@@ -1,14 +1,14 @@
-[0/1] Planning build
 Building for production...
-[0/3] Write sources
-[1/3] Write swift-version--58304C5D6DBC2206.txt
-[3/4] Compiling OrbitMorphApp AppDelegate.swift
-[3/5] Write Objects.LinkFileList
-[4/5] Linking OrbitMorph
-Build complete! (4.75s)
+[0/5] Write sources
+[2/5] Write swift-version--58304C5D6DBC2206.txt
+[4/6] Compiling OrbitMorphCore ArchiveAdapter.swift
+[5/7] Compiling OrbitMorphApp AppDelegate.swift
+[5/7] Write Objects.LinkFileList
+[6/7] Linking OrbitMorph
+Build complete! (25.92s)
 Generated /Users/samni/Desktop/开发项目/file-trans/Resources/OrbitMorph.icns
-/Users/samni/Desktop/开发项目/file-trans/dist/.OrbitMorph-stage.OqR0Pd/OrbitMorph.app/Contents/Info.plist: OK
-/Users/samni/Desktop/开发项目/file-trans/dist/.OrbitMorph-stage.OqR0Pd/OrbitMorph.app: replacing existing signature
-/Users/samni/Desktop/开发项目/file-trans/dist/.OrbitMorph-stage.OqR0Pd/OrbitMorph.app: valid on disk
-/Users/samni/Desktop/开发项目/file-trans/dist/.OrbitMorph-stage.OqR0Pd/OrbitMorph.app: satisfies its Designated Requirement
-Built /Users/samni/Desktop/开发项目/file-trans/dist/OrbitMorph.app (arm64, 1.1.0)
+/Users/samni/Desktop/开发项目/file-trans/dist/.OrbitMorph-stage.4grjxS/OrbitMorph.app/Contents/Info.plist: OK
+/Users/samni/Desktop/开发项目/file-trans/dist/.OrbitMorph-stage.4grjxS/OrbitMorph.app: replacing existing signature
+/Users/samni/Desktop/开发项目/file-trans/dist/.OrbitMorph-stage.4grjxS/OrbitMorph.app: valid on disk
+/Users/samni/Desktop/开发项目/file-trans/dist/.OrbitMorph-stage.4grjxS/OrbitMorph.app: satisfies its Designated Requirement
+Built /Users/samni/Desktop/开发项目/file-trans/dist/OrbitMorph.app (arm64, 1.2.0)

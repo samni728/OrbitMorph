@@ -1,0 +1,10 @@
+{
+  "unchanged": true,
+  "interval": "Entire final 16-image capture",
+  "domain": "com.orbitmorph.app",
+  "beforeSHA256": "a48f3203d8787dca1f0893a33e64b4265893239789c9e2b2d4b07af91f9cbc35",
+  "afterSHA256": "a48f3203d8787dca1f0893a33e64b4265893239789c9e2b2d4b07af91f9cbc35",
+  "binarySHA256": "3fccc504d60e843db7e6525592ae89698ba9a6cf0f7f6ad7efea2d41f3c0461b",
+  "screenshots": 16,
+  "recordedAtUTC": "2026-10-05T01:11:08.280283+00:00"
+}

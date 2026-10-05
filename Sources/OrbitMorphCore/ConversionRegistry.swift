@@ -1,7 +1,7 @@
 import Foundation
 
 public enum ConversionBackend: String, Codable, Sendable {
-    case imageMagick, nativeImageIO, ffmpeg, pandoc, textutil, nativePDF, nativeSubtitle, archive
+    case imageMagick, nativeImageIO, ffmpeg, pandoc, textutil, nativePDF, nativeSubtitle, nativeText, libreOffice, calibre, archive
 }
 
 public struct ConversionRoute: Hashable, Sendable {
@@ -41,11 +41,16 @@ public struct ConversionRegistry: Sendable {
     public func routes(for source: FormatID) -> [ConversionRoute] {
         var result: [ConversionRoute] = []
 
+        let extendedImages: Set<FormatID> = [.ico, .jp2, .jxl, .psd]
         if source.kind == .image, let magickPath = dependencies.path(for: "magick"),
-           source != .svg || ImageMagickAdapter.canReadSVG(magickPath: magickPath) {
-            let targets: [FormatID] = source == .svg
+           (source != .svg || ImageMagickAdapter.canReadSVG(magickPath: magickPath)),
+           (!extendedImages.contains(source) || ImageMagickAdapter.canRoundTrip(source, magickPath: magickPath)) {
+            var targets: [FormatID] = source == .svg
                 ? [.png, .jpg, .webp, .pdf]
                 : [.jpg, .png, .webp, .heic, .tiff, .avif, .bmp, .gif, .pdf]
+            if source != .svg {
+                targets += [FormatID.ico, .jp2, .jxl].filter { ImageMagickAdapter.canRoundTrip($0, magickPath: magickPath) }
+            }
             result += targets.filter { $0 != source }.map { .init(source: source, target: $0, backend: .imageMagick) }
         }
 
@@ -57,12 +62,16 @@ public struct ConversionRegistry: Sendable {
 
         if source.kind == .video || source.kind == .audio, dependencies.has("ffmpeg") {
             var targets: [FormatID] = source.kind == .video
-                ? [.mp4, .mov, .mkv, .webm, .avi, .m4v, .gif, .mp3, .m4a, .wav, .flac, .ogg, .opus]
+                ? [.mp4, .mov, .mkv, .webm, .avi, .m4v, .gif, .mp3, .m4a, .aac, .wav, .flac, .ogg, .opus, .aiff]
                 : [.mp3, .m4a, .aac, .wav, .flac, .ogg, .opus, .aiff]
             let ffmpegPath = dependencies.path(for: "ffmpeg")!
             let supportsVorbis = FFmpegAdapter.vorbisEncoder(ffmpegPath: ffmpegPath) != nil
-            if source.kind == .video, FFmpegAdapter.canEncodeWMV(ffmpegPath: ffmpegPath) { targets.append(.wmv) }
-            if source.kind == .audio, FFmpegAdapter.canEncodeWMA(ffmpegPath: ffmpegPath) { targets.append(.wma) }
+            if source.kind == .video, FFmpegAdapter.canEncodeWMV(ffmpegPath: ffmpegPath, ffprobePath: dependencies.path(for: "ffprobe")) { targets.append(.wmv) }
+            if FFmpegAdapter.canEncodeWMA(ffmpegPath: ffmpegPath, ffprobePath: dependencies.path(for: "ffprobe")) { targets.append(.wma) }
+            if FFmpegAdapter.canEncodeExtended(.caf, ffmpegPath: ffmpegPath, ffprobePath: dependencies.path(for: "ffprobe")) { targets.append(.caf) }
+            if source.kind == .video {
+                targets += [FormatID.flv, .ts, .threeGP].filter { FFmpegAdapter.canEncodeExtended($0, ffmpegPath: ffmpegPath, ffprobePath: dependencies.path(for: "ffprobe")) }
+            }
             result += targets.filter { $0 != source && ($0 != .ogg || supportsVorbis) }
                 .map { .init(source: source, target: $0, backend: .ffmpeg) }
         }
@@ -87,6 +96,34 @@ public struct ConversionRegistry: Sendable {
                 result += textutilWriters.filter { $0 != source && !existing.contains($0) }
                     .map { .init(source: source, target: $0, backend: .textutil) }
             }
+        }
+
+        let ocrImages: Set<FormatID> = [.jpg, .png, .tiff, .bmp, .heic, .webp, .avif]
+        if source == .pdf || (ocrImages.contains(source) && (ImageIOAdapter.canRead(source) || dependencies.has("magick"))) {
+            var targets: [FormatID] = [.txt]
+            if dependencies.has("textutil") { targets.append(.docx) }
+            result += targets.map { .init(source: source, target: $0, backend: .nativeText) }
+        }
+
+        if dependencies.has("soffice") {
+            let targets: [FormatID]
+            switch source.kind {
+            case .spreadsheet: targets = [.xls, .xlsx, .ods, .pdf]
+            case .presentation: targets = [.ppt, .pptx, .odp, .pdf]
+            case .document where [.doc, .docx, .odt, .rtf, .html, .txt].contains(source): targets = [.pdf]
+            default: targets = []
+            }
+            result += targets.filter { $0 != source }.map { .init(source: source, target: $0, backend: .libreOffice) }
+        }
+
+        if dependencies.has("ebook-convert") {
+            var targets: [FormatID] = []
+            if source.kind == .ebook {
+                targets = [.epub, .mobi, .azw3, .txt, .docx, .pdf]
+            } else if [.txt, .html, .docx].contains(source) {
+                targets = [.epub, .mobi, .azw3]
+            }
+            result += targets.filter { $0 != source }.map { .init(source: source, target: $0, backend: .calibre) }
         }
 
         if source.kind == .archive {

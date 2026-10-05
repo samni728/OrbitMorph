@@ -3,7 +3,7 @@ set -euo pipefail
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST_DIR="${DIST_DIR:-$ROOT_DIR/dist}"
 APP_PATH="${APP_PATH:-$DIST_DIR/OrbitMorph.app}"
-VERSION="${VERSION:-1.1.0}"
+VERSION="${VERSION:-1.2.0}"
 BUILD_NUMBER="${BUILD_NUMBER:-1}"
 ARCH="${ARCH:-arm64}"
 SCRATCH_PATH="${SCRATCH_PATH:-${TMPDIR:-/tmp}/orbitmorph-task7-release-${UID:-1000}}"
@@ -11,6 +11,9 @@ SCRATCH_PATH="${SCRATCH_PATH:-${TMPDIR:-/tmp}/orbitmorph-task7-release-${UID:-10
 [[ "$(uname -s)" == "Darwin" ]] || { echo 'build-app: macOS is required.' >&2; exit 1; }
 command -v swift >/dev/null || { echo 'build-app: Swift 6 toolchain is required.' >&2; exit 1; }
 command -v codesign >/dev/null || { echo 'build-app: codesign is unavailable.' >&2; exit 1; }
+for resource in Credits.md Samples/OrbitMorph-Sample.png Samples/OrbitMorph-Sample-Video.mp4 Sounds/segment-tick.wav Localizable.xcstrings; do
+  [[ -s "$ROOT_DIR/Resources/$resource" ]] || { echo "build-app: required resource is missing or empty: $resource" >&2; exit 1; }
+done
 mkdir -p "$DIST_DIR"
 TRIPLE="${ARCH}-apple-macosx14.0"
 swift build --package-path "$ROOT_DIR" --configuration release --triple "$TRIPLE" --scratch-path "$SCRATCH_PATH"
@@ -22,10 +25,14 @@ EXECUTABLE="$BIN_DIR/OrbitMorph"
 STAGE=$(mktemp -d "$DIST_DIR/.OrbitMorph-stage.XXXXXX")
 trap 'rm -rf "$STAGE"' EXIT
 APP="$STAGE/OrbitMorph.app"
-mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
+mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources/Samples" "$APP/Contents/Resources/Sounds"
 install -m 755 "$EXECUTABLE" "$APP/Contents/MacOS/OrbitMorph"
 install -m 644 "$ROOT_DIR/Resources/OrbitMorph.icns" "$APP/Contents/Resources/OrbitMorph.icns"
 install -m 644 "$ROOT_DIR/Resources/Credits.md" "$APP/Contents/Resources/Credits.md"
+install -m 644 "$ROOT_DIR/Resources/Samples/OrbitMorph-Sample.png" "$APP/Contents/Resources/Samples/OrbitMorph-Sample.png"
+install -m 644 "$ROOT_DIR/Resources/Samples/OrbitMorph-Sample-Video.mp4" "$APP/Contents/Resources/Samples/OrbitMorph-Sample-Video.mp4"
+install -m 644 "$ROOT_DIR/Resources/Sounds/segment-tick.wav" "$APP/Contents/Resources/Sounds/segment-tick.wav"
+install -m 644 "$ROOT_DIR/Resources/Localizable.xcstrings" "$APP/Contents/Resources/Localizable.xcstrings"
 /usr/libexec/PlistBuddy -c "Print" "$ROOT_DIR/Resources/Info.plist.template" >/dev/null
 cp "$ROOT_DIR/Resources/Info.plist.template" "$APP/Contents/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" "$APP/Contents/Info.plist"

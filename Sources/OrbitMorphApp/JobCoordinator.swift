@@ -46,9 +46,9 @@ final class JobCoordinator {
                 state.message = "Conversion failed: \(error.localizedDescription)"
                 if settings.soundAndHaptics { NSSound.beep() }
                 let alert = NSAlert()
-                alert.messageText = "Could not convert these files"
+                alert.messageText = state.L("Could not convert these files")
                 alert.informativeText = error.localizedDescription
-                alert.alertStyle = .warning; alert.addButton(withTitle: "OK")
+                alert.alertStyle = .warning; alert.addButton(withTitle: state.L("OK"))
                 alert.runModal()
                 print("ORBITMORPH job=failed error=\(error.localizedDescription)")
             }

@@ -4,17 +4,21 @@
 
 **Drop. Spin. Convert. — 拖动文件，转盘选择，本地转换。**
 
-OrbitMorph 是一个面向 Apple Silicon 的原生 macOS 文件转换工具。按住快捷键拖动 Finder 文件，唤出磨砂玻璃转盘，滑向目标格式后松开即可转换。SwiftUI 与 AppKit 构建界面，系统框架和本机开源转换器处理文件。
+OrbitMorph 是面向 Apple Silicon、macOS 14+ 的原生文件转换工具。按住修饰键并开始拖动 Finder 文件后，玻璃转盘出现在鼠标所在屏幕，滑向目标并松开即可生成新文件。SwiftUI/AppKit 负责交互，系统框架和本机转换器处理内容；文件不上传，没有账号或云端服务。
 
-**当前版本：1.1.0（V1 + 格式扩展）。** 已有 V2 引导、本地化与更多后端的设计文档；规划与实际支持能力分开记录。
+**当前版本：1.2.0。** 本轮加入首次教程、中英文、教程样本与反馈声音，并扩展 Office、电子书、文字提取及常用媒体/图片格式。
 
 ## 界面预览
 
-<p align="center"><img src="docs/screenshots/wheel.png" width="310" alt="OrbitMorph radial conversion wheel"></p>
+<p align="center"><img src="docs/screenshots/wheel.png" width="310" alt="转换转盘第一页"><img src="docs/screenshots/wheel-page-2.png" width="310" alt="转换转盘第二页"></p>
 
-转盘演示模式展示分区、橙色高亮和中心提示；真实文件只显示共同可用目标。截图由实际应用渲染；透明浮窗的桌面模糊与入场动画需在运行中体验。
+| English tutorial | 中文教程 |
+| --- | --- |
+| ![English tutorial](docs/screenshots/tutorial-en.png) | ![中文教程](docs/screenshots/tutorial-zh.png) |
 
-![General 设置](docs/screenshots/general.png)
+| English settings | 中文设置 |
+| --- | --- |
+| ![General](docs/screenshots/general.png) | ![中文设置](docs/screenshots/general-zh.png) |
 
 | 格式参数 | 格式兼容矩阵 |
 | --- | --- |
@@ -24,62 +28,68 @@ OrbitMorph 是一个面向 Apple Silicon 的原生 macOS 文件转换工具。�
 | --- | --- |
 | ![Folders](docs/screenshots/folders.png) | ![About](docs/screenshots/about.png) |
 
-[完整截图与重新生成方法](docs/screenshots/README.md)
+转盘截图使用 PNG 输入的实际可用目标，不混合演示其他类别。截图来自最终应用的真实 view 自渲染 CLI；它证明界面布局，实时桌面模糊、动画和 Finder 手势仍需运行中体验。[截图记录与重新生成方法](docs/screenshots/README.md)
 
-## 核心功能
 
-- **快捷键转盘**：Shift 打开格式转换，Option + Shift 打开工具；General 可修改组合。
-- **原生玻璃**：背景磨砂、圆角分区、旋转与弹簧缩放入场、悬停高亮、淡出退场，支持系统 Reduce Motion。
-- **多文件转换**：显示共同可用目标；超过八个目标可滚轮或点击 More 翻页。
-- **设置实际生效**：质量、音频码率、适用的编码预设、压缩级别、元数据、禁用路线与输出目录。
-- **原文件保留**：临时转换后排他提交；重名添加序号，批次失败清理本批次产物。
-- **本地处理**：没有账号、服务器或文件上传；About 可检查已安装转换器。
+## 核心能力
+
+- **快捷键转盘**：按住 Shift 并开始拖动文件后转换，Option + Shift 使用工具；单独按修饰键不唤出。转盘跟随鼠标所在屏幕，多文件显示共同目标。
+- **拖拽中翻页**：超过八个项目，中心纵向显示页码；拖到页码停留350ms切换外圈，移到目标再松手转换。中心松手不执行转换。
+- **首次教程与中英文**：通过样本练习转换/工具流程，可从菜单重新打开教程；语言可跟随系统或选择 English/简体中文。
+- **玻璃界面与反馈**：原生材质、悬停高亮、入场/退场动画、可选声音与触觉，尊重系统 Reduce Motion。
+- **本地转换**：支持系统能力及 FFmpeg、ImageMagick、Pandoc、7-Zip、LibreOffice、Calibre，缺依赖就隐藏对应路线。
+- **Office 与电子书**：表格、演示文稿家族互转和 PDF 输出；EPUB/MOBI/AZW3 互转，以及部分文档输入/输出。
+- **文字提取**：图片和 PDF → TXT/DOCX；PDF 可用文本层与本地 Vision OCR，输出可编辑文字。
+- **原文件保留**：先写临时文件并验证可读性，再排他提交；重名使用后缀，批次失败清理本批次产物。教程样本先复制到临时工作目录，转换不会写入应用包。
 
 ## 支持格式
 
-本轮补齐 **SVG、WMV、WMA、SRT、VTT**。格式识别不等于任意两种格式都能互转，路线由转换器、编码器与兼容设置决定。
+当前识别 **58 种格式、9 个内容类别**。识别格式、可读取、可写出和具体路线是不同事实；可用目标由本机工具能力和兼容设置决定。
 
-| 类别 | 当前识别格式 | 能力与边界 |
+| 类别 | 格式 | 主要边界 |
 | --- | --- | --- |
-| 图片 | JPG、PNG、WEBP、HEIC、TIFF、AVIF、BMP、GIF、SVG | 常规图片互转；SVG 先输入转 PNG/JPG/WEBP/PDF，不提供栅格图矢量化 |
-| 文档 | PDF、DOC、DOCX、TXT、MD、RTF、HTML、ODT | Pandoc/textutil 的实际路线；PDF 原生逐页转 JPG/PNG，无 PDF → DOCX/OCR |
-| 音频 | MP3、M4A、AAC、WAV、FLAC、OGG、OPUS、AIFF、WMA | FFmpeg；WMA 与 OGG 按编码能力过滤，传统目标依赖常见 FFmpeg 构建 |
-| 视频 | MP4、MOV、MKV、WEBM、AVI、M4V、WMV | 视频互转、GIF、音频抽取；WMV 输出探测实际能力，抽音频要求有音轨 |
-| 归档 | ZIP、7Z、TAR、TGZ、GZ、RAR | 输出 ZIP/7Z/TAR/TGZ；GZ/RAR 仅输入，不提供 RAR 编码 |
-| 字幕 | SRT、VTT | 原生双向转换，保留常见字幕文本和时间，不依赖 FFmpeg |
+| 图片（13） | JPG、PNG、WEBP、HEIC、TIFF、AVIF、BMP、GIF、SVG、ICO、JP2、JXL、PSD | 常规图片互转；SVG/PSD 输入；PSD 读取合成图，输出栅格图，不保留图层编辑能力 |
+| 文档（8） | PDF、DOC、DOCX、TXT、MD、RTF、HTML、ODT | 结构文档转换、PDF 逐页转图、TXT/DOCX 文字提取；依赖相应 backend |
+| 表格（3） | XLS、XLSX、ODS | LibreOffice 家族互转及 PDF；不承诺宏、复杂图表和全部公式兼容 |
+| 演示（3） | PPT、PPTX、ODP | LibreOffice 家族互转及 PDF；复杂母版、动画和字体可能变化 |
+| 电子书（3） | EPUB、MOBI、AZW3 | Calibre；家族互转和 TXT/DOCX/PDF 输出；TXT/HTML/DOCX 可生成电子书 |
+| 音频（10） | MP3、M4A、AAC、WAV、FLAC、OGG、OPUS、AIFF、WMA、CAF | FFmpeg；增强目标用 ffprobe 读取实际编码流后开放 |
+| 视频（10） | MP4、MOV、MKV、WEBM、AVI、M4V、WMV、FLV、TS、3GP | FFmpeg；视频互转、GIF、音频抽取，抽音频需要音轨；增强输出需要 ffprobe |
+| 归档（6） | ZIP、7Z、TAR、TGZ、GZ、RAR | 输出 ZIP/7Z/TAR/TGZ；GZ/RAR 仅输入 |
+| 字幕（2） | SRT、VTT | 原生 UTF-8 基础字幕双向转换 |
 
-[逐条转换路线报告](docs/verification/转换路线验收.md) · [机器可读结果](docs/verification/conversion-matrix.json) · [格式缺口与后续优先级](docs/FORMAT_COVERAGE.md)
+JPEG/TIF/HEIF 等别名不重复计数。MTS/M2TS 归为 TS 输入，输出是普通 MPEG-TS，不承诺保持蓝光 M2TS 封装。专业 RAW、EXR、矢量编辑/矢量输出仍不支持。
 
-本机安装工具组合的验收数量不代表每台 Mac 的固定可用数量。
+[转换路线报告](docs/verification/转换路线验收.md) · [机器可读矩阵](docs/verification/conversion-matrix.json) · [详细覆盖与路线图](docs/FORMAT_COVERAGE.md)
 
-## 快速开始
+## 安装与使用
 
-需要 **Apple Silicon、macOS 14+、Swift 6 工具链**，主要在 Mac M2 上验证。
+运行 app 需要 Apple Silicon、macOS 14+；从源码构建另需 Swift 6 工具链。
 
 ```sh
 git clone https://github.com/samni728/OrbitMorph.git
 cd OrbitMorph
 
-# 可选：补齐常用媒体、图片、文档与归档能力
+# 按场景安装可选本地工具
 brew install ffmpeg imagemagick pandoc sevenzip ghostscript
+brew install --cask libreoffice calibre
 
 swift run OrbitMorph
 ```
 
-不安装可选工具也能启动；ImageIO、PDFKit、textutil、ditto、tar 提供部分原生能力。应用检查 Homebrew 标准路径及系统路径，不自动下载或安装依赖。
+不安装可选工具也能启动；ImageIO、PDFKit、Vision、textutil、ditto、tar 提供部分系统能力。`brew install ffmpeg` 同时安装 ffprobe；WMV/WMA/FLV/TS/3GP/CAF 输出依赖它验证真实流，缺失时隐藏这六类增强目标。工具不随 app/DMG 分发，应用也不自动下载安装。新装工具后重启应用，在 About 检查路径。
 
-### 日常使用
+1. 首次启动按教程完成一次样本转换。
+2. 按住 **Shift** 并开始拖动 Finder 文件，在鼠标所在屏幕的转盘滑向目标后松开。
+3. 目标超过八个时，拖到中心页码停留 **350ms**，等外圈切换后移到目标再松手；两页上1下2，三页从上到下1/2/3。
+4. 用 **Option + Shift** 打开工具转盘；普通入口包括 Drop Window 和菜单栏 Convert Files。
+5. 在中心松手不转换；释放修饰键、移出后松开或按 Escape 可取消尚未提交的拖拽。
 
-1. 在 Finder 开始拖动文件，持续按住 **Shift**。
-2. 转盘出现后移到目标分区，松开鼠标生成新文件。
-3. **Option + Shift** 使用工具转盘，动作按文件类别和依赖显示。
-4. 也可把文件拖入 Drop Window 后点击目标，或用菜单栏 **Convert Files…**。
+默认保存到源文件旁；Settings → Folders 可配置目录，分类按输入类型，如视频抽音频使用 Video。[完整使用指南](docs/USER_GUIDE.md)
 
-释放快捷键、移出后松开或按 Escape 可取消。默认输出位于源文件旁；目录在 **Settings → Folders** 配置，分类按输入类型，例如视频抽音频使用 Video。
+应用按单实例运行；再次启动会激活已有实例，新启动进程退出。若仍有旧版本同时运行，先退出所有旧版本再打开当前 app。
 
-当前普通启动会打开 Drop Window；仅菜单栏启动和首次教程仍是 V2 规划。
-
-## 构建 app 与 DMG
+## 构建、截图与打包
 
 ```sh
 scripts/build-app.sh
@@ -88,54 +98,42 @@ scripts/package-dmg.sh
 scripts/verify-package.sh
 ```
 
-结果在 `dist/OrbitMorph.app` 和 `dist/OrbitMorph.dmg`，不纳入 Git。打开 DMG 可将应用拖入 Applications。
+产物为 `dist/OrbitMorph.app` 和 `dist/OrbitMorph.dmg`，不纳入 Git。支持 `VERSION`、`BUILD_NUMBER`、`ARCH`、`SCRATCH_PATH`、`APP_PATH` 等覆盖项；默认版本 1.2.0、arm64/macOS 14+。验收指定其他版本时设置 `EXPECTED_VERSION`。
 
-脚本支持 `VERSION`、`BUILD_NUMBER`、`ARCH`、`SCRATCH_PATH`、`DIST_DIR` 覆盖项；默认 arm64/macOS 14+。当前是本地 **ad-hoc 签名**，未做 Developer ID 签名、公证，也未随包分发 FFmpeg 等工具。
+包中包含原创图标、许可说明、中英语言目录、教程 PNG/MP4 与 WAV 反馈声音；转换器保持外部安装。资源验收需要开发机安装 FFmpeg/ffprobe，会真实解码样本视频并检查声音 PCM 数据、语言 JSON、签名和 DMG 挂载内容。当前使用 **ad-hoc 签名**，尚未做 Developer ID 签名或公证。
 
-## 测试与开发
+## 验证
 
 ```sh
 swift test
-
-# 需要完整本机工具组合，生成夹具并逐条转换、解析产物
 ORBITMORPH_FULL_MATRIX=1 swift test
-
 scripts/verify-package.sh
 git diff --check
 ```
 
-常规测试默认跳过全路线矩阵；显式开启后验证图片、媒体流、文档文本、归档根内容及字幕。RAR 使用 [libarchive 官方夹具](https://github.com/libarchive/libarchive/blob/master/libarchive/test/test_read_format_rar5_stored.rar.uu)。
+常规测试默认跳过全路线矩阵；显式开启后使用生成或官方夹具，真实转换并读取产物。Office 回读检查页/工作表顺序、中文、数值及基础公式；电子书检查两章正文和可读 PDF；OCR 覆盖混合文本层与扫描正文、旋转页和失败清理。提交前拒绝空产物及损坏 DOCX/PDF，媒体探测通过 ffprobe 验证实际流。RAR 使用 [libarchive 官方夹具](https://github.com/libarchive/libarchive/blob/master/libarchive/test/test_read_format_rar5_stored.rar.uu)。
 
-2026-10-04 本机最终验收：**85 个测试全部通过，294 条注册路线逐条转换通过，0 失败、0 未覆盖**。其中新增五个格式带来 41 条路线；截图、ARM64 构建和 DMG 校验也已通过。
+**1.2.0 最终验收：168 项测试，0 失败、0 跳过；本机 554/554 条路线真实转换通过，0 未覆盖。** arm64/macOS 14+ 应用、16 张中英文真实 view 截图、资源与 ad-hoc 签名、DMG 挂载/卸载检查全部通过。正常双进程启动只保留第一实例；页码停留和中心拒绝转换通过原生拖拽接口测试。
 
-GUI 接收器/状态机测试不等同真实 Finder 快捷键手势验收，后者仍需人工体验确认。[开发进度与验收边界](docs/verification/开发进度.md)
+[验收摘要](docs/verification/release-summary.json) · [完整测试日志](docs/verification/final-swift-test.log) · [打包日志](docs/verification/packaging.log)
 
-## 代码结构
+自动 GUI/状态机测试不能证明真实 Finder 快捷键拖拽全部通过。[验收进度与边界](docs/verification/开发进度.md)
+
+## 架构与范围
 
 ```text
-Sources/OrbitMorphApp/   窗口、菜单栏、设置、转盘、系统拖拽与任务反馈
-Sources/OrbitMorphCore/  格式、路线、任务、输出提交与后端 adapters
-Tests/                  单元、回归、真实转换及界面接收器测试
-Resources/              原创图标、Info.plist、工具许可说明
-scripts/                构建、打包、验证、截图
-docs/                   使用、架构、格式覆盖、规划与验证证据
-info/                   原项目提供的 UI / Setting 参考录屏
+Sources/OrbitMorphApp/   窗口、教程、中英文、转盘与系统拖拽
+Sources/OrbitMorphCore/  格式/路线、输出事务、本地后端 adapters
+Tests/                  回归、真实转换矩阵、界面与资源检查
+Resources/              图标、语言目录、教程样本、反馈声音、许可说明
+scripts/                构建、实际应用截图、资源验收与DMG分发
+docs/                   使用、架构、格式覆盖和验证证据
 ```
 
-[详细使用说明](docs/USER_GUIDE.md) · [架构与开发](docs/DEVELOPMENT.md) · [原始设计](docs/superpowers/specs/2026-10-03-orbitmorph-design.md) · [V2 规划](docs/superpowers/specs/2026-10-03-orbitmorph-v2-onboarding-localization-formats-design.md)
+[架构与开发](docs/DEVELOPMENT.md) · [格式覆盖](docs/FORMAT_COVERAGE.md)
 
-## 当前边界与下一步
+OCR 和 PDF → DOCX 输出文字，**不还原原始版式、表格或图片**。Office 复杂排版、宏和公式跨套件兼容受 LibreOffice 限制；电子书目录、封面、图片与元数据尚未全面保真验收，DRM 文件由后端报错。静态图片目标及 ImageIO 后备取首帧；无音轨媒体抽音频会失败；基础字幕以外的样式/布局语义不承诺保留。ExFAT 回退、跨机器签名公证仍需独立验收。
 
-- PDF 转图逐页输出；静态图片目标及 ImageIO 后备只取动画首帧。
-- 无音轨视频抽音频会明确失败；复杂文档版式受转换器能力影响。
-- 字幕独有的样式、位置或元信息不能保证互相保留。
-- 当前字幕只转换基础 UTF-8 cue；VTT 的 STYLE/REGION 和 cue 布局 settings 会明确拒绝，NOTE 注释忽略。
-- ExFAT 排他复制回退尚未经过真实 ExFAT 卷验收。
-- 未接入 LibreOffice、Calibre、OCR 等后端，不能宣称 Office、电子书和扫描文档完整互转。
-- Next 优先：首次引导、中英文、进度/取消、内容级媒体过滤；更多格式按场景逐批接入并验收。
+Next 聚焦百分比进度/取消、按内容过滤媒体目标与更多 PDF 操作；复杂多帧编辑、专业图像/矢量进入 Later。
 
-## 品牌与外部工具
-
-OrbitMorph 是原创轨道与折角文档标记；参考录屏用于交互研究，项目使用自己的名称和品牌。
-
-转换器独立安装，适用各自许可，见 [Credits](Resources/Credits.md)。仓库当前未指定统一项目开源许可证；源码托管不等同于已经授予某种开源许可。
+OrbitMorph 使用原创品牌资产。外部工具适用各自许可，见 [Credits](Resources/Credits.md)。仓库目前未指定统一源码开源许可证。

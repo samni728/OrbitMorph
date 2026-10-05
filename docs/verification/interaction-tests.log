@@ -1,0 +1,108 @@
+Building for debugging...
+[0/5] Write sources
+[1/5] Write swift-version--58304C5D6DBC2206.txt
+[3/8] Compiling OrbitMorphApp AppDelegate.swift
+[4/8] Emitting module OrbitMorphApp
+/Users/samni/Desktop/开发项目/file-trans/Sources/OrbitMorphApp/main.swift:9:100: warning: 'activateIgnoringOtherApps' was deprecated in macOS 14.0: ignoringOtherApps is deprecated in macOS 14 and will have no effect. [#DeprecatedDeclaration]
+ 7 |         break
+ 8 |     case .activateExisting(let pid):
+ 9 |         _ = NSRunningApplication(processIdentifier: pid)?.activate(options: [.activateAllWindows, .activateIgnoringOtherApps])
+   |                                                                                                    `- warning: 'activateIgnoringOtherApps' was deprecated in macOS 14.0: ignoringOtherApps is deprecated in macOS 14 and will have no effect. [#DeprecatedDeclaration]
+10 |         exit(0)
+11 |     case .alreadyLaunching:
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+[5/8] Compiling OrbitMorphApp OverlayPanelController.swift
+[6/10] Compiling OrbitMorphApp main.swift
+/Users/samni/Desktop/开发项目/file-trans/Sources/OrbitMorphApp/main.swift:9:100: warning: 'activateIgnoringOtherApps' was deprecated in macOS 14.0: ignoringOtherApps is deprecated in macOS 14 and will have no effect. [#DeprecatedDeclaration]
+ 7 |         break
+ 8 |     case .activateExisting(let pid):
+ 9 |         _ = NSRunningApplication(processIdentifier: pid)?.activate(options: [.activateAllWindows, .activateIgnoringOtherApps])
+   |                                                                                                    `- warning: 'activateIgnoringOtherApps' was deprecated in macOS 14.0: ignoringOtherApps is deprecated in macOS 14 and will have no effect. [#DeprecatedDeclaration]
+10 |         exit(0)
+11 |     case .alreadyLaunching:
+
+[#DeprecatedDeclaration]: <https://docs.swift.org/compiler/documentation/diagnostics/deprecated-declaration>
+[7/10] Compiling OrbitMorphApp GlobalDragMonitor.swift
+[7/12] Write Objects.LinkFileList
+[8/12] Linking OrbitMorph
+[9/12] Applying OrbitMorph
+[11/14] Emitting module OrbitMorphAppTests
+[12/14] Compiling OrbitMorphAppTests OverlayPlacementTests.swift
+[12/14] Write Objects.LinkFileList
+[13/14] Linking OrbitMorphPackageTests
+Build complete! (4.09s)
+Test Suite 'Selected tests' started at 2026-10-04 18:04:42.817.
+Test Suite 'OrbitMorphPackageTests.xctest' started at 2026-10-04 18:04:42.820.
+Test Suite 'DragDestinationTests' started at 2026-10-04 18:04:42.820.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testCenterReleaseNeverDropsAndCancelsPageDwell]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testCenterReleaseNeverDropsAndCancelsPageDwell]' passed (0.590 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDraggingAcrossDifferentWheelSegmentsEmitsFeedbackTicks]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDraggingAcrossDifferentWheelSegmentsEmitsFeedbackTicks]' passed (0.002 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropDestinationResolvesFilesSelectsSegmentAndConverts]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropDestinationResolvesFilesSelectsSegmentAndConverts]' passed (2.929 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropInCenterDoesNotExecuteConversion]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropInCenterDoesNotExecuteConversion]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testExitAndReentryRequireFreshPageDwell]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testExitAndReentryRequireFreshPageDwell]' passed (0.880 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testExplicitPageSelectionClearsPreviousSegmentAndLimitsPageToEightItems]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testExplicitPageSelectionClearsPreviousSegmentAndLimitsPageToEightItems]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testGlassWheelBlursBehindWindowEvenWhenInactive]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testGlassWheelBlursBehindWindowEvenWhenInactive]' passed (0.002 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testLeavingPageNumberBeforeDwellCancelsPendingSwitch]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testLeavingPageNumberBeforeDwellCancelsPendingSwitch]' passed (0.523 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testOverlayCancellationCancelsPendingPageSwitch]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testOverlayCancellationCancelsPendingPageSwitch]' passed (0.476 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testSolidWheelDoesNotInstallBackdropBlur]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testSolidWheelDoesNotInstallBackdropBlur]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testStationaryDragOverPageNumberSwitchesOnceAndCanDropOnSecondPage]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testStationaryDragOverPageNumberSwitchesOnceAndCanDropOnSecondPage]' passed (1.012 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testThreePageBandsSelectTopMiddleAndBottomDirectly]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testThreePageBandsSelectTopMiddleAndBottomDirectly]' passed (1.433 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testWheelPagingKeepsAdditionalTargetsSelectable]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testWheelPagingKeepsAdditionalTargetsSelectable]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testWindowControllersCanCloseAndReopen]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testWindowControllersCanCloseAndReopen]' passed (2.106 seconds).
+Test Suite 'DragDestinationTests' passed at 2026-10-04 18:04:52.780.
+	 Executed 14 tests, with 0 failures (0 unexpected) in 9.957 (9.959) seconds
+Test Suite 'OverlayPlacementTests' started at 2026-10-04 18:04:52.780.
+Test Case '-[OrbitMorphAppTests.OverlayPlacementTests testDemoSecondPageShowsRemainingTargetsAndClampsRequestedPage]' started.
+Test Case '-[OrbitMorphAppTests.OverlayPlacementTests testDemoSecondPageShowsRemainingTargetsAndClampsRequestedPage]' passed (0.020 seconds).
+Test Case '-[OrbitMorphAppTests.OverlayPlacementTests testDemoUsesRealPNGTargetsInsteadOfCrossCategoryFormats]' started.
+Test Case '-[OrbitMorphAppTests.OverlayPlacementTests testDemoUsesRealPNGTargetsInsteadOfCrossCategoryFormats]' passed (0.010 seconds).
+Test Case '-[OrbitMorphAppTests.OverlayPlacementTests testPanelUsesScreenContainingExplicitPointerAndClampsAtItsEdge]' started.
+Test Case '-[OrbitMorphAppTests.OverlayPlacementTests testPanelUsesScreenContainingExplicitPointerAndClampsAtItsEdge]' passed (0.004 seconds).
+Test Suite 'OverlayPlacementTests' passed at 2026-10-04 18:04:52.814.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.034 (0.034) seconds
+Test Suite 'SingleInstanceTests' started at 2026-10-04 18:04:52.814.
+Test Case '-[OrbitMorphAppTests.SingleInstanceTests testExistingUserInstanceWinsWithoutTermination]' started.
+Test Case '-[OrbitMorphAppTests.SingleInstanceTests testExistingUserInstanceWinsWithoutTermination]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.SingleInstanceTests testFileLockAllowsOneNormalLauncherAndRejectsConcurrentSecond]' started.
+Test Case '-[OrbitMorphAppTests.SingleInstanceTests testFileLockAllowsOneNormalLauncherAndRejectsConcurrentSecond]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.SingleInstanceTests testLockWinnerDoesNotYieldToAnotherUnfinishedConcurrentLaunch]' started.
+Test Case '-[OrbitMorphAppTests.SingleInstanceTests testLockWinnerDoesNotYieldToAnotherUnfinishedConcurrentLaunch]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.SingleInstanceTests testOnlyStatuslessRenderAndDemoLaunchesBypassSingleInstance]' started.
+Test Case '-[OrbitMorphAppTests.SingleInstanceTests testOnlyStatuslessRenderAndDemoLaunchesBypassSingleInstance]' passed (0.000 seconds).
+Test Case '-[OrbitMorphAppTests.SingleInstanceTests testPolicyMatchesCopiedBundleAndDebugExecutableWithoutClaimingOtherApps]' started.
+Test Case '-[OrbitMorphAppTests.SingleInstanceTests testPolicyMatchesCopiedBundleAndDebugExecutableWithoutClaimingOtherApps]' passed (0.001 seconds).
+Test Suite 'SingleInstanceTests' passed at 2026-10-04 18:04:52.818.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+Test Suite 'WheelInteractionTests' started at 2026-10-04 18:04:52.818.
+Test Case '-[OrbitMorphCoreTests.WheelInteractionTests testDwellSwitchesOnceAndRequiresContinuousHover]' started.
+Test Case '-[OrbitMorphCoreTests.WheelInteractionTests testDwellSwitchesOnceAndRequiresContinuousHover]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.WheelInteractionTests testPageNumbersMapTopToBottomInsideCircularCenter]' started.
+Test Case '-[OrbitMorphCoreTests.WheelInteractionTests testPageNumbersMapTopToBottomInsideCircularCenter]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.WheelInteractionTests testPlacementChoosesNearestScreenInGapAndHandlesSmallVisibleArea]' started.
+Test Case '-[OrbitMorphCoreTests.WheelInteractionTests testPlacementChoosesNearestScreenInGapAndHandlesSmallVisibleArea]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.WheelInteractionTests testPlacementUsesPointerDisplayIncludingNegativeAndUpperOrigins]' started.
+Test Case '-[OrbitMorphCoreTests.WheelInteractionTests testPlacementUsesPointerDisplayIncludingNegativeAndUpperOrigins]' passed (0.000 seconds).
+Test Suite 'WheelInteractionTests' passed at 2026-10-04 18:04:52.819.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'OrbitMorphPackageTests.xctest' passed at 2026-10-04 18:04:52.819.
+	 Executed 26 tests, with 0 failures (0 unexpected) in 9.995 (9.998) seconds
+Test Suite 'Selected tests' passed at 2026-10-04 18:04:52.819.
+	 Executed 26 tests, with 0 failures (0 unexpected) in 9.995 (10.001) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

@@ -1,7 +1,12 @@
 import AppKit
 import SwiftUI
+import Combine
 import ServiceManagement
 import OrbitMorphCore
+
+extension Notification.Name {
+    static let orbitMorphPresentationChanged = Notification.Name("OrbitMorph.presentationChanged")
+}
 
 enum SettingsSection: String, CaseIterable, Identifiable {
     case general = "General", formats = "Formats", compatibility = "Compatibility", folders = "Folders", about = "About"
@@ -21,6 +26,8 @@ enum SettingsSection: String, CaseIterable, Identifiable {
 final class AppState: ObservableObject {
     @Published var settings: AppSettings {
         didSet {
+            NotificationCenter.default.post(name: .orbitMorphPresentationChanged, object: self)
+            guard persistSettings else { return }
             do { try store.save(settings) }
             catch { message = "Could not save settings: \(error.localizedDescription)" }
         }
@@ -30,6 +37,8 @@ final class AppState: ObservableObject {
     @Published var isBusy = false
     @Published var lastOutputs: [URL] = []
     private let store: SettingsStore
+    private var persistSettings = true
+    private var localeObserver: AnyCancellable?
     let dependencies: DependencyResolver
     let outputFormats: [FormatID]
 
@@ -45,10 +54,29 @@ final class AppState: ObservableObject {
         outputFormats = FormatID.allCases.filter { targets.contains($0) }
         do { settings = try store.load() }
         catch { settings = .default; message = "Settings could not be read. Defaults are active." }
+        localeObserver = NotificationCenter.default.publisher(for: NSLocale.currentLocaleDidChangeNotification).receive(on: RunLoop.main).sink { [weak self] _ in
+            MainActor.assumeIsolated {
+                guard let self, self.settings.language == .system else { return }
+                self.objectWillChange.send()
+                NotificationCenter.default.post(name: .orbitMorphPresentationChanged, object: self)
+            }
+        }
     }
 
     var policy: CompatibilityPolicy {
         .init(registry: .init(dependencies: dependencies), disabledRoutes: settings.disabledRoutes)
+    }
+
+    func L(_ key: String, _ arguments: CVarArg...) -> String {
+        LocalizationManager.format(key, language: settings.language, arguments: arguments)
+    }
+    var locale: Locale { Locale(identifier: LocalizationManager.resolved(settings.language).rawValue) }
+    var displayMessage: String { LocalizationManager.status(message, language: settings.language) }
+
+    func applyPresentation(language: AppLanguage? = nil, appearance: AppAppearance? = nil) {
+        persistSettings = false
+        if let language { settings.language = language }
+        if let appearance { settings.appearance = appearance }
     }
 
     func setLaunchAtLogin(_ enabled: Bool) {
@@ -66,7 +94,7 @@ final class AppState: ObservableObject {
         let panel = NSOpenPanel()
         panel.canChooseDirectories = true; panel.canChooseFiles = false
         panel.canCreateDirectories = true; panel.allowsMultipleSelection = false
-        panel.prompt = "Choose output folder"
+        panel.prompt = L("Choose output folder")
         guard panel.runModal() == .OK, let url = panel.url else { return }
         do {
             let record = try FolderBookmarkStore.makeRecord(category: category, url: url)

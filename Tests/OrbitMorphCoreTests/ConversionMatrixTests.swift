@@ -35,7 +35,7 @@ final class ConversionMatrixTests: XCTestCase {
                     guard !results.isEmpty else { throw MatrixFailure("No output") }
                     let archiveEntry = source == .rar ? "helloworld.txt" : "payload.txt"
                     for result in results {
-                        try validate(result.outputURL, target: route.target, in: root, expectedArchiveEntry: archiveEntry)
+                        try validate(result.outputURL, source: source, target: route.target, in: root, expectedArchiveEntry: archiveEntry)
                     }
                     passed.append(label)
                 } catch {
@@ -44,6 +44,9 @@ final class ConversionMatrixTests: XCTestCase {
             }
         }
         let report: [String: Any] = [
+            "recognizedFormats": FormatID.allCases.count,
+            "generatedAt": ISO8601DateFormatter().string(from: Date()),
+            "dependencies": registry.dependencies.diagnostics,
             "advertisedRoutes": advertised,
             "testedRoutes": passed.count + failures.count,
             "passedRoutes": passed.count,
@@ -61,8 +64,7 @@ final class ConversionMatrixTests: XCTestCase {
 
     private func makeFixtures(in root: URL) throws -> [FormatID: URL] {
         var fixtures: [FormatID: URL] = [:]
-        let png = root.appendingPathComponent("source.png")
-        _ = try run("/opt/homebrew/bin/magick", ["-size", "16x12", "xc:#f15b42", png.path])
+        let png = try TextTestFixtures.image(in: root)
         fixtures[.png] = png
         let svg = root.appendingPathComponent("source.svg")
         try "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"12\"><rect width=\"16\" height=\"12\" fill=\"#f15b42\"/></svg>"
@@ -73,12 +75,16 @@ final class ConversionMatrixTests: XCTestCase {
             _ = try run("/opt/homebrew/bin/magick", [png.path, output.path])
             fixtures[format] = output
         }
-        let image = NSImage(size: NSSize(width: 16, height: 12))
-        image.lockFocus(); NSColor.orange.setFill(); NSRect(x: 0, y: 0, width: 16, height: 12).fill(); image.unlockFocus()
-        let pdf = PDFDocument()
-        pdf.insert(try XCTUnwrap(PDFPage(image: image)), at: 0)
-        let pdfURL = root.appendingPathComponent("source.pdf")
-        XCTAssertTrue(pdf.write(to: pdfURL))
+        for format in [FormatID.ico, .jp2, .jxl, .psd] where ImageMagickAdapter.canRoundTrip(format, magickPath: "/opt/homebrew/bin/magick") {
+            let output = root.appendingPathComponent("source.\(format.fileExtension)")
+            var args = [png.path]
+            if format == .ico { args += ["-resize", "256x256>"] }
+            if format == .psd { args += ["(", "+clone", ")"] }
+            args.append(output.path)
+            _ = try run("/opt/homebrew/bin/magick", args)
+            fixtures[format] = output
+        }
+        let pdfURL = try TextTestFixtures.pdf(in: root, pages: ["OrbitMorph matrix document"])
         fixtures[.pdf] = pdfURL
 
         let txt = root.appendingPathComponent("source.txt")
@@ -115,6 +121,11 @@ final class ConversionMatrixTests: XCTestCase {
             _ = try run("/opt/homebrew/bin/ffmpeg", args)
             fixtures[format] = output
         }
+        if FFmpegAdapter.canEncodeExtended(.caf, ffmpegPath: "/opt/homebrew/bin/ffmpeg") {
+            let output = root.appendingPathComponent("source.caf")
+            try ProcessRunner.run(FFmpegAdapter.invocation(input: wav, output: output, target: .caf, ffmpegPath: "/opt/homebrew/bin/ffmpeg"))
+            fixtures[.caf] = output
+        }
         let mov = root.appendingPathComponent("source.mov")
         _ = try run("/opt/homebrew/bin/ffmpeg", ["-hide_banner", "-loglevel", "error", "-f", "lavfi", "-i", "color=c=blue:s=64x64:d=0.35", "-f", "lavfi", "-i", "sine=frequency=600:duration=0.35", "-c:v", "libx264", "-c:a", "aac", "-shortest", mov.path])
         fixtures[.mov] = mov
@@ -125,6 +136,19 @@ final class ConversionMatrixTests: XCTestCase {
             args.append(output.path)
             _ = try run("/opt/homebrew/bin/ffmpeg", args)
             fixtures[format] = output
+        }
+
+        for format in [FormatID.flv, .ts, .threeGP] where FFmpegAdapter.canEncodeExtended(format, ffmpegPath: "/opt/homebrew/bin/ffmpeg") {
+            let output = root.appendingPathComponent("source.\(format.fileExtension)")
+            try ProcessRunner.run(FFmpegAdapter.invocation(input: mov, output: output, target: format, ffmpegPath: "/opt/homebrew/bin/ffmpeg"))
+            fixtures[format] = output
+        }
+        let dependencies = DependencyResolver()
+        if dependencies.has("soffice") {
+            fixtures.merge(try OfficeTestFixtures.make(in: root, dependencies: dependencies)) { existing, _ in existing }
+        }
+        if dependencies.has("ebook-convert") {
+            fixtures.merge(try EbookTestFixtures.make(in: root, dependencies: dependencies)) { existing, _ in existing }
         }
 
         let payload = root.appendingPathComponent("payload.txt")
@@ -154,18 +178,40 @@ final class ConversionMatrixTests: XCTestCase {
         return fixtures
     }
 
-    private func validate(_ output: URL, target: FormatID, in root: URL, expectedArchiveEntry: String) throws {
+    private func validate(_ output: URL, source: FormatID, target: FormatID, in root: URL, expectedArchiveEntry: String) throws {
         let size = (try FileManager.default.attributesOfItem(atPath: output.path)[.size] as? NSNumber)?.intValue ?? 0
         guard size > 0 else { throw MatrixFailure("Empty output: \(output.path)") }
+        if source.kind == .spreadsheet || source.kind == .presentation {
+            try OfficeTestFixtures.validate(output: output, target: target, root: root, dependencies: .init())
+            return
+        }
+        if source.kind == .ebook || target.kind == .ebook {
+            try EbookTestFixtures.validate(output: output, target: target, root: root, dependencies: .init(),
+                                          expectedText: source.kind == .ebook ? ["OrbitMorphAlpha", "OrbitMorphBeta", "第一章", "第二章"] : ["OrbitMorph"])
+            return
+        }
         if target == .pdf {
             guard let pdf = PDFDocument(url: output), pdf.pageCount > 0 else { throw MatrixFailure("Unreadable PDF") }
+            if source.kind == .document, source != .pdf, pdf.string?.contains("OrbitMorph") != true {
+                throw MatrixFailure("Document PDF text missing")
+            }
         } else if target.kind == .image {
             let result = try run("/opt/homebrew/bin/magick", ["identify", "-format", "%m", output.path])
             guard !result.isEmpty else { throw MatrixFailure("Unreadable image") }
+            if [.ico, .jp2, .jxl].contains(target), !result.contains(target.rawValue.uppercased()) { throw MatrixFailure("Wrong raster format: \(result)") }
         } else if target.kind == .audio || target.kind == .video {
             let result = try run("/opt/homebrew/bin/ffprobe", ["-v", "error", "-show_entries", "stream=codec_type", "-of", "csv=p=0", output.path])
             let required = target.kind == .video ? "video" : "audio"
             guard result.contains(required) else { throw MatrixFailure("Missing \(required) stream") }
+            if [.flv, .ts, .threeGP, .caf].contains(target) {
+                let container = try run("/opt/homebrew/bin/ffprobe", ["-v", "error", "-show_entries", "format=format_name,duration", "-of", "json", output.path])
+                let json = try JSONSerialization.jsonObject(with: Data(container.utf8)) as? [String: Any]
+                let data = json?["format"] as? [String: Any]
+                let expected = target == .ts ? "mpegts" : target.rawValue
+                guard (data?["format_name"] as? String)?.contains(expected) == true,
+                      Double(data?["duration"] as? String ?? "0") ?? 0 > 0 else { throw MatrixFailure("Wrong media container or duration: \(container)") }
+                _ = try run("/opt/homebrew/bin/ffmpeg", ["-v", "error", "-i", output.path, "-f", "null", "-"])
+            }
             if target == .wmv || target == .wma {
                 let codecs = try run("/opt/homebrew/bin/ffprobe", ["-v", "error", "-show_entries", "stream=codec_name", "-of", "csv=p=0", output.path])
                 guard codecs.contains("wmav2"), target != .wmv || codecs.contains("wmv2") else {

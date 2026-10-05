@@ -5,19 +5,19 @@ import OrbitMorphCore
 struct DropZoneView: View {
     @ObservedObject var state: AppState
     var body: some View {
-        VStack(spacing: 16) {
+        GlassCard(appearance: state.settings.appearance) {
+          VStack(spacing: 16) {
             Image(systemName: "arrow.down.doc.fill").font(.system(size: 34, weight: .light)).foregroundStyle(Color(red: 1, green: 0.31, blue: 0.12))
-            Text("Drop. Spin. Convert.").font(.system(size: 20, weight: .semibold, design: .rounded))
-            Text("Drop files here or hold \(state.settings.conversionModifier.capitalized) while dragging in Finder")
+            Text(state.L("Drop. Spin. Convert.")).font(.system(size: 20, weight: .semibold, design: .rounded))
+            Text(state.L("Drop files here or hold %@ while dragging in Finder", state.settings.conversionModifier.capitalized))
                 .font(.system(size: 12)).foregroundStyle(.secondary)
             if state.isBusy { ProgressView().controlSize(.small) }
-            Text(state.message).font(.caption).foregroundStyle(.secondary).lineLimit(2).multilineTextAlignment(.center)
+            Text(state.displayMessage).font(.caption).foregroundStyle(.secondary).lineLimit(2).multilineTextAlignment(.center)
             if !state.lastOutputs.isEmpty {
-                Button("Reveal output files") { NSWorkspace.shared.activateFileViewerSelecting(state.lastOutputs) }.controlSize(.small)
+                Button(state.L("Reveal output files")) { NSWorkspace.shared.activateFileViewerSelecting(state.lastOutputs) }.controlSize(.small)
             }
-        }.padding(18).frame(width: 390, height: 240)
-            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
-            .overlay(RoundedRectangle(cornerRadius: 24, style: .continuous).stroke(.white.opacity(0.35), lineWidth: 1)).padding(22)
+          }.frame(maxWidth: .infinity)
+        }.environment(\.locale, state.locale).frame(width: 390, height: 260).padding(22)
     }
 }
 
@@ -50,7 +50,9 @@ final class DropWindowController {
         window.titlebarAppearsTransparent = true; window.titleVisibility = .hidden
         window.isOpaque = false; window.backgroundColor = .clear; window.hasShadow = true; window.isReleasedWhenClosed = false
         receiver = DropZoneReceivingView(state: state, frame: NSRect(x: 0, y: 0, width: 434, height: 320))
-        receiver.onFiles = onFiles; window.contentView = receiver; window.center()
+        receiver.onFiles = onFiles
+        _ = GlassWindowBackground(window: window, host: receiver, state: state, titleKey: "OrbitMorph Drop Window")
+        window.center()
     }
     func show() { window.makeKeyAndOrderFront(nil); NSApp.activate(ignoringOtherApps: true) }
 }

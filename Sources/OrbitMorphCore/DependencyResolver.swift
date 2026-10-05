@@ -5,6 +5,12 @@ public struct DependencyResolver: Sendable {
 
     public init(overrides: [String: String?] = [:], fileManager: FileManager = .default) {
         let candidates: [String: [String]] = [
+            "soffice": ["/Applications/LibreOffice.app/Contents/MacOS/soffice",
+                        fileManager.homeDirectoryForCurrentUser.appendingPathComponent("Applications/LibreOffice.app/Contents/MacOS/soffice").path,
+                        "/opt/homebrew/bin/soffice", "/usr/local/bin/soffice"],
+            "ebook-convert": ["/Applications/calibre.app/Contents/MacOS/ebook-convert",
+                              fileManager.homeDirectoryForCurrentUser.appendingPathComponent("Applications/calibre.app/Contents/MacOS/ebook-convert").path,
+                              "/opt/homebrew/bin/ebook-convert", "/usr/local/bin/ebook-convert"],
             "ffmpeg": ["/opt/homebrew/bin/ffmpeg", "/usr/local/bin/ffmpeg"],
             "ffprobe": ["/opt/homebrew/bin/ffprobe", "/usr/local/bin/ffprobe"],
             "magick": ["/opt/homebrew/bin/magick", "/usr/local/bin/magick"],

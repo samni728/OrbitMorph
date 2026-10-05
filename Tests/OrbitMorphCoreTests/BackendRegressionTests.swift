@@ -18,7 +18,7 @@ final class BackendRegressionTests: XCTestCase {
     func testRegistryOnlyOffersReadableDocumentRoutesAndAvailableArchives() {
         let deps = DependencyResolver(overrides: ["pandoc": "/opt/homebrew/bin/pandoc", "textutil": "/usr/bin/textutil", "7zz": nil, "ditto": "/usr/bin/ditto", "tar": "/usr/bin/tar"])
         let registry = ConversionRegistry(dependencies: deps)
-        XCTAssertNil(registry.route(from: .pdf, to: .docx))
+        XCTAssertEqual(registry.route(from: .pdf, to: .docx)?.backend, .nativeText)
         XCTAssertNil(registry.route(from: .doc, to: .md))
         XCTAssertNil(registry.route(from: .txt, to: .md))
         XCTAssertEqual(registry.route(from: .doc, to: .docx)?.backend, .textutil)
@@ -220,15 +220,19 @@ final class BackendRegressionTests: XCTestCase {
     func testExternalOutputCreatedDuringConversionIsNeverOverwritten() throws {
         let root = try temporaryDirectory(); defer { try? FileManager.default.removeItem(at: root) }
         let source = root.appendingPathComponent("race.png")
-        try Data("source".utf8).write(to: source)
+        _ = try command("/opt/homebrew/bin/magick", ["-size", "8x8", "xc:red", source.path])
+        let original = try Data(contentsOf: source)
         let script = root.appendingPathComponent("fake-magick.sh")
-        try "#!/bin/sh\nfor last do :; done\nprintf external > \"${1%.*}.jpg\"\nprintf converted > \"$last\"\n".write(to: script, atomically: true, encoding: .utf8)
+        try "#!/bin/sh\ncase \"$1\" in */race.png*) printf external > \"${1%.*}.jpg\";; esac\nexec /opt/homebrew/bin/magick \"$@\"\n".write(to: script, atomically: true, encoding: .utf8)
         try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: script.path)
         let deps = DependencyResolver(overrides: ["magick": script.path])
         let output = try XCTUnwrap(ConversionEngine(dependencies: deps).convert(.init(inputs: [source], target: .jpg, outputDirectory: root)).first?.outputURL)
         XCTAssertEqual(try String(contentsOf: root.appendingPathComponent("race.jpg"), encoding: .utf8), "external")
         XCTAssertEqual(output.lastPathComponent, "race-converted.jpg")
-        XCTAssertEqual(try String(contentsOf: output, encoding: .utf8), "converted")
+        let bitmap = try XCTUnwrap(NSBitmapImageRep(data: Data(contentsOf: output)))
+        XCTAssertEqual(bitmap.pixelsWide, 8)
+        XCTAssertEqual(bitmap.pixelsHigh, 8)
+        XCTAssertEqual(try Data(contentsOf: source), original)
     }
 
     func testSilentVideoConvertsToVideoButRejectsAudioExtractionCleanly() throws {

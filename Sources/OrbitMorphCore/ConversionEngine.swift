@@ -32,6 +32,7 @@ public enum ConversionEngineError: LocalizedError {
     case unsupportedTarget(FormatID)
     case missingDependency(String)
     case outputMissing(URL)
+    case invalidOutput(URL)
     case emptyPDF(URL)
     case pdfRenderFailed(URL)
     case unsafeArchiveEntry(String)
@@ -44,6 +45,7 @@ public enum ConversionEngineError: LocalizedError {
         case .unsupportedTarget(let target): return "Unsupported target: \(target.rawValue)"
         case .missingDependency(let name): return "Missing converter dependency: \(name)"
         case .outputMissing(let url): return "Converter reported success but no output was created: \(url.path)"
+        case .invalidOutput(let url): return "Converter produced an empty or invalid output: \(url.lastPathComponent)"
         case .emptyPDF(let url): return "PDF has no readable pages: \(url.path)"
         case .pdfRenderFailed(let url): return "Could not render PDF page: \(url.path)"
         case .unsafeArchiveEntry(let name): return "Archive contains an unsafe entry: \(name)"
@@ -84,6 +86,7 @@ public struct ConversionEngine: Sendable {
                         let temporary = OutputNamer.makeTemporaryOutput(for: job.target, in: directory)
                         defer { try? FileManager.default.removeItem(at: temporary) }
                         try PDFRenderAdapter.render(page: page, target: job.target, output: temporary, options: job.options)
+                        try OutputValidation.validate(temporary, target: job.target, dependencies: dependencies)
                         let final = try OutputNamer.commitTemporaryOutput(temporary, for: pageSource, target: job.target, in: directory)
                         completed.append(.init(inputURL: input, outputURL: final, backend: .nativePDF))
                     }
@@ -100,6 +103,14 @@ public struct ConversionEngine: Sendable {
                     try ImageIOAdapter.convert(input: input, output: temporary, target: job.target, options: job.options)
                 case .nativeSubtitle:
                     try SubtitleAdapter.convert(input: input, output: temporary, source: source, target: job.target)
+                case .nativeText:
+                    try NativeTextAdapter.convert(input: input, output: temporary, source: source, target: job.target, dependencies: dependencies)
+                case .libreOffice:
+                    guard let path = dependencies.path(for: "soffice") else { throw ConversionEngineError.missingDependency("soffice") }
+                    try LibreOfficeAdapter.convert(input: input, output: temporary, source: source, target: job.target, sofficePath: path)
+                case .calibre:
+                    guard let path = dependencies.path(for: "ebook-convert") else { throw ConversionEngineError.missingDependency("ebook-convert") }
+                    try CalibreAdapter.convert(input: input, output: temporary, source: source, target: job.target, ebookConvertPath: path)
                 case .ffmpeg:
                     guard let path = dependencies.path(for: "ffmpeg") else { throw ConversionEngineError.missingDependency("ffmpeg") }
                     try ProcessRunner.run(FFmpegAdapter.invocation(input: input, output: temporary, target: job.target, ffmpegPath: path, options: job.options))
@@ -117,7 +128,7 @@ public struct ConversionEngine: Sendable {
                 case .nativePDF:
                     break
                 }
-                guard FileManager.default.fileExists(atPath: temporary.path) else { throw ConversionEngineError.outputMissing(temporary) }
+                try OutputValidation.validate(temporary, target: job.target, dependencies: dependencies)
                 let final = try OutputNamer.commitTemporaryOutput(temporary, for: input, target: job.target, in: directory)
                 completed.append(.init(inputURL: input, outputURL: final, backend: route.backend))
             }

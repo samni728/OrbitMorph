@@ -4,6 +4,10 @@ public enum AppAppearance: String, Codable, CaseIterable, Sendable {
     case glass, solid
 }
 
+public enum AppLanguage: String, Codable, CaseIterable, Sendable {
+    case system, en, zhHans = "zh-Hans"
+}
+
 public struct FormatDefaults: Codable, Equatable, Sendable {
     public var quality: Double?
     public var audioBitrateKbps: Int?
@@ -33,6 +37,7 @@ public struct DisabledRoute: Codable, Hashable, Sendable {
 }
 
 public struct AppSettings: Codable, Equatable, Sendable {
+    public var language: AppLanguage = .system
     public var appearance: AppAppearance
     public var launchAtLogin: Bool
     public var soundAndHaptics: Bool
@@ -42,6 +47,7 @@ public struct AppSettings: Codable, Equatable, Sendable {
     public var disabledRoutes: Set<DisabledRoute>
     public var saveBesideSource: Bool
     public var outputFolders: [FolderRecord] = []
+    public var onboardingCompletedVersion: Int
 
     public func defaults(for format: FormatID) -> FormatDefaults {
         var value = formatDefaults[format] ?? .init()
@@ -64,19 +70,21 @@ public struct AppSettings: Codable, Equatable, Sendable {
         toolsModifier: "option+shift",
         formatDefaults: [:],
         disabledRoutes: [],
-        saveBesideSource: true
+        saveBesideSource: true,
+        onboardingCompletedVersion: 0
     )
 }
 
 extension AppSettings {
     private enum CodingKeys: String, CodingKey {
         case appearance, launchAtLogin, soundAndHaptics, conversionModifier, toolsModifier
-        case formatDefaults, disabledRoutes, saveBesideSource, outputFolders
+        case formatDefaults, disabledRoutes, saveBesideSource, outputFolders, onboardingCompletedVersion, language
     }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         self = .default
+        language = try c.decodeIfPresent(AppLanguage.self, forKey: .language) ?? .system
         appearance = try c.decodeIfPresent(AppAppearance.self, forKey: .appearance) ?? appearance
         launchAtLogin = try c.decodeIfPresent(Bool.self, forKey: .launchAtLogin) ?? launchAtLogin
         soundAndHaptics = try c.decodeIfPresent(Bool.self, forKey: .soundAndHaptics) ?? soundAndHaptics
@@ -86,6 +94,7 @@ extension AppSettings {
         disabledRoutes = try c.decodeIfPresent(Set<DisabledRoute>.self, forKey: .disabledRoutes) ?? disabledRoutes
         saveBesideSource = try c.decodeIfPresent(Bool.self, forKey: .saveBesideSource) ?? saveBesideSource
         outputFolders = try c.decodeIfPresent([FolderRecord].self, forKey: .outputFolders) ?? []
+        onboardingCompletedVersion = try c.decodeIfPresent(Int.self, forKey: .onboardingCompletedVersion) ?? 0
     }
 }
 

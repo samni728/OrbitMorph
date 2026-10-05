@@ -106,7 +106,7 @@ public enum ToolRegistry {
     public static func actions(for format: FormatID) -> Set<ToolActionID> {
         switch format.kind {
         case .image:
-            if format == .svg { return [.archive] }
+            if format == .svg || format == .psd { return [.archive] }
             return [.compress, .resizeImage, .rotate, .stripMetadata, .archive]
         case .video:
             return [.compress, .stripMetadata, .extractAudio, .makeGIF, .archive]
@@ -116,7 +116,7 @@ public enum ToolRegistry {
             var values: Set<ToolActionID> = [.archive]
             if format == .pdf { values.insert(.pdfMerge) }
             return values
-        case .subtitle:
+        case .subtitle, .spreadsheet, .presentation, .ebook:
             return [.archive]
         case .archive:
             return [.unarchive]
@@ -144,10 +144,16 @@ public enum ToolRegistry {
             result.subtract([.stripMetadata, .compress, .extractAudio, .makeGIF])
         }
         if let path = dependencies.path(for: "ffmpeg"),
-           formats.contains(where: { ($0 == .wmv && !FFmpegAdapter.canEncodeWMV(ffmpegPath: path)) ||
-               ($0 == .wma && !FFmpegAdapter.canEncodeWMA(ffmpegPath: path)) }) {
+           formats.contains(where: { ($0 == .wmv && !FFmpegAdapter.canEncodeWMV(ffmpegPath: path, ffprobePath: dependencies.path(for: "ffprobe"))) ||
+               ($0 == .wma && !FFmpegAdapter.canEncodeWMA(ffmpegPath: path, ffprobePath: dependencies.path(for: "ffprobe"))) }) {
             result.remove(.compress)
         }
+        if let path = dependencies.path(for: "ffmpeg"), formats.contains(where: {
+            [.flv, .ts, .threeGP, .caf].contains($0) && !FFmpegAdapter.canEncodeExtended($0, ffmpegPath: path, ffprobePath: dependencies.path(for: "ffprobe"))
+        }) { result.remove(.compress) }
+        if let path = dependencies.path(for: "magick"), formats.contains(where: {
+            [.ico, .jp2, .jxl].contains($0) && !ImageMagickAdapter.canRoundTrip($0, magickPath: path)
+        }) { result.subtract([.compress, .resizeImage, .rotate, .stripMetadata]) }
         return result
     }
 }

@@ -10,10 +10,13 @@ final class SettingsWindowController {
                           styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
         window.title = "OrbitMorph Settings"
         window.titlebarAppearsTransparent = true
+        window.titleVisibility = .hidden
+        window.styleMask.insert(.fullSizeContentView)
         window.isReleasedWhenClosed = false
         window.minSize = NSSize(width: 760, height: 520)
         host = NSHostingView(rootView: SettingsView(state: state))
-        window.contentView = host
+        host.frame = NSRect(x: 0, y: 0, width: 850, height: 580)
+        _ = GlassWindowBackground(window: window, host: host, state: state, titleKey: "OrbitMorph Settings")
         window.center()
     }
     func show() { window.makeKeyAndOrderFront(nil); NSApp.activate(ignoringOtherApps: true) }
@@ -23,9 +26,6 @@ final class SettingsWindowController {
             throw NSError(domain: "OrbitMorphSnapshot", code: 1)
         }
         host.cacheDisplay(in: host.bounds, to: rep)
-        guard let png = rep.representation(using: .png, properties: [:]) else {
-            throw NSError(domain: "OrbitMorphSnapshot", code: 2)
-        }
-        try png.write(to: url)
+        try WindowSnapshot.write(rep, to: url, appearance: window.effectiveAppearance)
     }
 }

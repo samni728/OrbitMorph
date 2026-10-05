@@ -1,3 +1,5 @@
+> 历史截图：此目录保留1.1.0的6张图和metadata。1.2.0最终14张中英截图见[当前gallery](../../screenshots/README.md)。
+
 # OrbitMorph app 截图
 
 这些图片通过实际编译的 app 自带渲染入口生成，不是设计稿或生成式 UI 图片。

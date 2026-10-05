@@ -1,5 +1,6 @@
 import AppKit
 import SwiftUI
+import Combine
 import OrbitMorphCore
 
 @MainActor
@@ -10,7 +11,17 @@ final class OverlayPanelController {
     private var receiver: DragReceivingView?
     var onFilesResolved: (([URL]) -> Void)?
     var onDrop: ((WheelDisplayItem, [URL]) -> Void)?
-    init(state: AppState) { self.state = state }
+    var onInteractionDrop: ((DragMode, WheelDisplayItem, [URL]) -> Void)?
+    private var presentationObserver: AnyCancellable?
+    init(state: AppState) {
+        self.state = state
+        presentationObserver = NotificationCenter.default.publisher(for: .orbitMorphPresentationChanged, object: state).sink { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.model?.language = state.settings.language
+                self?.model?.appearance = state.settings.appearance
+            }
+        }
+    }
     func items(for files: [URL], mode: DragMode) -> [WheelDisplayItem] {
         let formats = files.compactMap { FormatID(fileURL: $0) }
         guard formats.count == files.count else { return [] }
@@ -26,11 +37,15 @@ final class OverlayPanelController {
         let available = items(for: files, mode: mode)
         show(items: available, mode: mode, at: point)
         if available.isEmpty { state.message = "No shared conversion for these files. Check Compatibility and converter diagnostics." }
-        model?.onSelect = { [weak self] item in self?.onDrop?(item, files); self?.hide() }
+        model?.onSelect = { [weak self] item in
+            self?.onInteractionDrop?(mode, item, files)
+            self?.onDrop?(item, files)
+            self?.hide()
+        }
     }
     func show(items: [WheelDisplayItem], mode: DragMode, at screenPoint: NSPoint) {
         hide()
-        let model = WheelViewModel(items: items, mode: mode, appearance: state.settings.appearance)
+        let model = WheelViewModel(items: items, mode: mode, appearance: state.settings.appearance, language: state.settings.language)
         self.model = model
         model.onCancel = { [weak self] in self?.hide() }
         let size = NSSize(width: 310, height: 310)
@@ -38,20 +53,30 @@ final class OverlayPanelController {
         panel.isOpaque = false; panel.backgroundColor = .clear; panel.hasShadow = false; panel.level = .popUpMenu
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .transient]
         panel.hidesOnDeactivate = false; panel.isMovable = false; panel.isReleasedWhenClosed = false
-        let receiver = DragReceivingView(model: model, frame: NSRect(origin: .zero, size: size), resolveItems: { [weak self] files in self?.items(for: files, mode: mode) ?? [] })
+        let receiver = DragReceivingView(
+            model: model,
+            frame: NSRect(origin: .zero, size: size),
+            resolveItems: { [weak self] files in self?.items(for: files, mode: mode) ?? [] },
+            feedbackEnabled: { [weak self] in self?.state.settings.soundAndHaptics ?? false }
+        )
         receiver.onFilesResolved = { [weak self] files in self?.onFilesResolved?(files) }
-        receiver.onDrop = { [weak self] item, files in self?.onDrop?(item, files); self?.hide() }
+        receiver.onDrop = { [weak self] item, files in
+            self?.onInteractionDrop?(mode, item, files)
+            self?.onDrop?(item, files)
+            self?.hide()
+        }
         panel.contentView = receiver; self.receiver = receiver
-        let screen = NSScreen.screens.first { $0.frame.contains(screenPoint) }?.visibleFrame ?? NSScreen.main?.visibleFrame ?? NSRect(x: 0, y: 0, width: 1200, height: 800)
-        panel.setFrameOrigin(NSPoint(x: min(max(screenPoint.x - size.width / 2, screen.minX), screen.maxX - size.width),
-                                     y: min(max(screenPoint.y - size.height / 2, screen.minY), screen.maxY - size.height)))
+        let frame = WheelPlacement.frame(at: .init(x: screenPoint.x, y: screenPoint.y), size: size,
+            screens: NSScreen.screens.map { WheelScreen(frame: $0.frame, visibleFrame: $0.visibleFrame) })
+        panel.setFrameOrigin(frame.origin)
         panel.orderFrontRegardless(); self.panel = panel; receiver.animateIn()
     }
-    func showDemo() {
-        let screen = NSScreen.main?.visibleFrame ?? NSRect(x: 0, y: 0, width: 1200, height: 800)
-        let values: [FormatID] = [.jpg, .png, .webp, .heic, .pdf, .mp4, .mp3, .zip]
-        show(items: values.map { .init(value: .format($0)) }, mode: .conversion, at: NSPoint(x: screen.midX, y: screen.midY))
-        model?.selectedIndex = 2
+    func showDemo(pageNumber: Int = 1) {
+        let available = items(for: [SampleResources.imageURL], mode: .conversion)
+        show(items: available, mode: .conversion, at: NSEvent.mouseLocation)
+        guard let model else { return }
+        model.page = min(max(pageNumber > 1 ? pageNumber - 1 : 0, 0), model.pageCount - 1)
+        model.selectedIndex = model.visibleItems.firstIndex { $0.value == .format(.webp) } ?? (model.visibleItems.isEmpty ? nil : 0)
     }
     func snapshot(to url: URL) throws {
         guard let view = panel?.contentView, let rep = view.bitmapImageRepForCachingDisplay(in: view.bounds) else { throw NSError(domain: "OrbitMorphSnapshot", code: 1) }

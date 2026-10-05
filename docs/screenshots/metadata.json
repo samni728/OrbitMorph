@@ -1,38 +1,185 @@
 {
-  "capturedAtUTC": "2026-10-04T09:56:44.625729+00:00",
-  "version": "1.1.0",
-  "binarySHA256": "051cc6fdb59bbb47a2cc458054bc74bd85672ebc4a1dd170a68ae2fa0569ba74",
-  "method": "Application view self-render; not desktop capture or gesture animation recording",
+  "capturedAtUTC": "2026-10-05T01:11:08.231322+00:00",
+  "version": "1.2.0",
+  "build": "1",
+  "binarySHA256": "3fccc504d60e843db7e6525592ae89698ba9a6cf0f7f6ad7efea2d41f3c0461b",
+  "method": "Final application view self-render through its language-specific CLI; no fabricated UI or desktop/gesture recording",
   "screenshots": {
     "wheel.png": {
       "width": 310,
       "height": 310,
-      "sha256": "63c8bcc19357dccbf43637ff225fffc250a66233cc5bc4aabda440b230ff2cce"
+      "scale": 1.0,
+      "language": "en",
+      "surface": "wheel",
+      "section": "1",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "257a3e8e31ad4ab55d361ba9fdd835c5caea2a44097f042129b4cd070262589f"
+    },
+    "wheel-zh.png": {
+      "width": 310,
+      "height": 310,
+      "scale": 1.0,
+      "language": "zh-Hans",
+      "surface": "wheel",
+      "section": "1",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "257a3e8e31ad4ab55d361ba9fdd835c5caea2a44097f042129b4cd070262589f"
+    },
+    "wheel-page-2.png": {
+      "width": 310,
+      "height": 310,
+      "scale": 1.0,
+      "language": "en",
+      "surface": "wheel",
+      "section": "2",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "a72f0c43dcfca6c3d074687347939ad82c4da82892a76c42e4bd52b5aaf0385d"
+    },
+    "wheel-page-2-zh.png": {
+      "width": 310,
+      "height": 310,
+      "scale": 1.0,
+      "language": "zh-Hans",
+      "surface": "wheel",
+      "section": "2",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "a72f0c43dcfca6c3d074687347939ad82c4da82892a76c42e4bd52b5aaf0385d"
     },
     "general.png": {
       "width": 850,
       "height": 580,
-      "sha256": "3c00fbcb4df32ab281691c2f229dd1cad8a8aa0c97c6b307df7fe4665e8ba7b8"
+      "scale": 1.0,
+      "language": "en",
+      "surface": "settings",
+      "section": "general",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "90718c2c8be4d4b574f2c059b5df01f3104009427598ad069ae72c4a4598a296"
     },
     "formats.png": {
       "width": 850,
       "height": 580,
-      "sha256": "f71861ceaaaffba6dd1d8a3494f562672282ffa60de0c331ec64b036eb69e513"
+      "scale": 1.0,
+      "language": "en",
+      "surface": "settings",
+      "section": "formats",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "ef2072754207a9c5e0e5a12814c55181d79c8cf8271bfe8cf47951f6c8beaf04"
     },
     "compatibility.png": {
       "width": 850,
       "height": 580,
-      "sha256": "15541a3c74afcb492b6c67ee1c513fb382a9e88f6c776723a9914925f68ba716"
+      "scale": 1.0,
+      "language": "en",
+      "surface": "settings",
+      "section": "compatibility",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "bbb8bfdb3a238ae4ce85a7f5a0a18ad540b0fee40a7ac5758c69036692897145"
     },
     "folders.png": {
       "width": 850,
       "height": 580,
-      "sha256": "51ddc14cd7dacbdabd42793e1703f041e5124a22358d30af7cf6623b08a9396c"
+      "scale": 1.0,
+      "language": "en",
+      "surface": "settings",
+      "section": "folders",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "496a1770e33c3eacd903c31dfaa3ab0221db8646bb8b64d448b55543ffc17573"
     },
     "about.png": {
       "width": 850,
       "height": 580,
-      "sha256": "30d5502392af4362bae6b679155851cc344ac8b7dba35e13aa257d03faaab3d5"
+      "scale": 1.0,
+      "language": "en",
+      "surface": "settings",
+      "section": "about",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "d0877b8143a9704dbebde4bd4cd65f197b5215cf7c6bac8b24e4c4959929c4a4"
+    },
+    "general-zh.png": {
+      "width": 850,
+      "height": 580,
+      "scale": 1.0,
+      "language": "zh-Hans",
+      "surface": "settings",
+      "section": "general",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "227fa8597d0bd48cadc03b7f109a69d77edeb9313fec7d9275ad20750ab122f9"
+    },
+    "formats-zh.png": {
+      "width": 850,
+      "height": 580,
+      "scale": 1.0,
+      "language": "zh-Hans",
+      "surface": "settings",
+      "section": "formats",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "8d2e218e15ca3826295ee0578430617c91815e1a331ade37eb94206984c35373"
+    },
+    "compatibility-zh.png": {
+      "width": 850,
+      "height": 580,
+      "scale": 1.0,
+      "language": "zh-Hans",
+      "surface": "settings",
+      "section": "compatibility",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "683d5f5eb02ee8b8e0ed666a3998b181d836675aabed80cd9222783a09d47ca3"
+    },
+    "folders-zh.png": {
+      "width": 850,
+      "height": 580,
+      "scale": 1.0,
+      "language": "zh-Hans",
+      "surface": "settings",
+      "section": "folders",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "0ffeb3ba7cde1d5cc663424d8949808990094fcfcde59fe4bcc7125fd5842d9a"
+    },
+    "about-zh.png": {
+      "width": 850,
+      "height": 580,
+      "scale": 1.0,
+      "language": "zh-Hans",
+      "surface": "settings",
+      "section": "about",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "bfb398056d49889fe28ac02deafef088e9b24918a13a8a86160401f7e2ae4ce9"
+    },
+    "tutorial-en.png": {
+      "width": 680,
+      "height": 520,
+      "scale": 1.0,
+      "language": "en",
+      "surface": "tutorial",
+      "section": "conversion",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "b2dd254f7cd0a3a0b97c62b041d0783aee79a4ffca2f6e1acb922dbdcd1803cf"
+    },
+    "tutorial-zh.png": {
+      "width": 680,
+      "height": 520,
+      "scale": 1.0,
+      "language": "zh-Hans",
+      "surface": "tutorial",
+      "section": "conversion",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "11b480e22d0d6cca19afab84868f92a038850a998335821e0df93c9e2d00fb3b"
     }
   }
 }

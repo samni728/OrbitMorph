@@ -35,7 +35,7 @@ public struct DependencyDiagnostic: Equatable, Sendable {
     public var available: Bool { path != nil }
 
     public static func rows(resolver: DependencyResolver) -> [DependencyDiagnostic] {
-        ["ffmpeg", "ffprobe", "magick", "pandoc", "gs", "7zz", "textutil", "ditto", "tar", "gzip"].map {
+        ["ffmpeg", "ffprobe", "magick", "pandoc", "soffice", "ebook-convert", "gs", "7zz", "textutil", "ditto", "tar", "gzip"].map {
             DependencyDiagnostic(name: $0, path: resolver.path(for: $0))
         }
     }
