@@ -19,7 +19,6 @@ enum LaunchInstancePolicy {
 
     static func isExempt(arguments: [String]) -> Bool {
         arguments.dropFirst().contains { argument in
-            argument == "--demo-wheel" ||
             ["--render-wheel=", "--render-settings=", "--render-tutorial="].contains(where: argument.hasPrefix)
         }
     }

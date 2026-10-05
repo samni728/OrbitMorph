@@ -1,31 +1,47 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "build": "1",
-  "recordedAtUTC": "2026-10-05T01:15:53.959368+00:00",
-  "tests": 168,
+  "recordedAtUTC": "2026-10-05T04:26:57.075879+00:00",
+  "tests": 177,
   "failures": 0,
   "skipped": 0,
+  "testPartitions": {
+    "regressionTests": 176,
+    "completeMatrixTests": 1,
+    "matrixLog": "interrupted-full-run.log",
+    "note": "Original full suite was interrupted after the full matrix passed. The remaining 176 tests were rerun as a complete partition with 0 failures/skips."
+  },
+  "priorAttempts": {
+    "externalCalibreExitCode11": 1,
+    "focusedRecheckPassed": true,
+    "fullRegressionRecheckPassed": true,
+    "logs": [
+      "regression-calibre-crash.log",
+      "calibre-recheck.log"
+    ]
+  },
   "recognizedFormats": 58,
   "advertisedRoutes": 554,
   "passedRoutes": 554,
   "unverifiedRoutes": 0,
-  "screenshots": 16,
-  "binarySHA256": "3fccc504d60e843db7e6525592ae89698ba9a6cf0f7f6ad7efea2d41f3c0461b",
-  "dmgSHA256": "71eb0bf45d5dcd5a9c8b5416157e7d144ae05fcef69b85c9922c64619bb45d1d",
+  "matrixRawReportProvenance": "See conversion-matrix.json.latestValidation; route listing preserved, full matrix pass current.",
+  "screenshots": 18,
+  "binarySHA256": "d56d574adcf127797cb22d56ca9e2a810320aa5296838f17519d2a93b1302b1d",
+  "dmgSHA256": "e4d465aa0659ba7b05eaa0a1d6ff4d490e6bc6280e15f2c2e8c31afca81c6ccf",
   "packageVerified": true,
   "preferencesUnchangedDuringCapture": true,
-  "sourceManifestFiles": 92,
+  "sourceManifestFiles": 93,
   "gui": {
     "singleInstanceRealProcessVerified": true,
-    "nativePageDwellAndDropIntegrationTestsVerified": true,
-    "multiDisplayPanelFrameTestsVerified": true,
+    "installedRunningInstances": 1,
+    "firstLaunchTutorialObserved": true,
+    "nativeCloseButtonObserved": true,
+    "tutorialIsolationNativeTestsVerified": true,
+    "tutorialWindowMovableClosableNativeTestsVerified": true,
+    "dropWindowAndManualEntrypointsRemoved": true,
     "finderDropVerified": false,
     "globalModifierDragVerified": false,
     "liveBackdropVerifiedInFinalBuild": false,
-    "limitation": "Computer Use cannot reliably hold a modifier throughout dragging and could not access borderless/menu-bar-only UI. Real Finder cross-display gesture and live backdrop remain manual acceptance.",
-    "firstLaunchTutorialObserved": true,
-    "nativeTutorialWindowObserved": true,
-    "tutorialClosePersistedVersion": 1,
-    "installedRunningInstances": 1
+    "limitation": "Computer Use observed the native tutorial and close button, but subsequent UI actions lost the window and timed out. Native AppKit tests verify internal drag, close/persistence and movable flags. Real Finder modifier-drag and live blur remain manual acceptance."
   }
 }

@@ -23,13 +23,13 @@ final class GlassPresentationTests: XCTestCase {
         XCTAssertGreaterThan(color.usingColorSpace(.deviceRGB)!.redComponent, 0.8)
     }
 
-    @MainActor func testSamplePreviewCannotPaintOutsideItsBoundsDuringCacheDisplay() throws {
+    @MainActor func testTutorialCanvasCannotPaintOutsideItsBoundsDuringCacheDisplay() throws {
         _ = NSApplication.shared
-        let source = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Resources/Samples/OrbitMorph-Sample.png")
-        XCTAssertTrue(FileManager.default.fileExists(atPath: source.path))
-        let parent = NSView(frame: NSRect(x: 0, y: 0, width: 300, height: 200))
-        let sample = SampleDragSourceView(fileURL: source)
-        sample.frame = NSRect(x: 79, y: 46, width: 142, height: 108)
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: "OrbitMorphCanvasClip-\(UUID().uuidString)"))
+        let state = AppState(store: .init(defaults: defaults), dependencies: .init(overrides: ["ffmpeg": nil, "magick": nil]))
+        let manager = OnboardingManager(state: state, imageSampleURL: SampleResources.imageURL, videoSampleURL: SampleResources.videoURL)
+        let parent = NSView(frame: NSRect(x: 0, y: 0, width: 800, height: 400))
+        let sample = TutorialDemoCanvas(manager: manager, frame: NSRect(x: 79, y: 46, width: 580, height: 240))
         parent.addSubview(sample)
         let rep = try XCTUnwrap(parent.bitmapImageRepForCachingDisplay(in: parent.bounds))
         parent.cacheDisplay(in: parent.bounds, to: rep)
@@ -37,7 +37,7 @@ final class GlassPresentationTests: XCTestCase {
         defer { try? FileManager.default.removeItem(at: output) }
         try WindowSnapshot.write(rep, to: output, appearance: try XCTUnwrap(NSAppearance(named: .aqua)))
         let result = try XCTUnwrap(NSBitmapImageRep(data: Data(contentsOf: output)))
-        for point in [(10, 10), (290, 190)] {
+        for point in [(10, 10), (790, 390)] {
             let color = try XCTUnwrap(result.colorAt(x: point.0, y: point.1)?.usingColorSpace(.deviceRGB))
             XCTAssertGreaterThan(color.redComponent, 0.8)
             XCTAssertEqual(color.alphaComponent, 1, accuracy: 0.01)

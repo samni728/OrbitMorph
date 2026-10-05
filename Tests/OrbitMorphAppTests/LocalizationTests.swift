@@ -5,8 +5,8 @@ import OrbitMorphCore
 
 final class LocalizationTests: XCTestCase {
     func testExplicitLanguagesAndSystemResolution() {
-        XCTAssertEqual(LocalizationManager.text("Open Drop Window", language: .en, preferredLanguages: ["zh-Hans-CN"]), "Open Drop Window")
-        XCTAssertEqual(LocalizationManager.text("Open Drop Window", language: .zhHans, preferredLanguages: ["en-US"]), "打开拖放窗口")
+        XCTAssertEqual(LocalizationManager.text("Settings…", language: .en, preferredLanguages: ["zh-Hans-CN"]), "Settings…")
+        XCTAssertEqual(LocalizationManager.text("Settings…", language: .zhHans, preferredLanguages: ["en-US"]), "设置…")
         XCTAssertEqual(LocalizationManager.text("General", language: .system, preferredLanguages: ["zh-CN", "en-US"]), "通用")
         XCTAssertEqual(LocalizationManager.text("General", language: .system, preferredLanguages: ["de-DE", "en-US"]), "General")
         XCTAssertEqual(LocalizationManager.text("General", language: .system, preferredLanguages: ["zh-Hant-TW", "en-US"]), "General")

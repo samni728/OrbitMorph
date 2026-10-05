@@ -20,7 +20,7 @@ struct TutorialView: View {
                 Text(state.L("Step %d of %d", manager.currentStep.rawValue + 1, TutorialStep.allCases.count))
                     .font(.caption).foregroundStyle(.secondary)
             }
-            .padding(.bottom, 28)
+            .padding(.bottom, 14)
 
             Group {
                 switch manager.currentStep {
@@ -32,7 +32,7 @@ struct TutorialView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-            Text(state.L("You can reopen this tutorial from Show Tutorial in the menu bar.")).font(.caption2).foregroundStyle(.secondary).padding(.bottom, 10)
+            Text(state.L("First-use demonstration only. Everyday conversion happens beside your Finder files.")).font(.caption2).foregroundStyle(.secondary).padding(.bottom, 10)
             Divider().opacity(0.35)
             HStack(spacing: 12) {
                 if manager.currentStep != .conversion {
@@ -60,34 +60,36 @@ struct TutorialView: View {
                         .disabled(!manager.canAdvance)
                 }
             }
-            .padding(.top, 18)
+            .padding(.top, 12)
         }
         .environment(\.locale, state.locale)
-        .padding(30)
+        .padding(24)
         .frame(width: 680, height: 520)
     }
 
     private var conversionStep: some View {
-        VStack(spacing: 16) {
-            Text(state.L("Hold. Drag. Drop."))
-                .font(.system(size: 30, weight: .bold, design: .rounded))
-            Text(state.L("Hold %@ while dragging the sample. Move across the wheel, then drop it on any format.", shortcut(state.settings.conversionModifier)))
-                .font(.system(size: 14)).foregroundStyle(.secondary)
-                .multilineTextAlignment(.center).frame(maxWidth: 470)
-            sampleCard(url: manager.imageSampleURL, isComplete: manager.completedGestureSteps.contains(.conversion), label: state.L("Drag this PNG"))
-            Text(state.L("Tutorial samples use a writable temporary copy. Your own files keep their normal output-folder rules.")).font(.caption2).foregroundStyle(.secondary).multilineTextAlignment(.center).frame(maxWidth: 470)
-        }
+        demoStep(title: state.L("Hold. Drag. Drop."), modifier: state.settings.conversionModifier, chooseSample: true)
     }
-
     private var toolsStep: some View {
-        VStack(spacing: 16) {
-            Text(state.L("There's a tool for that."))
-                .font(.system(size: 30, weight: .bold, design: .rounded))
-            Text(state.L("Hold %@ while dragging the video sample to open the tools wheel.", shortcut(state.settings.toolsModifier)))
-                .font(.system(size: 14)).foregroundStyle(.secondary)
-                .multilineTextAlignment(.center).frame(maxWidth: 470)
-            sampleCard(url: manager.videoSampleURL, isComplete: manager.completedGestureSteps.contains(.tools), label: state.L("Drag this video"))
-            Text(state.L("Tutorial samples use a writable temporary copy. Your own files keep their normal output-folder rules.")).font(.caption2).foregroundStyle(.secondary).multilineTextAlignment(.center).frame(maxWidth: 470)
+        demoStep(title: state.L("There's a tool for that."), modifier: state.settings.toolsModifier, chooseSample: false)
+    }
+    private func demoStep(title: String, modifier: String, chooseSample: Bool) -> some View {
+        VStack(spacing: 8) {
+            Text(title).font(.system(size: 24, weight: .bold, design: .rounded))
+            Text(state.L("Try %@ here, then use the same gesture on files in Finder.", shortcut(modifier)))
+                .font(.system(size: 12)).foregroundStyle(.secondary).multilineTextAlignment(.center)
+            HStack {
+                if chooseSample {
+                    Picker("", selection: $manager.demoSample) {
+                        Text("PNG").tag(FormatID.png)
+                        Text("MP4").tag(FormatID.mp4)
+                    }.pickerStyle(.segmented).frame(width: 130).labelsHidden()
+                }
+                Button(state.L("Watch demo")) { manager.requestPreview() }.buttonStyle(.bordered)
+            }
+            TutorialDemoRepresentable(manager: manager).frame(width: 580, height: 240)
+            Text(manager.demoResult.map { state.L("Preview: %@", $0) } ?? state.L("Demo only — no files are converted here."))
+                .font(.caption).foregroundStyle(manager.demoResult == nil ? Color.secondary : Color.green)
         }
     }
 
@@ -113,7 +115,7 @@ struct TutorialView: View {
                 .font(.system(size: 58, weight: .light)).foregroundStyle(accent)
             Text(state.L("Ready when you are."))
                 .font(.system(size: 30, weight: .bold, design: .rounded))
-            Text(state.L("OrbitMorph now lives in your menu bar. It stays out of the way until you drag a file or open a command yourself."))
+            Text(state.L("OrbitMorph stays in the menu bar. Hold your shortcut while dragging a file in Finder to summon the wheel beside it."))
                 .font(.system(size: 14)).foregroundStyle(.secondary)
                 .multilineTextAlignment(.center).frame(maxWidth: 480)
             VStack(alignment: .leading, spacing: 10) {
@@ -124,22 +126,6 @@ struct TutorialView: View {
             .padding(16)
             .background(.white.opacity(0.10), in: RoundedRectangle(cornerRadius: 18, style: .continuous))
         }
-    }
-
-    private func sampleCard(url: URL, isComplete: Bool, label: String) -> some View {
-        GlassCard(appearance: state.settings.appearance) {
-          VStack(spacing: 10) {
-            SampleDragSourceRepresentable(url: url, accessibilityLabel: state.L("Drag sample file"))
-                .frame(width: 142, height: 108)
-                .overlay(RoundedRectangle(cornerRadius: 17).stroke(.white.opacity(0.35), lineWidth: 1))
-                .shadow(color: .black.opacity(0.12), radius: 12, y: 5)
-            Text(url.lastPathComponent).font(.caption).foregroundStyle(.secondary)
-            Label(isComplete ? state.L("Done — nice.") : label,
-                  systemImage: isComplete ? "checkmark.circle.fill" : "arrow.up.left.and.arrow.down.right")
-                .font(.system(size: 12, weight: .medium))
-                .foregroundStyle(isComplete ? Color.green : accent)
-          }
-        }.frame(width: 270)
     }
 
     private func shortcut(_ raw: String) -> String {

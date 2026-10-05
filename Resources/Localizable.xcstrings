@@ -321,22 +321,6 @@
         }
       }
     },
-    "Convert Files…": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Convert Files…"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "转换文件…"
-          }
-        }
-      }
-    },
     "Convert files": {
       "localizations": {
         "en": {
@@ -573,22 +557,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "拖动这个视频"
-          }
-        }
-      }
-    },
-    "Drop files here or hold %@ while dragging in Finder": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Drop files here or hold %@ while dragging in Finder"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "把文件拖到这里，或在 Finder 拖动时按住 %@"
           }
         }
       }
@@ -1153,22 +1121,6 @@
         }
       }
     },
-    "Open Drop Window": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open Drop Window"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "打开拖放窗口"
-          }
-        }
-      }
-    },
     "Open Folder Settings": {
       "localizations": {
         "en": {
@@ -1181,22 +1133,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "打开文件夹设置"
-          }
-        }
-      }
-    },
-    "OrbitMorph Drop Window": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "OrbitMorph Drop Window"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "OrbitMorph 拖放窗口"
           }
         }
       }
@@ -1553,22 +1489,6 @@
         }
       }
     },
-    "Show Tutorial": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Show Tutorial"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "显示使用教程"
-          }
-        }
-      }
-    },
     "Skip": {
       "localizations": {
         "en": {
@@ -1713,22 +1633,6 @@
         }
       }
     },
-    "Tutorial samples use a writable temporary copy. Your own files keep their normal output-folder rules.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tutorial samples use a writable temporary copy. Your own files keep their normal output-folder rules."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "教程示例使用可写的临时副本。你自己的文件仍遵循正常的输出文件夹设置。"
-          }
-        }
-      }
-    },
     "Version %@ · Apple Silicon · macOS 14+": {
       "localizations": {
         "en": {
@@ -1773,22 +1677,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "转盘样式"
-          }
-        }
-      }
-    },
-    "You can reopen this tutorial from Show Tutorial in the menu bar.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "You can reopen this tutorial from Show Tutorial in the menu bar."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "以后可从菜单栏的“显示使用教程”重新打开。"
           }
         }
       }
@@ -1965,6 +1853,134 @@
           "stringUnit": {
             "state": "translated",
             "value": "✓ 已启用   ○ 已禁用   — 不可用\n仅能启用已实现且已安装转换器的路线。"
+          }
+        }
+      }
+    },
+    "Demo only — no files are converted here.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demo only — no files are converted here."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这里只演示，不会转换或保存文件。"
+          }
+        }
+      }
+    },
+    "Watch demo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watch demo"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "观看演示"
+          }
+        }
+      }
+    },
+    "Try %@ here, then use the same gesture on files in Finder.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try %@ here, then use the same gesture on files in Finder."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在这里按住 %@ 拖动示例；日常直接在 Finder 中使用这个手势。"
+          }
+        }
+      }
+    },
+    "Preview: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "演示结果：%@"
+          }
+        }
+      }
+    },
+    "Move the sample toward a format.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Move the sample toward a format."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "把示例拖向右侧格式。"
+          }
+        }
+      }
+    },
+    "Hold %@ to reveal the wheel.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hold %@ to reveal the wheel."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按住 %@ 拖动示例显示转盘。"
+          }
+        }
+      }
+    },
+    "First-use demonstration only. Everyday conversion happens beside your Finder files.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First-use demonstration only. Everyday conversion happens beside your Finder files."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅首次教学；日常转换直接在 Finder 文件旁操作。"
+          }
+        }
+      }
+    },
+    "OrbitMorph stays in the menu bar. Hold your shortcut while dragging a file in Finder to summon the wheel beside it.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OrbitMorph stays in the menu bar. Hold your shortcut while dragging a file in Finder to summon the wheel beside it."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OrbitMorph 留在菜单栏。按住快捷键拖动 Finder 文件，转盘就会在文件旁出现。"
           }
         }
       }

@@ -1,22 +1,24 @@
 {
-  "advertisedRoutes": 554,
-  "dependencies": {
-    "7zz": "/opt/homebrew/bin/7zz",
-    "ditto": "/usr/bin/ditto",
-    "ebook-convert": "/Applications/calibre.app/Contents/MacOS/ebook-convert",
-    "ffmpeg": "/opt/homebrew/bin/ffmpeg",
-    "ffprobe": "/opt/homebrew/bin/ffprobe",
-    "gs": "/opt/homebrew/bin/gs",
-    "gzip": "/usr/bin/gzip",
-    "magick": "/opt/homebrew/bin/magick",
-    "pandoc": "/opt/homebrew/bin/pandoc",
-    "soffice": "/Applications/LibreOffice.app/Contents/MacOS/soffice",
-    "tar": "/usr/bin/tar",
-    "textutil": "/usr/bin/textutil"
+  "advertisedRoutes" : 554,
+  "dependencies" : {
+    "7zz" : "\/opt\/homebrew\/bin\/7zz",
+    "ditto" : "\/usr\/bin\/ditto",
+    "ebook-convert" : "\/Applications\/calibre.app\/Contents\/MacOS\/ebook-convert",
+    "ffmpeg" : "\/opt\/homebrew\/bin\/ffmpeg",
+    "ffprobe" : "\/opt\/homebrew\/bin\/ffprobe",
+    "gs" : "\/opt\/homebrew\/bin\/gs",
+    "gzip" : "\/usr\/bin\/gzip",
+    "magick" : "\/opt\/homebrew\/bin\/magick",
+    "pandoc" : "\/opt\/homebrew\/bin\/pandoc",
+    "soffice" : "\/Applications\/LibreOffice.app\/Contents\/MacOS\/soffice",
+    "tar" : "\/usr\/bin\/tar",
+    "textutil" : "\/usr\/bin\/textutil"
   },
-  "failedRoutes": [],
-  "generatedAt": "2026-10-05T01:11:42Z",
-  "passedPairs": [
+  "failedRoutes" : [
+
+  ],
+  "generatedAt" : "2026-10-05T01:11:42Z",
+  "passedPairs" : [
     "jpg→png",
     "jpg→webp",
     "jpg→heic",
@@ -572,20 +574,11 @@
     "rar→tar",
     "rar→tgz"
   ],
-  "passedRoutes": 554,
-  "rarFixture": "libarchive/test/test_read_format_rar5_stored.rar.uu",
-  "recognizedFormats": 58,
-  "testedRoutes": 554,
-  "unverifiedPairs": [],
-  "latestValidation": {
-    "version": "1.2.1",
-    "generatedAtUTC": "2026-10-05T03:16:38Z",
-    "advertisedRoutes": 554,
-    "testedRoutes": 554,
-    "passedRoutes": 554,
-    "failedRoutes": [],
-    "unverifiedPairs": [],
-    "evidence": "interrupted-full-run.log: complete ConversionMatrixTests passed in 733.604s; counts were observed in the actual temporary JSON before the machine restarted",
-    "routeListingOrigin": "Preserved 1.2.0 raw route listing. Core and matrix test source hashes are unchanged. The 1.2.1 temporary raw JSON was cleared by restart; this provenance is explicit."
-  }
+  "passedRoutes" : 554,
+  "rarFixture" : "libarchive\/test\/test_read_format_rar5_stored.rar.uu",
+  "recognizedFormats" : 58,
+  "testedRoutes" : 554,
+  "unverifiedPairs" : [
+
+  ]
 }

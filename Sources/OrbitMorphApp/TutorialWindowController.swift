@@ -13,19 +13,20 @@ final class TutorialWindowController: NSObject, NSWindowDelegate {
         self.onOpenFolders = onOpenFolders
         window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 680, height: 520),
-            styleMask: [.titled, .closable, .fullSizeContentView],
+            styleMask: [.titled, .closable],
             backing: .buffered,
             defer: false
         )
         super.init()
 
         window.title = "OrbitMorph Tutorial"
-        window.titleVisibility = .hidden
+        window.titleVisibility = .visible
         window.titlebarAppearsTransparent = true
         window.isOpaque = false
         window.backgroundColor = .clear
         window.hasShadow = true
         window.isReleasedWhenClosed = false
+        window.isMovable = true
         window.isMovableByWindowBackground = true
         window.center()
         window.delegate = self
@@ -44,12 +45,13 @@ final class TutorialWindowController: NSObject, NSWindowDelegate {
 
     func show(resetSession: Bool = true) {
         if resetSession { manager.resetSession() }
+        manager.finish()
         window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
 
     func dismiss() {
-        window.orderOut(nil)
+        window.close()
     }
 
     func windowWillClose(_ notification: Notification) {

@@ -3,7 +3,7 @@ set -euo pipefail
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST_DIR="${DIST_DIR:-$ROOT_DIR/dist}"
 APP_PATH="${APP_PATH:-$DIST_DIR/OrbitMorph.app}"
-VERSION="${VERSION:-1.2.0}"
+VERSION="${VERSION:-1.2.1}"
 BUILD_NUMBER="${BUILD_NUMBER:-1}"
 ARCH="${ARCH:-arm64}"
 SCRATCH_PATH="${SCRATCH_PATH:-${TMPDIR:-/tmp}/orbitmorph-task7-release-${UID:-1000}}"

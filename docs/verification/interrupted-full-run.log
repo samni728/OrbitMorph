@@ -1,0 +1,222 @@
+[0/1] Planning build
+Building for debugging...
+[0/4] Write swift-version--58304C5D6DBC2206.txt
+Build complete! (0.27s)
+Test Suite 'All tests' started at 2026-10-04 20:04:08.566.
+Test Suite 'OrbitMorphPackageTests.xctest' started at 2026-10-04 20:04:08.569.
+Test Suite 'BackendRegressionTests' started at 2026-10-04 20:04:08.569.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testAnimatedGIFToPNGWritesOneFirstFrameWithoutTemporarySiblings]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testAnimatedGIFToPNGWritesOneFirstFrameWithoutTemporarySiblings]' passed (1.462 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testArchiveExtractionRejectsParentTraversalBeforeWritingFiles]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testArchiveExtractionRejectsParentTraversalBeforeWritingFiles]' passed (0.419 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testArchiveExtractionRejectsSymlinkAndHardlinkMembers]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testArchiveExtractionRejectsSymlinkAndHardlinkMembers]' passed (0.587 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testConfiguredAudioBitrateIsAppliedToEveryAudioEncodingTarget]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testConfiguredAudioBitrateIsAppliedToEveryAudioEncodingTarget]' passed (0.002 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testExternalOutputCreatedDuringConversionIsNeverOverwritten]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testExternalOutputCreatedDuringConversionIsNeverOverwritten]' passed (1.429 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testFailedConversionRemovesTemporaryOutputAndEarlierBatchResults]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testFailedConversionRemovesTemporaryOutputAndEarlierBatchResults]' passed (0.448 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testFailedExtractionRemovesNewDestinationDirectory]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testFailedExtractionRemovesNewDestinationDirectory]' passed (0.592 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testJobOptionsReachImageAndMediaAdapters]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testJobOptionsReachImageAndMediaAdapters]' passed (0.002 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeArchiveFallbackKeepsPayloadAtRoot]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeArchiveFallbackKeepsPayloadAtRoot]' passed (0.486 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeImageIOFallbackConvertsWithoutImageMagick]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeImageIOFallbackConvertsWithoutImageMagick]' passed (0.159 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeTarToZipPreservesPayloadRoot]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testNativeTarToZipPreservesPayloadRoot]' passed (0.478 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testOGGConversionUsesAvailableVorbisEncoder]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testOGGConversionUsesAvailableVorbisEncoder]' passed (1.418 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testPDFRendersEveryPageAsSeparatePNG]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testPDFRendersEveryPageAsSeparatePNG]' passed (0.227 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testPerInputOutputDirectoriesAndCrossDirectoryRollback]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testPerInputOutputDirectoriesAndCrossDirectoryRollback]' passed (0.496 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testProcessRunnerTerminatesHungConverter]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testProcessRunnerTerminatesHungConverter]' passed (0.173 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testRegistryOnlyOffersReadableDocumentRoutesAndAvailableArchives]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testRegistryOnlyOffersReadableDocumentRoutesAndAvailableArchives]' passed (0.002 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSevenZipSymlinkMemberIsRejected]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSevenZipSymlinkMemberIsRejected]' passed (0.237 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSevenZipToTGZPreservesPayloadRoot]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSevenZipToTGZPreservesPayloadRoot]' passed (0.412 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSilentVideoConvertsToVideoButRejectsAudioExtractionCleanly]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testSilentVideoConvertsToVideoButRejectsAudioExtractionCleanly]' passed (1.990 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testTarGzAliasExtractsPayloadRatherThanNestedTar]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testTarGzAliasExtractsPayloadRatherThanNestedTar]' passed (0.744 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testTextutilConvertsDOCAndRTFInBothDirections]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testTextutilConvertsDOCAndRTFInBothDirections]' passed (1.384 seconds).
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testVideoConversionHonorsAudioBitrateOption]' started.
+Test Case '-[OrbitMorphCoreTests.BackendRegressionTests testVideoConversionHonorsAudioBitrateOption]' passed (0.498 seconds).
+Test Suite 'BackendRegressionTests' passed at 2026-10-04 20:04:22.219.
+	 Executed 22 tests, with 0 failures (0 unexpected) in 13.645 (13.650) seconds
+Test Suite 'CommonFormatGapTests' started at 2026-10-04 20:04:22.220.
+Test Case '-[OrbitMorphCoreTests.CommonFormatGapTests testExtendedMediaUseExplicitContainerAndCodecs]' started.
+Test Case '-[OrbitMorphCoreTests.CommonFormatGapTests testExtendedMediaUseExplicitContainerAndCodecs]' passed (0.001 seconds).
+Test Case '-[OrbitMorphCoreTests.CommonFormatGapTests testFalseImageCapabilityDoesNotAdvertiseExtendedTargets]' started.
+Test Case '-[OrbitMorphCoreTests.CommonFormatGapTests testFalseImageCapabilityDoesNotAdvertiseExtendedTargets]' passed (1.048 seconds).
+Test Case '-[OrbitMorphCoreTests.CommonFormatGapTests testMissingOfficeAndEbookDependenciesHideTheirRoutes]' started.
+Test Case '-[OrbitMorphCoreTests.CommonFormatGapTests testMissingOfficeAndEbookDependenciesHideTheirRoutes]' passed (0.001 seconds).
+Test Case '-[OrbitMorphCoreTests.CommonFormatGapTests testNewFormatFamiliesNormalizeAndClassify]' started.
+Test Case '-[OrbitMorphCoreTests.CommonFormatGapTests testNewFormatFamiliesNormalizeAndClassify]' passed (0.001 seconds).
+Test Case '-[OrbitMorphCoreTests.CommonFormatGapTests testPDFAndImageCanExtractTextLocally]' started.
+Test Case '-[OrbitMorphCoreTests.CommonFormatGapTests testPDFAndImageCanExtractTextLocally]' passed (0.002 seconds).
+Test Suite 'CommonFormatGapTests' passed at 2026-10-04 20:04:23.272.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 1.052 (1.053) seconds
+Test Suite 'ConversionIntegrationTests' started at 2026-10-04 20:04:23.272.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testDocumentTxtToDocx]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testDocumentTxtToDocx]' passed (0.758 seconds).
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testImageConversionHandlesUnicodeAndSpaces]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testImageConversionHandlesUnicodeAndSpaces]' passed (1.347 seconds).
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testProcessInvocationKeepsUserPathsAsSingleArguments]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testProcessInvocationKeepsUserPathsAsSingleArguments]' passed (0.009 seconds).
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testVideoMovToMp4AndExtractMp3]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testVideoMovToMp4AndExtractMp3]' passed (1.019 seconds).
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testZipToSevenZip]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionIntegrationTests testZipToSevenZip]' passed (0.461 seconds).
+Test Suite 'ConversionIntegrationTests' passed at 2026-10-04 20:04:26.867.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 3.594 (3.595) seconds
+Test Suite 'ConversionMatrixTests' started at 2026-10-04 20:04:26.867.
+Test Case '-[OrbitMorphCoreTests.ConversionMatrixTests testEveryAdvertisedRouteWithGeneratedFixture]' started.
+Test Case '-[OrbitMorphCoreTests.ConversionMatrixTests testEveryAdvertisedRouteWithGeneratedFixture]' passed (733.604 seconds).
+Test Suite 'ConversionMatrixTests' passed at 2026-10-04 20:16:40.472.
+	 Executed 1 test, with 0 failures (0 unexpected) in 733.604 (733.604) seconds
+Test Suite 'CoreRegistryTests' started at 2026-10-04 20:16:40.472.
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testFormatNormalizationAndClassification]' started.
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testFormatNormalizationAndClassification]' passed (0.006 seconds).
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testMultiFileTargetsAreIntersection]' started.
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testMultiFileTargetsAreIntersection]' passed (0.018 seconds).
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testOutputNamerNeverOverwritesExistingFile]' started.
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testOutputNamerNeverOverwritesExistingFile]' passed (0.002 seconds).
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testRegistryFiltersRoutesWhenDependencyMissing]' started.
+Test Case '-[OrbitMorphCoreTests.CoreRegistryTests testRegistryFiltersRoutesWhenDependencyMissing]' passed (0.000 seconds).
+Test Suite 'CoreRegistryTests' passed at 2026-10-04 20:16:40.499.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.026 (0.027) seconds
+Test Suite 'DragDestinationTests' started at 2026-10-04 20:16:40.499.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testCenterReleaseNeverDropsAndCancelsPageDwell]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testCenterReleaseNeverDropsAndCancelsPageDwell]' passed (1.177 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDraggingAcrossDifferentWheelSegmentsEmitsFeedbackTicks]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDraggingAcrossDifferentWheelSegmentsEmitsFeedbackTicks]' passed (0.002 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropDestinationResolvesFilesSelectsSegmentAndConverts]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropDestinationResolvesFilesSelectsSegmentAndConverts]' passed (6.871 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropInCenterDoesNotExecuteConversion]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testDropInCenterDoesNotExecuteConversion]' passed (0.002 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testExitAndReentryRequireFreshPageDwell]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testExitAndReentryRequireFreshPageDwell]' passed (0.886 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testExplicitPageSelectionClearsPreviousSegmentAndLimitsPageToEightItems]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testExplicitPageSelectionClearsPreviousSegmentAndLimitsPageToEightItems]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testGlassWheelBlursBehindWindowEvenWhenInactive]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testGlassWheelBlursBehindWindowEvenWhenInactive]' passed (0.010 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testLeavingPageNumberBeforeDwellCancelsPendingSwitch]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testLeavingPageNumberBeforeDwellCancelsPendingSwitch]' passed (0.529 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testOverlayCancellationCancelsPendingPageSwitch]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testOverlayCancellationCancelsPendingPageSwitch]' passed (0.489 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testSettingsWindowCanCloseAndReopen]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testSettingsWindowCanCloseAndReopen]' passed (1.719 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testSolidWheelDoesNotInstallBackdropBlur]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testSolidWheelDoesNotInstallBackdropBlur]' passed (0.002 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testStationaryDragOverPageNumberSwitchesOnceAndCanDropOnSecondPage]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testStationaryDragOverPageNumberSwitchesOnceAndCanDropOnSecondPage]' passed (2.050 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testThreePageBandsSelectTopMiddleAndBottomDirectly]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testThreePageBandsSelectTopMiddleAndBottomDirectly]' passed (1.436 seconds).
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testWheelPagingKeepsAdditionalTargetsSelectable]' started.
+Test Case '-[OrbitMorphAppTests.DragDestinationTests testWheelPagingKeepsAdditionalTargetsSelectable]' passed (0.000 seconds).
+Test Suite 'DragDestinationTests' passed at 2026-10-04 20:16:55.675.
+	 Executed 14 tests, with 0 failures (0 unexpected) in 15.174 (15.176) seconds
+Test Suite 'DragLogicTests' started at 2026-10-04 20:16:55.675.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testMouseUpCancelsArmedSessionWithoutFiles]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testMouseUpCancelsArmedSessionWithoutFiles]' passed (0.005 seconds).
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testResolvedFilesKeepSessionActiveUntilDrop]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testResolvedFilesKeepSessionActiveUntilDrop]' passed (0.006 seconds).
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testShiftArmsConversionAndOptionShiftPrefersTools]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testShiftArmsConversionAndOptionShiftPrefersTools]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testToolRegistryFiltersByInputKind]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testToolRegistryFiltersByInputKind]' passed (0.001 seconds).
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testUnrelatedMouseDragIsIgnored]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testUnrelatedMouseDragIsIgnored]' passed (0.000 seconds).
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testValidatedFileURLsRejectMissingAndNonFileURLs]' started.
+Test Case '-[OrbitMorphCoreTests.DragLogicTests testValidatedFileURLsRejectMissingAndNonFileURLs]' passed (0.048 seconds).
+Test Suite 'DragLogicTests' passed at 2026-10-04 20:16:55.737.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.061 (0.062) seconds
+Test Suite 'EbookConversionTests' started at 2026-10-04 20:16:55.737.
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testCorruptInputFailsWithoutChangingInputOrLeavingOutput]' started.
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testCorruptInputFailsWithoutChangingInputOrLeavingOutput]' passed (2.454 seconds).
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testDirectAdapterRefusesToOverwriteExistingOutput]' started.
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testDirectAdapterRefusesToOverwriteExistingOutput]' passed (0.101 seconds).
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testMissingCalibreDoesNotAdvertiseEbookRoutes]' started.
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testMissingCalibreDoesNotAdvertiseEbookRoutes]' passed (0.003 seconds).
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testPlainHTMLAndDOCXInputsBecomeReadableEbooks]' started.
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testPlainHTMLAndDOCXInputsBecomeReadableEbooks]' passed (68.872 seconds).
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testSuccessfulConverterWithInvalidBookDoesNotPublishOrLeakScratchDirectory]' started.
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testSuccessfulConverterWithInvalidBookDoesNotPublishOrLeakScratchDirectory]' passed (1.452 seconds).
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testTwoChapterEbooksConvertAcrossFamiliesAndDocumentOutputs]' started.
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testTwoChapterEbooksConvertAcrossFamiliesAndDocumentOutputs]' passed (36.441 seconds).
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testUnicodeInputAndExistingOutputArePreserved]' started.
+Test Case '-[OrbitMorphCoreTests.EbookConversionTests testUnicodeInputAndExistingOutputArePreserved]' passed (2.536 seconds).
+Test Suite 'EbookConversionTests' passed at 2026-10-04 20:18:47.601.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 111.857 (111.864) seconds
+Test Suite 'FormatExpansionTests' started at 2026-10-04 20:18:47.601.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testCueTimingArrowInPayloadCannotBeSilentlyRenderedAsText]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testCueTimingArrowInPayloadCannotBeSilentlyRenderedAsText]' passed (0.021 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testExtraBlankLinesAreSeparatorsAndHugeTimestampsFailCleanly]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testExtraBlankLinesAreSeparatorsAndHugeTimestampsFailCleanly]' passed (0.010 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testNewFormatsHaveExpectedCategoriesAndSVGIsInputOnly]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testNewFormatsHaveExpectedCategoriesAndSVGIsInputOnly]' passed (0.013 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testSRTRejectsNonnumericCueIdentifiers]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testSRTRejectsNonnumericCueIdentifiers]' passed (0.003 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testSubtitleCollisionAndBatchFailureKeepExistingOutput]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testSubtitleCollisionAndBatchFailureKeepExistingOutput]' passed (0.003 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testSubtitleRoundTripPreservesIdentifiersUnicodeAndMultiline]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testSubtitleRoundTripPreservesIdentifiersUnicodeAndMultiline]' passed (0.002 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testSVGReadProbeHidesRoutesWhenDelegateFails]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testSVGReadProbeHidesRoutesWhenDelegateFails]' passed (1.237 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testUnsupportedVTTBlocksAndInvalidCuesFailWithoutOutput]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testUnsupportedVTTBlocksAndInvalidCuesFailWithoutOutput]' passed (0.010 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testVTTNamedCuesBecomeNumericSRTSequenceAndFlexibleTimingWhitespace]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testVTTNamedCuesBecomeNumericSRTSequenceAndFlexibleTimingWhitespace]' passed (0.003 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testVTTNoteAndOmittedHoursDoNotBecomeSubtitles]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testVTTNoteAndOmittedHoursDoNotBecomeSubtitles]' passed (0.005 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testWindowsMediaCompressToolNeedsWorkingEncoder]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testWindowsMediaCompressToolNeedsWorkingEncoder]' passed (1.230 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testWMVAndWMATargetsRequireWorkingEncodersAndMuxers]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testWMVAndWMATargetsRequireWorkingEncodersAndMuxers]' passed (1.049 seconds).
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testWMVQualityOptionReachesEncoder]' started.
+Test Case '-[OrbitMorphCoreTests.FormatExpansionTests testWMVQualityOptionReachesEncoder]' passed (0.002 seconds).
+Test Suite 'FormatExpansionTests' passed at 2026-10-04 20:18:51.194.
+	 Executed 13 tests, with 0 failures (0 unexpected) in 3.588 (3.593) seconds
+Test Suite 'GlassPresentationTests' started at 2026-10-04 20:18:51.194.
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testMaterialPolicyHonorsSolidAndAccessibilityFallbacks]' started.
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testMaterialPolicyHonorsSolidAndAccessibilityFallbacks]' passed (0.001 seconds).
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testSettingsAndTutorialInstallBehindWindowMaterialAndRefreshLanguage]' started.
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testSettingsAndTutorialInstallBehindWindowMaterialAndRefreshLanguage]' passed (0.301 seconds).
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testSnapshotCompositesTransparentCacheOntoOpaqueMatte]' started.
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testSnapshotCompositesTransparentCacheOntoOpaqueMatte]' passed (0.005 seconds).
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testTutorialCanvasCannotPaintOutsideItsBoundsDuringCacheDisplay]' started.
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testTutorialCanvasCannotPaintOutsideItsBoundsDuringCacheDisplay]' passed (0.121 seconds).
+Test Suite 'GlassPresentationTests' passed at 2026-10-04 20:18:51.622.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.427 (0.428) seconds
+Test Suite 'LocalizationTests' started at 2026-10-04 20:18:51.622.
+Test Case '-[OrbitMorphAppTests.LocalizationTests testCatalogHasMatchingEnglishAndChineseValuesForEveryKey]' started.
+Test Case '-[OrbitMorphAppTests.LocalizationTests testCatalogHasMatchingEnglishAndChineseValuesForEveryKey]' passed (0.003 seconds).
+Test Case '-[OrbitMorphAppTests.LocalizationTests testExplicitLanguagesAndSystemResolution]' started.
+Test Case '-[OrbitMorphAppTests.LocalizationTests testExplicitLanguagesAndSystemResolution]' passed (0.000 seconds).
+Test Case '-[OrbitMorphAppTests.LocalizationTests testLanguageChangeRefreshesDynamicStatusAndTutorialShortcut]' started.
+Test Case '-[OrbitMorphAppTests.LocalizationTests testLanguageChangeRefreshesDynamicStatusAndTutorialShortcut]' passed (0.006 seconds).
+Test Case '-[OrbitMorphAppTests.LocalizationTests testLegacySettingsKeepCustomShortcutsAndLanguageRoundTrips]' started.
+Test Case '-[OrbitMorphAppTests.LocalizationTests testLegacySettingsKeepCustomShortcutsAndLanguageRoundTrips]' passed (0.000 seconds).
+Test Case '-[OrbitMorphAppTests.LocalizationTests testLiteralPercentDoesNotBecomeFormatSpecifier]' started.
+Test Case '-[OrbitMorphAppTests.LocalizationTests testLiteralPercentDoesNotBecomeFormatSpecifier]' passed (0.000 seconds).
+Test Case '-[OrbitMorphAppTests.LocalizationTests testRenderOverridesRemainEphemeralWhenTutorialCloses]' started.
+Test Case '-[OrbitMorphAppTests.LocalizationTests testRenderOverridesRemainEphemeralWhenTutorialCloses]' passed (0.004 seconds).
+Test Suite 'LocalizationTests' passed at 2026-10-04 20:18:51.635.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.013 (0.013) seconds
+Test Suite 'MediaCapabilityTests' started at 2026-10-04 20:18:51.635.
+Test Case '-[OrbitMorphCoreTests.MediaCapabilityTests testExtendedVideoQualityReachesEncoder]' started.
+Test Case '-[OrbitMorphCoreTests.MediaCapabilityTests testExtendedVideoQualityReachesEncoder]' passed (0.001 seconds).
+Test Case '-[OrbitMorphCoreTests.MediaCapabilityTests testSuccessfulProbeWithPlainTextOutputDoesNotAdvertiseFormats]' started.
+Test Case '-[OrbitMorphCoreTests.MediaCapabilityTests testSuccessfulProbeWithPlainTextOutputDoesNotAdvertiseFormats]' passed (1.364 seconds).
+Test Suite 'MediaCapabilityTests' passed at 2026-10-04 20:18:53.000.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 1.365 (1.365) seconds
+Test Suite 'OfficeConversionTests' started at 2026-10-04 20:18:53.000.
+Test Case '-[OrbitMorphCoreTests.OfficeConversionTests testAdapt

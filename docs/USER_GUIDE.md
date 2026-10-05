@@ -1,19 +1,19 @@
-# OrbitMorph 1.2.0 使用说明
+# OrbitMorph 1.2.1 使用说明
 
 ## 安装与首次使用
 
 需要 Apple Silicon、macOS 14+。从源码执行 `scripts/build-app.sh`、`scripts/package-dmg.sh` 后打开 DMG，将 app 拖入 Applications。开发可用 `swift run OrbitMorph`。
 
-首次教程提供图片/视频样本，引导完成转换、工具与输出目录流程；菜单栏可重新打开教程。语言可跟随系统，也可在 General 选择 English/简体中文。教程样本与反馈声音在 app 内，FFmpeg、LibreOffice、Calibre 等工具单独安装。
+首次教学提供 PNG/MP4 内置样本：转盘显示在教学窗口内，可按快捷键拖动示例或点击“观看演示”。这里只模拟可选目标，不转换、保存文件或接收用户文件。窗口可拖动，红色关闭按钮和“跳过”都可关闭；展示后即记为已看过，重启或升级不重复显示，菜单也没有重新打开入口。语言可跟随系统，也可在 General 选择 English/简体中文。教程样本与反馈声音在 app 内，FFmpeg、LibreOffice、Calibre 等工具单独安装。
 
 ```sh
 brew install ffmpeg imagemagick pandoc sevenzip ghostscript
 brew install --cask libreoffice calibre
 ```
 
-新装转换器后重启应用，在 About 查看检测结果。ffprobe随Homebrew FFmpeg安装，WMV/WMA/FLV/TS/3GP/CAF增强输出需要它校验实际流；缺失时隐藏这些目标。缺工具不影响其他系统原生路线。教程样本复制到独立临时目录后才参与转换，原始app包不会被改写。
+新装转换器后重启应用，在 About 查看检测结果。ffprobe随Homebrew FFmpeg安装，WMV/WMA/FLV/TS/3GP/CAF增强输出需要它校验实际流；缺失时隐藏这些目标。缺工具不影响其他系统原生路线。教学样本只用于界面演示，原始 app 包不会被改写。
 
-## 快捷键与普通拖放
+## 日常 Finder 快捷键拖放
 
 按住 Shift 并开始拖动 Finder 文件后，转盘在鼠标所在屏幕唤出；单独按修饰键不显示转盘。一个、两个或三个屏幕都以当前鼠标所在屏幕定位，不固定在主屏。转盘出现后滑向外圈目标分区并松开鼠标，橙色高亮与中心提示显示当前动作。
 
@@ -21,7 +21,7 @@ brew install --cask libreoffice calibre
 
 多文件只显示共同目标，未知格式不会被当作有效输入。Option + Shift 打开工具转盘，超过八个工具项目时也遵循上述翻页方式。
 
-普通入口包括 Drop Window 和菜单栏 Convert Files；Reveal Last Outputs 在 Finder 中选中最近产物。当前任务提供忙碌/成功/失败反馈，百分比与执行中取消仍在后续范围。
+没有 Drop Window 或手动投放转换入口。菜单栏只提供设置、关于、最近输出和退出；Reveal Last Outputs 在 Finder 中选中最近产物。当前任务提供忙碌/成功/失败反馈，百分比与执行中取消仍在后续范围。
 
 应用只保留一个运行实例。再次打开会激活已有实例，新进程退出；升级前先退出已经运行的旧版本，避免不同版本同时响应拖拽。
 
@@ -76,7 +76,7 @@ WMA/WMV/CAF/FLV/TS/3GP 等目标依本机编码器/封装能力显示。EXR、�
 
 **另一台 Mac 路线变少**：工具未随 DMG 分发；按需要安装。当前 app 是 ad-hoc 签名，尚未做 Developer ID 公证。
 
-**快捷键没效果**：确认正在拖动真实文件并持续按住设定修饰键；可先通过普通转换入口验证 backend。
+**快捷键没效果**：确认正在拖动真实文件并持续按住设定修饰键；在 About 检查依赖，在 Compatibility 检查该输入的目标是否启用。
 
 **看不到下一页格式**：文件拖拽中移到中心页码并停留350ms，外圈切换后再移到目标松手；不要在中心松手。
 

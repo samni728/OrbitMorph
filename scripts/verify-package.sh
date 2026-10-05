@@ -5,7 +5,7 @@ ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 APP_PATH="${APP_PATH:-$ROOT_DIR/dist/OrbitMorph.app}"
 DMG_PATH="${DMG_PATH:-$ROOT_DIR/dist/OrbitMorph.dmg}"
 EXPECTED_ARCH="${EXPECTED_ARCH:-arm64}"
-EXPECTED_VERSION="${EXPECTED_VERSION:-1.2.0}"
+EXPECTED_VERSION="${EXPECTED_VERSION:-1.2.1}"
 MOUNT_POINT=""
 REPORT_DIR=$(mktemp -d "${TMPDIR:-/tmp}/orbitmorph-package-report.XXXXXX")
 

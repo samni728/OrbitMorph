@@ -1,8 +1,8 @@
 {
-  "capturedAtUTC": "2026-10-05T01:11:08.231322+00:00",
-  "version": "1.2.0",
+  "capturedAtUTC": "2026-10-05T03:06:12.206413+00:00",
+  "version": "1.2.1",
   "build": "1",
-  "binarySHA256": "3fccc504d60e843db7e6525592ae89698ba9a6cf0f7f6ad7efea2d41f3c0461b",
+  "binarySHA256": "d56d574adcf127797cb22d56ca9e2a810320aa5296838f17519d2a93b1302b1d",
   "method": "Final application view self-render through its language-specific CLI; no fabricated UI or desktop/gesture recording",
   "screenshots": {
     "wheel.png": {
@@ -14,7 +14,7 @@
       "section": "1",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "257a3e8e31ad4ab55d361ba9fdd835c5caea2a44097f042129b4cd070262589f"
+      "sha256": "ddacad85bc4618810990b768dee43b540fa87720f7d67922af06e9677e88cc78"
     },
     "wheel-zh.png": {
       "width": 310,
@@ -25,7 +25,7 @@
       "section": "1",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "257a3e8e31ad4ab55d361ba9fdd835c5caea2a44097f042129b4cd070262589f"
+      "sha256": "ddacad85bc4618810990b768dee43b540fa87720f7d67922af06e9677e88cc78"
     },
     "wheel-page-2.png": {
       "width": 310,
@@ -36,7 +36,7 @@
       "section": "2",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "a72f0c43dcfca6c3d074687347939ad82c4da82892a76c42e4bd52b5aaf0385d"
+      "sha256": "79d276df8a141231a80f1b84e8762e6c27580e85d6daa275ba4d2f41c9ba16c2"
     },
     "wheel-page-2-zh.png": {
       "width": 310,
@@ -47,7 +47,7 @@
       "section": "2",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "a72f0c43dcfca6c3d074687347939ad82c4da82892a76c42e4bd52b5aaf0385d"
+      "sha256": "a4de81619ef83a6ae1545a10a40cb15eee6b1fe14024dc3738ce564cfd513ae7"
     },
     "general.png": {
       "width": 850,
@@ -58,7 +58,7 @@
       "section": "general",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "90718c2c8be4d4b574f2c059b5df01f3104009427598ad069ae72c4a4598a296"
+      "sha256": "194c9b31abd38e8d4c12a82374d300edd730e282424e914a907e71f897df769f"
     },
     "formats.png": {
       "width": 850,
@@ -69,7 +69,7 @@
       "section": "formats",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "ef2072754207a9c5e0e5a12814c55181d79c8cf8271bfe8cf47951f6c8beaf04"
+      "sha256": "1d8d1258f5eb58245175987cc12e1ce63d22c4db9630beb2c7614eb063bc28b9"
     },
     "compatibility.png": {
       "width": 850,
@@ -80,7 +80,7 @@
       "section": "compatibility",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "bbb8bfdb3a238ae4ce85a7f5a0a18ad540b0fee40a7ac5758c69036692897145"
+      "sha256": "a903e1e547c9384eab6270dc379c2d367425b321a0af9d915338a2add8bb8358"
     },
     "folders.png": {
       "width": 850,
@@ -91,7 +91,7 @@
       "section": "folders",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "496a1770e33c3eacd903c31dfaa3ab0221db8646bb8b64d448b55543ffc17573"
+      "sha256": "1aa944d319867bccf6ac0710857122ac3214fc5c798b8abce9f66ded8ea0eec8"
     },
     "about.png": {
       "width": 850,
@@ -102,7 +102,7 @@
       "section": "about",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "d0877b8143a9704dbebde4bd4cd65f197b5215cf7c6bac8b24e4c4959929c4a4"
+      "sha256": "beb43b3386e1a08d4f9cb7cdcdf22703d03375fb883dd11dd707b11b6b9dcba9"
     },
     "general-zh.png": {
       "width": 850,
@@ -113,7 +113,7 @@
       "section": "general",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "227fa8597d0bd48cadc03b7f109a69d77edeb9313fec7d9275ad20750ab122f9"
+      "sha256": "2a138f8379ffd7db7a3f4962905a29e7d464743c6cc88dd449050b55a65cbe4f"
     },
     "formats-zh.png": {
       "width": 850,
@@ -124,7 +124,7 @@
       "section": "formats",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "8d2e218e15ca3826295ee0578430617c91815e1a331ade37eb94206984c35373"
+      "sha256": "df454e36941ad28eadd3950c51f2dd638614f688b45bfc4755f0578ae5f7ac99"
     },
     "compatibility-zh.png": {
       "width": 850,
@@ -135,7 +135,7 @@
       "section": "compatibility",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "683d5f5eb02ee8b8e0ed666a3998b181d836675aabed80cd9222783a09d47ca3"
+      "sha256": "080915606839417fd0d9b56495a7f9d74573aab9a842990943655f2bef574e2a"
     },
     "folders-zh.png": {
       "width": 850,
@@ -146,7 +146,7 @@
       "section": "folders",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "0ffeb3ba7cde1d5cc663424d8949808990094fcfcde59fe4bcc7125fd5842d9a"
+      "sha256": "fd5662fb47d4f1f7b04dda4acbe8f5146131b46c61fbdc60ede1db81650992d3"
     },
     "about-zh.png": {
       "width": 850,
@@ -157,7 +157,7 @@
       "section": "about",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "bfb398056d49889fe28ac02deafef088e9b24918a13a8a86160401f7e2ae4ce9"
+      "sha256": "daf1332fd72e5290ede95254348440d16b4e7be6a5fc17b3a6c568cfc6cb7608"
     },
     "tutorial-en.png": {
       "width": 680,
@@ -168,7 +168,7 @@
       "section": "conversion",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "b2dd254f7cd0a3a0b97c62b041d0783aee79a4ffca2f6e1acb922dbdcd1803cf"
+      "sha256": "c9adf1f62c9da7c77fba552dfe31322b5dd6e1f2d6587534040b7d6ba63fd4a0"
     },
     "tutorial-zh.png": {
       "width": 680,
@@ -179,7 +179,29 @@
       "section": "conversion",
       "appearance": "dark",
       "style": "glass",
-      "sha256": "11b480e22d0d6cca19afab84868f92a038850a998335821e0df93c9e2d00fb3b"
+      "sha256": "ffe5ec55aaddbbf3d6784bef2bc51822ea2928a86c846060bd19d7930ffe5af6"
+    },
+    "tutorial-tools-en.png": {
+      "width": 680,
+      "height": 520,
+      "scale": 1.0,
+      "language": "en",
+      "surface": "tutorial",
+      "section": "tools",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "6af1828ac2608f1993b48bc00af2db2d628205970de40dd7c402a05f47fde967"
+    },
+    "tutorial-tools-zh.png": {
+      "width": 680,
+      "height": 520,
+      "scale": 1.0,
+      "language": "zh-Hans",
+      "surface": "tutorial",
+      "section": "tools",
+      "appearance": "dark",
+      "style": "glass",
+      "sha256": "8d4c1ee9e1a3e6ba092f92f2134ac9b88febee8a9269e28b77c2f850876ecfdc"
     }
   }
 }

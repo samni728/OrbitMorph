@@ -1,0 +1,50 @@
+Building for debugging...
+[0/5] Write sources
+[1/5] Write swift-version--58304C5D6DBC2206.txt
+[3/5] Compiling OrbitMorphAppTests TutorialIsolationTests.swift
+[4/5] Emitting module OrbitMorphAppTests
+[4/6] Write Objects.LinkFileList
+[5/6] Linking OrbitMorphPackageTests
+Build complete! (4.17s)
+Test Suite 'Selected tests' started at 2026-10-04 20:03:33.053.
+Test Suite 'OrbitMorphPackageTests.xctest' started at 2026-10-04 20:03:33.061.
+Test Suite 'GlassPresentationTests' started at 2026-10-04 20:03:33.061.
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testMaterialPolicyHonorsSolidAndAccessibilityFallbacks]' started.
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testMaterialPolicyHonorsSolidAndAccessibilityFallbacks]' passed (0.004 seconds).
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testSettingsAndTutorialInstallBehindWindowMaterialAndRefreshLanguage]' started.
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testSettingsAndTutorialInstallBehindWindowMaterialAndRefreshLanguage]' passed (0.780 seconds).
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testSnapshotCompositesTransparentCacheOntoOpaqueMatte]' started.
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testSnapshotCompositesTransparentCacheOntoOpaqueMatte]' passed (0.006 seconds).
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testTutorialCanvasCannotPaintOutsideItsBoundsDuringCacheDisplay]' started.
+Test Case '-[OrbitMorphAppTests.GlassPresentationTests testTutorialCanvasCannotPaintOutsideItsBoundsDuringCacheDisplay]' passed (0.558 seconds).
+Test Suite 'GlassPresentationTests' passed at 2026-10-04 20:03:34.410.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 1.349 (1.349) seconds
+Test Suite 'TutorialIsolationTests' started at 2026-10-04 20:03:34.410.
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testDemoWithoutModifierDoesNotRevealWheelAndCenterReleaseDoesNotComplete]' started.
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testDemoWithoutModifierDoesNotRevealWheelAndCenterReleaseDoesNotComplete]' passed (0.027 seconds).
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testDismissPersistsCompletionAndNativeTitlebarRemainsSeparateFromContent]' started.
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testDismissPersistsCompletionAndNativeTitlebarRemainsSeparateFromContent]' passed (0.079 seconds).
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testEventsInsideTutorialCancelExternalWheelWithoutConverting]' started.
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testEventsInsideTutorialCancelExternalWheelWithoutConverting]' passed (0.029 seconds).
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testMenuOffersSettingsAndOutputsWithoutAnyDropOrTutorialEntry]' started.
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testMenuOffersSettingsAndOutputsWithoutAnyDropOrTutorialEntry]' passed (0.037 seconds).
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testSampleDemoStaysInsideTutorialAndDoesNotModifySystemDragPasteboard]' started.
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testSampleDemoStaysInsideTutorialAndDoesNotModifySystemDragPasteboard]' passed (0.011 seconds).
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testShowingTutorialImmediatelyPersistsSeenStateBeforeWindowCloses]' started.
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testShowingTutorialImmediatelyPersistsSeenStateBeforeWindowCloses]' passed (0.050 seconds).
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testSimulationDisplaysRealTargetsAndRecordsResultWithoutWritingAnOutput]' started.
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testSimulationDisplaysRealTargetsAndRecordsResultWithoutWritingAnOutput]' passed (0.013 seconds).
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testToolsSimulationDoesNotCompleteConversionLessonAndInvalidTargetIsRejected]' started.
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testToolsSimulationDoesNotCompleteConversionLessonAndInvalidTargetIsRejected]' passed (0.019 seconds).
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testWatchDemoUsesOnlyChildWheelAndNeverCreatesFilesOrPasteboardDrag]' started.
+Test Case '-[OrbitMorphAppTests.TutorialIsolationTests testWatchDemoUsesOnlyChildWheelAndNeverCreatesFilesOrPasteboardDrag]' passed (2.098 seconds).
+Test Suite 'TutorialIsolationTests' passed at 2026-10-04 20:03:36.776.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 2.364 (2.366) seconds
+Test Suite 'OrbitMorphPackageTests.xctest' passed at 2026-10-04 20:03:36.776.
+	 Executed 13 tests, with 0 failures (0 unexpected) in 3.712 (3.716) seconds
+Test Suite 'Selected tests' passed at 2026-10-04 20:03:36.777.
+	 Executed 13 tests, with 0 failures (0 unexpected) in 3.712 (3.724) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

@@ -1,4 +1,4 @@
-> 历史截图：此目录保留1.1.0的6张图和metadata。1.2.0最终14张中英截图见[当前gallery](../../screenshots/README.md)。
+> 历史截图：此目录保留1.1.0的6张图和metadata。1.2.1最终18张中英截图见[当前gallery](../../screenshots/README.md)。
 
 # OrbitMorph app 截图
 

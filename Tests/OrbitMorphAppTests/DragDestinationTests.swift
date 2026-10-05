@@ -205,19 +205,16 @@ final class DragDestinationTests: XCTestCase {
         return (view, model, DragFixture(files: [file], location: NSPoint(x: 155, y: 130)), file)
     }
 
-    @MainActor func testWindowControllersCanCloseAndReopen() {
+    @MainActor func testSettingsWindowCanCloseAndReopen() {
         _ = NSApplication.shared
         let suite = "OrbitMorphUI-\(UUID().uuidString)"
         let defaults = UserDefaults(suiteName: suite)!
         defer { defaults.removePersistentDomain(forName: suite) }
         let state = AppState(store: .init(defaults: defaults))
-        let drop = DropWindowController(state: state) { _ in }
         let settings = SettingsWindowController(state: state)
-        drop.show(); drop.window.close(); drop.show()
-        XCTAssertTrue(drop.window.isVisible)
         settings.show(); settings.window.close(); settings.show()
         XCTAssertTrue(settings.window.isVisible)
-        drop.window.orderOut(nil); settings.window.orderOut(nil)
+        settings.window.orderOut(nil)
     }
 }
 

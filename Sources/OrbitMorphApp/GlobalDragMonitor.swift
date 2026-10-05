@@ -10,7 +10,10 @@ final class GlobalDragMonitor {
     private var localMonitor: Any?
     private var generation = 0
     private var pasteboardGate = FileDragPasteboardGate()
-    init(overlay: OverlayPanelController, state: AppState) { self.overlay = overlay; appState = state }
+    private let suppressesEvent: () -> Bool
+    init(overlay: OverlayPanelController, state: AppState, suppressesEvent: @escaping () -> Bool = { false }) {
+        self.overlay = overlay; appState = state; self.suppressesEvent = suppressesEvent
+    }
     func start() {
         guard globalMonitor == nil else { return }
         let mask: NSEvent.EventTypeMask = [.leftMouseDown, .leftMouseDragged, .leftMouseUp, .flagsChanged, .keyDown]
@@ -24,7 +27,10 @@ final class GlobalDragMonitor {
         let urls = NSPasteboard(name: .drag).readObjects(forClasses: [NSURL.self], options: [.urlReadingFileURLsOnly: true]) as? [URL] ?? []
         return ValidatedFileURLs.resolve(urls)
     }
-    private func handle(_ event: NSEvent) {
+    func handle(_ event: NSEvent) {
+        if suppressesEvent() {
+            pasteboardGate.end(); _ = state.handle(.cancelled); generation += 1; overlay.hide(); return
+        }
         if event.type == .leftMouseDown {
             pasteboardGate.begin(changeCount: NSPasteboard(name: .drag).changeCount)
             return

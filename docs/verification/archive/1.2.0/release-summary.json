@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "build": "1",
+  "recordedAtUTC": "2026-10-05T01:15:53.959368+00:00",
+  "tests": 168,
+  "failures": 0,
+  "skipped": 0,
+  "recognizedFormats": 58,
+  "advertisedRoutes": 554,
+  "passedRoutes": 554,
+  "unverifiedRoutes": 0,
+  "screenshots": 16,
+  "binarySHA256": "3fccc504d60e843db7e6525592ae89698ba9a6cf0f7f6ad7efea2d41f3c0461b",
+  "dmgSHA256": "71eb0bf45d5dcd5a9c8b5416157e7d144ae05fcef69b85c9922c64619bb45d1d",
+  "packageVerified": true,
+  "preferencesUnchangedDuringCapture": true,
+  "sourceManifestFiles": 92,
+  "gui": {
+    "singleInstanceRealProcessVerified": true,
+    "nativePageDwellAndDropIntegrationTestsVerified": true,
+    "multiDisplayPanelFrameTestsVerified": true,
+    "finderDropVerified": false,
+    "globalModifierDragVerified": false,
+    "liveBackdropVerifiedInFinalBuild": false,
+    "limitation": "Computer Use cannot reliably hold a modifier throughout dragging and could not access borderless/menu-bar-only UI. Real Finder cross-display gesture and live backdrop remain manual acceptance.",
+    "firstLaunchTutorialObserved": true,
+    "nativeTutorialWindowObserved": true,
+    "tutorialClosePersistedVersion": 1,
+    "installedRunningInstances": 1
+  }
+}

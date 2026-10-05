@@ -3,7 +3,7 @@ set -euo pipefail
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 APP_PATH="${APP_PATH:-$ROOT_DIR/dist/OrbitMorph.app}"
 OUTPUT_DIR="${OUTPUT_DIR:-$ROOT_DIR/docs/screenshots}"
-EXPECTED_VERSION="${EXPECTED_VERSION:-1.2.0}"
+EXPECTED_VERSION="${EXPECTED_VERSION:-1.2.1}"
 BINARY="$APP_PATH/Contents/MacOS/OrbitMorph"
 [[ "$(uname -s)" == "Darwin" ]] || { echo 'capture-screenshots: macOS is required.' >&2; exit 1; }
 [[ -x "$BINARY" ]] || { echo "capture-screenshots: missing app executable: $BINARY (run scripts/build-app.sh)" >&2; exit 1; }
@@ -34,7 +34,8 @@ requests = [('wheel.png', 'en', 'wheel', '1'), ('wheel-zh.png', 'zh-Hans', 'whee
 for language, suffix in [('en', ''), ('zh-Hans', '-zh')]:
     for section in ['general', 'formats', 'compatibility', 'folders', 'about']:
         requests.append((f'{section}{suffix}.png', language, 'settings', section))
-requests += [('tutorial-en.png', 'en', 'tutorial', 'conversion'), ('tutorial-zh.png', 'zh-Hans', 'tutorial', 'conversion')]
+requests += [('tutorial-en.png', 'en', 'tutorial', 'conversion'), ('tutorial-zh.png', 'zh-Hans', 'tutorial', 'conversion'),
+             ('tutorial-tools-en.png', 'en', 'tutorial', 'tools'), ('tutorial-tools-zh.png', 'zh-Hans', 'tutorial', 'tools')]
 shots = {}
 with tempfile.TemporaryDirectory(prefix='.OrbitMorph-capture-', dir=output) as staging:
     stage = Path(staging)
@@ -46,7 +47,7 @@ with tempfile.TemporaryDirectory(prefix='.OrbitMorph-capture-', dir=output) as s
         elif surface == 'settings':
             arguments.append(f'--section={section}')
         elif surface == 'tutorial':
-            arguments.append(f'--tutorial-step={section}')
+            arguments.extend([f'--tutorial-step={section}', '--tutorial-preview'])
         result = subprocess.run(arguments, capture_output=True, text=True, timeout=90)
         if result.returncode:
             raise SystemExit(f'capture-screenshots: {name} failed ({result.returncode})\n{result.stdout}\n{result.stderr}')

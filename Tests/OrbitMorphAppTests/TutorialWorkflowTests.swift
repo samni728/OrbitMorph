@@ -9,34 +9,34 @@ final class TutorialWorkflowTests: XCTestCase {
         let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
         defer { defaults.removePersistentDomain(forName: suite) }
         let state = AppState(store: .init(defaults: defaults))
-        let image = URL(fileURLWithPath: "/tmp/OrbitMorph-Sample.png")
-        let video = URL(fileURLWithPath: "/tmp/OrbitMorph-Sample-Video.mp4")
+        let image = SampleResources.imageURL
+        let video = SampleResources.videoURL
         let manager = OnboardingManager(state: state, imageSampleURL: image, videoSampleURL: video)
 
         XCTAssertEqual(manager.currentStep, .conversion)
         XCTAssertFalse(manager.canAdvance)
-        manager.recordDrop(mode: .tools, files: [image])
+        manager.completeDemo(item: .init(value: .tool(.archive)))
         XCTAssertFalse(manager.canAdvance)
-        manager.recordDrop(mode: .conversion, files: [image])
+        manager.completeDemo(item: .init(value: .format(.jpg)))
         XCTAssertTrue(manager.canAdvance)
 
         manager.next()
         XCTAssertEqual(manager.currentStep, .tools)
         XCTAssertFalse(manager.canAdvance)
-        manager.recordDrop(mode: .conversion, files: [video])
+        manager.completeDemo(item: .init(value: .format(.jpg)))
         XCTAssertFalse(manager.canAdvance)
-        manager.recordDrop(mode: .tools, files: [video])
+        manager.completeDemo(item: .init(value: .tool(.archive)))
         XCTAssertTrue(manager.canAdvance)
     }
 
     @MainActor func testOutputAndReadyStepsAdvanceWithoutGesture() throws {
         let state = try makeState()
         let manager = OnboardingManager(state: state,
-            imageSampleURL: URL(fileURLWithPath: "/tmp/a.png"),
-            videoSampleURL: URL(fileURLWithPath: "/tmp/b.mp4"))
-        manager.recordDrop(mode: .conversion, files: [manager.imageSampleURL])
+            imageSampleURL: SampleResources.imageURL,
+            videoSampleURL: SampleResources.videoURL)
+        manager.completeDemo(item: .init(value: .format(.jpg)))
         manager.next()
-        manager.recordDrop(mode: .tools, files: [manager.videoSampleURL])
+        manager.completeDemo(item: .init(value: .tool(.archive)))
         manager.next()
         XCTAssertEqual(manager.currentStep, .output)
         XCTAssertTrue(manager.canAdvance)
@@ -47,28 +47,28 @@ final class TutorialWorkflowTests: XCTestCase {
     @MainActor func testSkipAndFinishPersistCompletion() throws {
         let firstState = try makeState()
         let first = OnboardingManager(state: firstState,
-            imageSampleURL: URL(fileURLWithPath: "/tmp/a.png"),
-            videoSampleURL: URL(fileURLWithPath: "/tmp/b.mp4"))
+            imageSampleURL: SampleResources.imageURL,
+            videoSampleURL: SampleResources.videoURL)
         first.skip()
         XCTAssertFalse(OnboardingState.shouldAutoPresent(settings: firstState.settings))
 
         let secondState = try makeState()
         let second = OnboardingManager(state: secondState,
-            imageSampleURL: URL(fileURLWithPath: "/tmp/a.png"),
-            videoSampleURL: URL(fileURLWithPath: "/tmp/b.mp4"))
+            imageSampleURL: SampleResources.imageURL,
+            videoSampleURL: SampleResources.videoURL)
         second.finish()
         XCTAssertFalse(OnboardingState.shouldAutoPresent(settings: secondState.settings))
     }
 
-    @MainActor func testManualReopenResetsSessionWithoutMakingOnboardingIncompleteAgain() throws {
+    @MainActor func testResettingSimulationDoesNotMakeOnboardingIncompleteAgain() throws {
         let state = try makeState()
         var completed = state.settings
         OnboardingState.markCompleted(settings: &completed)
         state.settings = completed
         let manager = OnboardingManager(state: state,
-            imageSampleURL: URL(fileURLWithPath: "/tmp/a.png"),
-            videoSampleURL: URL(fileURLWithPath: "/tmp/b.mp4"))
-        manager.recordDrop(mode: .conversion, files: [manager.imageSampleURL])
+            imageSampleURL: SampleResources.imageURL,
+            videoSampleURL: SampleResources.videoURL)
+        manager.completeDemo(item: .init(value: .format(.jpg)))
         manager.next()
         manager.resetSession()
         XCTAssertEqual(manager.currentStep, .conversion)
@@ -80,8 +80,8 @@ final class TutorialWorkflowTests: XCTestCase {
         _ = NSApplication.shared
         let state = try makeState()
         let manager = OnboardingManager(state: state,
-            imageSampleURL: URL(fileURLWithPath: "/tmp/a.png"),
-            videoSampleURL: URL(fileURLWithPath: "/tmp/b.mp4"))
+            imageSampleURL: SampleResources.imageURL,
+            videoSampleURL: SampleResources.videoURL)
         let controller = TutorialWindowController(manager: manager, onOpenFolders: {})
         XCTAssertTrue(controller.window.styleMask.contains(.closable))
         XCTAssertTrue(controller.window.styleMask.contains(.titled))

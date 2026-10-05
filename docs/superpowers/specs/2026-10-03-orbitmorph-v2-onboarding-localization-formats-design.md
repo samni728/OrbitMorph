@@ -1,3 +1,5 @@
+> 历史设计：其中 Drop Window、Show Tutorial 和真实样本转换要求已由 1.2.1 用户反馈撤销。当前行为见 `docs/USER_GUIDE.md`（仓库根目录）：仅一次性内部教学，无投放入口。
+
 # OrbitMorph V2 Onboarding / Localization / Format Expansion Design
 
 ## 1. Goal

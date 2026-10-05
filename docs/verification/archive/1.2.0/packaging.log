@@ -1,21 +1,21 @@
-created: /var/folders/3m/qr8bbl7x1l3b1c_jm3ssyhmc0000gn/T//orbitmorph-dmg-output.eHVnG7/OrbitMorph.dmg
+created: /var/folders/3m/qr8bbl7x1l3b1c_jm3ssyhmc0000gn/T//orbitmorph-dmg-output.Xessw3/OrbitMorph.dmg
 正在检查“Protective Master Boot Record（MBR：0）”的校验和…
 Protective Master Boot Record（MBR：0）：已验证CRC32 $2BE7F58C
 正在检查“GPT Header（Primary GPT Header：1）”的校验和…
-    GPT Header（Primary GPT Header：1）：已验证CRC32 $BBEB4CB7
+    GPT Header（Primary GPT Header：1）：已验证CRC32 $6AC4F92F
 正在检查“GPT Partition Data（Primary GPT Table：2）”的校验和…
-GPT Partition Data（Primary GPT Table：已验证CRC32 $1266244C
+GPT Partition Data（Primary GPT Table：已验证CRC32 $784A5232
 正在检查“（Apple_Free：3）”的校验和…
                       （Apple_Free：3）：已验证CRC32 $00000000
 正在检查“disk image（Apple_APFS：4）”的校验和…
-            disk image（Apple_APFS：4）：已验证CRC32 $7EF085CF
+            disk image（Apple_APFS：4）：已验证CRC32 $96CC754E
 正在检查“（Apple_Free：5）”的校验和…
                       （Apple_Free：5）：已验证CRC32 $00000000
 正在检查“GPT Partition Data（Backup GPT Table：6）”的校验和…
-GPT Partition Data（Backup GPT Table：：已验证CRC32 $1266244C
+GPT Partition Data（Backup GPT Table：：已验证CRC32 $784A5232
 正在检查“GPT Header（Backup GPT Header：7）”的校验和…
-     GPT Header（Backup GPT Header：7）：已验证CRC32 $BB9B2093
-已验证CRC32 $AEAC726D
+     GPT Header（Backup GPT Header：7）：已验证CRC32 $6AB4950B
+已验证CRC32 $EC409CB7
 hdiutil: verify: checksum of "/Users/samni/Desktop/开发项目/file-trans/dist/OrbitMorph.dmg" is VALID
 Created /Users/samni/Desktop/开发项目/file-trans/dist/OrbitMorph.dmg
 /Users/samni/Desktop/开发项目/file-trans/dist/OrbitMorph.app: valid on disk
@@ -23,35 +23,35 @@ Created /Users/samni/Desktop/开发项目/file-trans/dist/OrbitMorph.dmg
 正在检查“Protective Master Boot Record（MBR：0）”的校验和…
 Protective Master Boot Record（MBR：0）：已验证CRC32 $2BE7F58C
 正在检查“GPT Header（Primary GPT Header：1）”的校验和…
-    GPT Header（Primary GPT Header：1）：已验证CRC32 $BBEB4CB7
+    GPT Header（Primary GPT Header：1）：已验证CRC32 $6AC4F92F
 正在检查“GPT Partition Data（Primary GPT Table：2）”的校验和…
-GPT Partition Data（Primary GPT Table：已验证CRC32 $1266244C
+GPT Partition Data（Primary GPT Table：已验证CRC32 $784A5232
 正在检查“（Apple_Free：3）”的校验和…
                       （Apple_Free：3）：已验证CRC32 $00000000
 正在检查“disk image（Apple_APFS：4）”的校验和…
-            disk image（Apple_APFS：4）：已验证CRC32 $7EF085CF
+            disk image（Apple_APFS：4）：已验证CRC32 $96CC754E
 正在检查“（Apple_Free：5）”的校验和…
                       （Apple_Free：5）：已验证CRC32 $00000000
 正在检查“GPT Partition Data（Backup GPT Table：6）”的校验和…
-GPT Partition Data（Backup GPT Table：：已验证CRC32 $1266244C
+GPT Partition Data（Backup GPT Table：：已验证CRC32 $784A5232
 正在检查“GPT Header（Backup GPT Header：7）”的校验和…
-     GPT Header（Backup GPT Header：7）：已验证CRC32 $BB9B2093
-已验证CRC32 $AEAC726D
+     GPT Header（Backup GPT Header：7）：已验证CRC32 $6AB4950B
+已验证CRC32 $EC409CB7
 hdiutil: verify: checksum of "/Users/samni/Desktop/开发项目/file-trans/dist/OrbitMorph.dmg" is VALID
-/var/folders/3m/qr8bbl7x1l3b1c_jm3ssyhmc0000gn/T//orbitmorph-dmg.uH20hG/OrbitMorph.app: valid on disk
-/var/folders/3m/qr8bbl7x1l3b1c_jm3ssyhmc0000gn/T//orbitmorph-dmg.uH20hG/OrbitMorph.app: satisfies its Designated Requirement
+/var/folders/3m/qr8bbl7x1l3b1c_jm3ssyhmc0000gn/T//orbitmorph-dmg.zOfQjB/OrbitMorph.app: valid on disk
+/var/folders/3m/qr8bbl7x1l3b1c_jm3ssyhmc0000gn/T//orbitmorph-dmg.zOfQjB/OrbitMorph.app: satisfies its Designated Requirement
 {
   "files": {
     "Credits.md": "4cde6413c703d59b73f8be1cd8bc888f05895aca986387ff48a1954ccdbe6231",
-    "Localizable.xcstrings": "3f5c99d94523fd60894f421380f8eac0d56488031b9649d05d440fb006cf729e",
+    "Localizable.xcstrings": "cc7276d091a3734e3b72f2c218276b563f1a24e04252aec2ddea90ac250bca92",
     "OrbitMorph.icns": "45596e4e35dc318c2110162da740ba217bf8a6a42aeda96b98273729da876ba8",
     "Samples/OrbitMorph-Sample-Video.mp4": "0aa8ca88269d4167336fce14af8395ac661d91ff18fc61c82424e76c59bfb1a8",
     "Samples/OrbitMorph-Sample.png": "2030955ed25db81c9391afa80b8bc5efcc32a78a259b5badd45d54fec7039fad",
     "Sounds/segment-tick.wav": "1173330469f671ca21b6d8c01242b8b188592ec304d349bd5e76518eeeaae6db"
   },
   "localizationEntries": {
-    "en": 124,
-    "zh-Hans": 124
+    "en": 123,
+    "zh-Hans": 123
   },
   "sampleMP4": {
     "decodedFrames": 120,
@@ -83,7 +83,7 @@ hdiutil: verify: checksum of "/Users/samni/Desktop/开发项目/file-trans/dist/
 }
 verify-package: PASS
   bundle: /Users/samni/Desktop/开发项目/file-trans/dist/OrbitMorph.app
-  version: 1.2.1
+  version: 1.2.0
   arch: arm64
-  binary SHA-256: d56d574adcf127797cb22d56ca9e2a810320aa5296838f17519d2a93b1302b1d
+  binary SHA-256: 3fccc504d60e843db7e6525592ae89698ba9a6cf0f7f6ad7efea2d41f3c0461b
   DMG: /Users/samni/Desktop/开发项目/file-trans/dist/OrbitMorph.dmg

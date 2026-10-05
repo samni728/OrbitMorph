@@ -2,7 +2,7 @@
 
 ## 产品闭环
 
-主用户是在 Mac 上频繁处理本地文件的人。闭环为 Finder 拖动 → 转盘选目标 → 后台本地转换 → 新文件。教程提供第一条可验证样本流程；没有账号、云端、支付、LLM 或用户文件遥测。
+主用户是在 Mac 上频繁处理本地文件的人。闭环为 Finder 拖动 → 转盘选目标 → 后台本地转换 → 新文件。首次教学只模拟该手势并展示真实可用目标，隔离于转换任务；没有账号、云端、支付、LLM 或用户文件遥测。
 
 ## 模块边界
 
@@ -40,7 +40,7 @@ JobCoordinator 保存设置/依赖快照，在后台顺序处理批次。产物�
 
 ## 资源与语言
 
-`Resources/Samples` 的 800×600 PNG 和带音视频流 MP4 用于教程；使用前复制到独立临时目录，避免输出写进签名app。`Resources/Sounds/segment-tick.wav` 是 PCM 反馈声音。`Localizable.xcstrings` 保持 JSON 格式，由应用直接加载，构建脚本复制到 app Resources，不依赖隐式 SwiftPM source bundle。
+`Resources/Samples` 的 800×600 PNG 和带音视频流 MP4 用于教学；样本在临时目录中读取，但教学不调用 JobCoordinator、ConversionEngine 或系统 NSDraggingSession，不产生输出。TutorialDemoCanvas 在窗口内追踪鼠标并使用 RadialWheelView 子视图；GlobalDragMonitor 忽略教学窗口范围内的事件，阻止演示产生外部面板。首次 show 立即持久化完成状态；教程带独立原生标题栏可移动/关闭，已完成启动不创建教程窗口。DropWindowController 与相关菜单入口已删除。`Resources/Sounds/segment-tick.wav` 是 PCM 反馈声音。`Localizable.xcstrings` 保持 JSON 格式，由应用直接加载，构建脚本复制到 app Resources，不依赖隐式 SwiftPM source bundle。
 
 语言/外观截图参数只作用于本次渲染。素材为项目自建的非用户数据；不要把个人或企业文件放入测试/教程仓库。
 
@@ -59,7 +59,7 @@ git diff --check
 
 矩阵需要完整本机工具组合，包括 LibreOffice 和 Calibre；普通测试默认跳过矩阵。测试数与路线数从最终日志/JSON 写入文档，不能引用历史版本数字代替。
 
-`capture-screenshots.sh` 调用最终 app 的 wheel/settings/tutorial 自渲染 CLI，生成16张中英图片。转盘demo以PNG输入查询registry/policy的实际目标，不使用跨类别硬编码列表。保留原六条 gallery 路径，并记录 app 版本、二进制 hash、每张图语言/尺寸/scale/hash。设置/教程的关键中英图相同会报错；格式缩写相同的轮盘图可以相同。自渲染只证明真实view布局，不证明live blur、多屏拖拽、350ms停留切页或手势体验。
+`capture-screenshots.sh` 调用最终 app 的 wheel/settings/tutorial 自渲染 CLI，生成18张中英图片。转盘demo以PNG输入查询registry/policy的实际目标，不使用跨类别硬编码列表。保留原六条 gallery 路径，并记录 app 版本、二进制 hash、每张图语言/尺寸/scale/hash。设置/教程的关键中英图相同会报错；格式缩写相同的轮盘图可以相同。自渲染只证明真实view布局，不证明live blur、多屏拖拽、350ms停留切页或手势体验。
 
 `verify-app-resources.py` 验证 PNG chunk CRC/尺寸、MP4音视频及真实解码帧、WAV非静音PCM和可解析中英语言目录；FFmpeg/ffprobe用于开发验收，不进包。`verify-package.sh` 验证版本/plist/ARM64/签名、只读挂载DMG、资源与二进制一致、source binary hash前后不变、Applications链接和卸载成功。
 
@@ -67,4 +67,4 @@ git diff --check
 
 Now 是本地转换闭环、教程/中英文、真实产物和可复现包。Next 是执行进度/取消、内容级媒体过滤和更多 PDF 操作。Later 是专业 RAW/EXR/矢量与完整多帧编辑。Risk 是工具体积/许可、自带转换器策略、签名公证和跨 Mac 分发。
 
-最终工作树验收：168 项测试、0 失败/跳过；554/554 路线通过；16 张截图、arm64 app 与 DMG 检查通过。[验收摘要](verification/release-summary.json)与[源码哈希清单](verification/source-manifest.json)关联本次代码。应用 binary SHA-256：`3fccc504d60e843db7e6525592ae89698ba9a6cf0f7f6ad7efea2d41f3c0461b`。
+最终工作树验收：177 项测试、0 失败/跳过；554/554 路线通过；18 张截图、arm64 app 与 DMG 检查通过。[验收摘要](verification/release-summary.json)与[源码哈希清单](verification/source-manifest.json)关联本次代码。应用 binary SHA-256：`d56d574adcf127797cb22d56ca9e2a810320aa5296838f17519d2a93b1302b1d`。

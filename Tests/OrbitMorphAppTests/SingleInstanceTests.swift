@@ -20,10 +20,10 @@ final class SingleInstanceTests: XCTestCase {
 
     func testOnlyStatuslessRenderAndDemoLaunchesBypassSingleInstance() {
         for argument in ["--render-wheel=/tmp/w.png", "--render-settings=/tmp/s.png",
-                         "--render-tutorial=/tmp/t.png", "--demo-wheel"] {
+                         "--render-tutorial=/tmp/t.png"] {
             XCTAssertTrue(LaunchInstancePolicy.isExempt(arguments: ["OrbitMorph", argument]), argument)
         }
-        for argument in ["--settings", "--language=zhHans", "--style=solid", "--render-unknown=foo"] {
+        for argument in ["--demo-wheel", "--settings", "--language=zhHans", "--style=solid", "--render-unknown=foo"] {
             XCTAssertFalse(LaunchInstancePolicy.isExempt(arguments: ["OrbitMorph", argument]), argument)
         }
     }

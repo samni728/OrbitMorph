@@ -1,10 +1,18 @@
 {
-  "recordedAtUTC": "2026-10-05T01:12:15.844935+00:00",
-  "binary": "/Users/samni/Desktop/开发项目/file-trans/dist/OrbitMorph.app/Contents/MacOS/OrbitMorph",
-  "firstPID": 38921,
-  "secondPID": 38998,
+  "recordedAtUTC": "2026-10-05T04:25:29.874467+00:00",
+  "version": "1.2.1",
+  "binary": "/Applications/OrbitMorph.app/Contents/MacOS/OrbitMorph",
+  "binarySHA256": "d56d574adcf127797cb22d56ca9e2a810320aa5296838f17519d2a93b1302b1d",
+  "firstPID": 7599,
+  "secondPID": 10880,
   "secondExitCode": 0,
   "firstStillRunning": true,
+  "installedRunningInstances": 1,
   "result": "PASS",
-  "testInstancesCleanedUp": true
+  "tutorialNativeWindowObserved": true,
+  "tutorialNativeCloseButtonObserved": true,
+  "tutorialSeenPersistedBeforeClose": true,
+  "userPreferencesRestoredExactly": true,
+  "firstInstanceLeftRunningForUser": true,
+  "firstUseObservedAtUTC": "2026-10-05T03:11:02.844446+00:00"
 }
